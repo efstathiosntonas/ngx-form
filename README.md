@@ -17,10 +17,10 @@ If you want to make changes on the Angular2 app and auto-refresh the `dist` fold
 Run `npm start`
 If you want to make changes on the Server and auto refresh the back end code then run: `nodemon npm start`
 
-## Web Browser
+## Viewing the App
 Open your favourite web browser and point to `http://localhost:3000`
 
 Enjoy!
 
-
+## Help with angular-cli
 To get more help on the `angular-cli` use `ng --help` or go check out the [Angular-CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
