@@ -5,13 +5,13 @@ This project was generated with [angular-cli](https://github.com/angular/angular
 The aim of this project is to submit a form with one file upload and two text fields. The form is submitted to back end, the file is stored in the `uploadsFolder` and then the file path/url is stored in MongoDB among the two text fields. At the end, the form ID is assinged to the signed in user ID (via Ref) for later viewing all the form fields and file in the front end.
 
 ## Packages Used
-`Angular v2.1.2`
-`Node v6.9.1`
-`MongoDB v3.2.10`
-`ng2-toastr v1.3.0`
-`BootStrap 3`  (css is included in `assets` folder)
-`Font Awesome` (css is included in `assets` folder)
-`Glyphicons`   (found in `fonts` folder under `assets`)
+`Angular v2.1.2` <br/>
+`Node v6.9.1` <br/>
+`MongoDB v3.2.10` <br/>
+`ng2-toastr v1.3.0` <br/>
+`BootStrap 3`  (css is included in `assets` folder) <br/>
+`Font Awesome` (css is included in `assets` folder) <br/>
+`Glyphicons`   (found in `fonts` folder under `assets`) <br/>
 
 
 ## Installing Dependecies
