@@ -7,7 +7,7 @@ IDE used: WebStorm 2016.3 RC
 
 ## TODO
 1. Create upload logic in Angular2
-2. ~~Reset user password via email using a token~~ Done, the app uses sendgrid, the free plan is good for starting up.
+2. ~~Reset user password via email using a token~~ Done, the app uses SendGrid, the free plan is good for starting up.
 
 
 
@@ -27,6 +27,7 @@ The aim of this project is to submit a form with one file upload and two text fi
 
 ## Packages Used
 `Angular v2.1.2` <br/>
+`Webpack` <br/>
 `Node v6.9.1` <br/>
 `MongoDB v3.2.10` <br/>
 `ng2-toastr v1.3.0` <br/>
