@@ -22,7 +22,7 @@ export class RegisterComponent implements OnInit {
       this._router.navigateByUrl('/form')
     }
     this.email = new FormControl('', [Validators.required, this.isEmail]);
-    this.password = new FormControl('', [Validators.required, Validators.minLength(8)]);
+    this.password = new FormControl('', [Validators.required, Validators.minLength(6)]);
 
     this.myForm = this._fb.group({
       email: this.email,

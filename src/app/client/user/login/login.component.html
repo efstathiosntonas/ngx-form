@@ -10,7 +10,7 @@
     <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
     <input type="password" formControlName="password"  placeholder="Κωδικός" class="form-control">
   </div>
-  <div [hidden]="password.valid || password.pristine" class="alert alert-danger">Password must contain 8 or more characters</div>
+  <div [hidden]="password.valid || password.pristine" class="alert alert-danger">Password must contain 6 or more characters</div>
   <br>
   <button class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="!myForm.valid">Login</button>
 </form>
