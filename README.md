@@ -1,4 +1,5 @@
 CAUTION: This is a work in progress, do not use in dev enviroment.
+Right now only user registration and login is working, the server is preped up for uploads, only the Angular2 part is missing to upload the form.
 
 IDE used: WebStorm 2016.3 RC
 
