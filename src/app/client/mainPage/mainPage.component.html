@@ -2,4 +2,5 @@
 <div class="jumbotron topPad">
   <h1>Instructions</h1>
   <p>Please first signup and then login so you can submit a form!</p>
+  <button type="button" [routerLink]="['/form']" class="btn" *ngIf="isLoggedIn()">Go to submit a new Form</button>
 </div>

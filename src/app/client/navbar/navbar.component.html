@@ -11,12 +11,13 @@
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home</a></li>
+        <li><a href="#">Home</a></li>
+        <li><a [routerLink]="['/form']" *ngIf="isLoggedIn()">Add Form</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a [routerLink]="['user/register']" *ngIf="!isLoggedIn()">Register</a></li>
-        <li><a [routerLink]="['user/login']" *ngIf="!isLoggedIn()">Login</a></li>
-        <li><a href="../navbar-static-top/" *ngIf="isLoggedIn()">Logout</a></li>
+        <li><a [routerLink]="['/user/register']" *ngIf="!isLoggedIn()">Register</a></li>
+        <li><a [routerLink]="['/user/login']" *ngIf="!isLoggedIn()">Login</a></li>
+        <li><a href="#" (click)="logout()" *ngIf="isLoggedIn()">Logout</a></li>
       </ul>
     </div><!--/.nav-collapse -->
   </div>

@@ -3,8 +3,8 @@ import {Http, Headers, Response} from '@angular/http';
 import {User} from './user';
 import {Observable} from 'rxjs';
 import 'rxjs/Rx' // you can cut it down to include only the nescessary parts like .map etc
-import {ErrorService} from "../errorHandler/error.service";
 import {ToastsManager} from "ng2-toastr";
+import {ErrorService} from "../../errorHandler/error.service";
 
 
 @Injectable()
@@ -14,7 +14,7 @@ export class AuthService {
   constructor(private http: Http, private errorService: ErrorService, private toastr: ToastsManager) {
   }
 
-  register(user: User) {
+  signup(user: User) {
     const body = JSON.stringify(user);
     const headers = new Headers({'Content-Type': 'application/json'});
     return this.http.post('http://localhost:3000/user/register', body, {headers: headers})
@@ -38,7 +38,7 @@ export class AuthService {
 
   logout() {
     localStorage.clear();
-    this.toastr.info('You have been logged out');
+    this.toastr.info('You have been logged out' );
   }
 
   isLoggedIn() {

@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {AuthService} from "../auth/auth.service";
 
 @Component({
   selector: 'main-page',
@@ -7,6 +8,9 @@ import {Component} from '@angular/core';
 })
 
 export class MainPageComponent {
-  constructor(){}
+  constructor(private _authService: AuthService){}
 
+  isLoggedIn() {
+    return this._authService.isLoggedIn();
+  }
 }
