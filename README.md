@@ -19,7 +19,7 @@ The aim of this project is to submit a form with one file upload and two text fi
 
 ## Specs
 1. User login/signup using Json Web Token(jwt)
-2. User password reset
+2. User password reset via email (nodemailer & SendGrid)
 3. Toastr Notifications
 4. Multipart form submission
 5. Storing images to file system
