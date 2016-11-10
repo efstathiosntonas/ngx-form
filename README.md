@@ -17,6 +17,14 @@ This project was generated with [angular-cli](https://github.com/angular/angular
 
 The aim of this project is to submit a form with one file upload and two text fields. The form is submitted to back end, the file is stored in the `uploadsFolder` and then the file path/url is stored in MongoDB among the two text fields. At the end, the form ID is assinged to the signed in user ID (via Ref) for later viewing all the form fields and file in the front end.
 
+## Specs
+1. User login/signup using Json Web Token(jwt)
+2. User password reset
+3. Toastr Notifications
+4. Multipart form submission
+5. Storing images to file system
+6. Storing image path to MongoDB among text fields
+
 ## Packages Used
 `Angular v2.1.2` <br/>
 `Node v6.9.1` <br/>
