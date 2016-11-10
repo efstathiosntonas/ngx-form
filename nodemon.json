@@ -1,0 +1,23 @@
+{
+  "verbose": false,
+  "ignore": [
+    ".git",
+    "node_modules/**/node_modules",
+    "public",
+    "src",
+    "scss",
+    "tmp",
+    "typings",
+    "config"
+  ],
+  "execMap": {
+    "js": "node"
+  },
+  "watch": [
+    "server/"
+  ],
+  "env": {
+    "NODE_ENV": "development"
+  },
+  "ext": "js json"
+}

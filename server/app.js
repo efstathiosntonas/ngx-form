@@ -8,7 +8,8 @@ var express = require('express'),
     config = require('./config/config');
 
 
-var uploadRoutes = require('./routes/upload');
+var userRoute = require('./routes/user');
+var uploadRoute = require('./routes/upload');
 
 
 var app = express();
@@ -34,7 +35,8 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.use('/uploads', uploadRoutes);
+app.use('/user', userRoute);
+app.use('/uploads', uploadRoute);
 
 
 // catch 404 and forward to error handler

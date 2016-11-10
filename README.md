@@ -1,31 +1,28 @@
-# Forms
+# Angular 2 Form
 
 This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.18.
 
-## Development server
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+The aim of this project is to submit a form with one file upload and two text fields. The form is submitted to back end, the file is stored in the `uploadsFolder` and then the file path/url is stored in MongoDB among the two text fields. At the end, the form ID is assinged to the signed in user ID for later viewing in the front end.
 
-## Code scaffolding
+## Installing Dependecies
+Run `npm install` in your command line.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive/pipe/service/class`.
+## Building the Angular2 app
+Run `ng build`
 
-## Build
+A new `dist` folder will be created with all files needed to run the Angular 2 app in front end.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+If you want to make changes on the Angular2 app and auto-refresh the `dist` folder then run the following command in your terminal:
+ `ng build --watch`
 
-## Running unit tests
+## Running the server
+Run `npm start`
+If you want to make changes on the Server and auto refresh the back end code then run: `nodemon npm start`
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Viewing the App
+Open your favourite web browser and point to `http://localhost:3000`
 
-## Running end-to-end tests
+Enjoy!
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
-
-## Deploying to Github Pages
-
-Run `ng github-pages:deploy` to deploy to Github Pages.
-
-## Further help
-
+## Help with angular-cli
 To get more help on the `angular-cli` use `ng --help` or go check out the [Angular-CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
