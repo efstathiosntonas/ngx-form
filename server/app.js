@@ -10,6 +10,8 @@ var express      = require('express'),
 
 var userRoute   = require('./routes/user');
 var uploadRoute = require('./routes/upload');
+var forgotRoutes = require('./routes/forgetPassword');
+var resetRoutes = require('./routes/resetPassword');
 
 
 var app = express();
@@ -36,7 +38,10 @@ app.use(function (req, res, next) {
 });
 
 app.use('/user', userRoute);
+app.use('/user/forgot', forgotRoutes);
+app.use('/user/reset', resetRoutes);
 app.use('/uploads', uploadRoute);
+
 
 
 // catch 404 and forward to error handler

@@ -5,6 +5,7 @@ import {Observable} from 'rxjs';
 import 'rxjs/Rx' // you can cut it down to include only the nescessary parts like .map etc
 import {ToastsManager} from "ng2-toastr";
 import {ErrorService} from "../../errorHandler/error.service";
+import {Reset} from "./resetPassword";
 
 
 @Injectable()
@@ -32,6 +33,28 @@ export class AuthService {
     const headers = new Headers({'Content-Type': 'application/json'});
     return this.http.post('http://localhost:3000/user/login', body, {headers: headers})
       .map((response: Response) => response.json())
+      .catch((error: Response) => {
+        this.errorService.handleError(error.json());
+        return Observable.throw(error.json())
+      });
+  }
+
+  forget(reset: Reset) {
+    const body = JSON.stringify(reset);
+    const headers = new Headers({'Content-Type': 'application/json'});
+    return this.http.post('http://localhost:3000/user/forgot', body, {headers: headers})
+      .map((response : Response) => response.json())
+      .catch((error: Response) => {
+        this.errorService.handleError(error.json());
+        return Observable.throw(error.json())
+      });
+  }
+
+  reset(reset: Reset) {
+    const body = JSON.stringify(reset);
+    const headers = new Headers({'Content-Type': 'application/json'});
+    return this.http.post('http://localhost:3000/user/reset/' + reset.token, body, {headers: headers})
+      .map((response : Response) => response.json())
       .catch((error: Response) => {
         this.errorService.handleError(error.json());
         return Observable.throw(error.json())

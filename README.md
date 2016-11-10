@@ -7,7 +7,7 @@ IDE used: WebStorm 2016.3 RC
 
 ## TODO
 1. Create upload logic in Angular2
-2. Reset user password via email using a token
+2. ~~Reset user password via email using a token~~ Done, the app uses sendgrid, the free plan is good for starting up.
 
 
 

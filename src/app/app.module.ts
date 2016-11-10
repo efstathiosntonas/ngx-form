@@ -17,6 +17,8 @@ import {ToastModule, ToastOptions} from "ng2-toastr";
 import {LoginComponent} from "./client/user/login/login.component";
 import {ErrorComponent} from "./errorHandler/error.component";
 import {MainPageComponent} from "./client/mainPage/mainPage.component";
+import {ResetPasswordComponent} from "./client/user/accountRecover/resetPassword.component";
+import {ForgetPasswordComponent} from "./client/user/accountRecover/forgetPassword.component";
 
 let options = <ToastOptions> {
   animate: 'flyRight',
@@ -33,7 +35,9 @@ let options = <ToastOptions> {
     LoginComponent,
     NavbarComponent,
     ErrorComponent,
-    MainPageComponent
+    MainPageComponent,
+    ResetPasswordComponent,
+    ForgetPasswordComponent
   ],
   imports: [
     BrowserModule,
