@@ -3,11 +3,13 @@ Right now only user registration and login is working, the server is preped up f
 
 The design is minimal, later on i will make it much better and more beatiful.
 
+IDE used: WebStorm 2016.3 RC
+
 ## TODO
 1. Create upload logic in Angular2
 2. Reset user password via email using a token
 
-IDE used: WebStorm 2016.3 RC
+
 
 # Angular 2 Form
 
