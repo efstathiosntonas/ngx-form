@@ -14,6 +14,7 @@ export class AuthService {
   constructor(private http: Http, private errorService: ErrorService, private toastr: ToastsManager) {
   }
 
+  //sending request to back end to register our user
   signup(user: User) {
     const body = JSON.stringify(user);
     const headers = new Headers({'Content-Type': 'application/json'});
@@ -25,6 +26,7 @@ export class AuthService {
       });
   }
 
+  // sending request to back end to login the user
   signin(user: User) {
     const body = JSON.stringify(user);
     const headers = new Headers({'Content-Type': 'application/json'});
@@ -36,11 +38,13 @@ export class AuthService {
       });
   }
 
+  //logout function to be used in html file of both pages (login/register) in order to clear the localStorage from token and user id.
   logout() {
     localStorage.clear();
-    this.toastr.info('You have been logged out' );
+    this.toastr.info('You have been logged out');
   }
 
+  // check if the user is logged in or not in html files for both pages (login/register)
   isLoggedIn() {
     return localStorage.getItem('token') !== null;
   }

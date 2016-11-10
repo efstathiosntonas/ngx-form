@@ -8,8 +8,10 @@ import {AuthService} from "../auth/auth.service";
 })
 
 export class MainPageComponent {
-  constructor(private _authService: AuthService){}
+  constructor(private _authService: AuthService) {
+  }
 
+  //check if user is logged in by asking the authentication service, we use this function in html file *ngIf directive
   isLoggedIn() {
     return this._authService.isLoggedIn();
   }

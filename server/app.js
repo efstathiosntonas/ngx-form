@@ -1,14 +1,14 @@
-var express = require('express'),
-    path = require('path'),
-    favicon = require('serve-favicon'),
-    logger = require('morgan'),
+var express      = require('express'),
+    path         = require('path'),
+    favicon      = require('serve-favicon'),
+    logger       = require('morgan'),
     cookieParser = require('cookie-parser'),
-    bodyParser = require('body-parser'),
-    mongoose = require('mongoose'),
-    config = require('./config/config');
+    bodyParser   = require('body-parser'),
+    mongoose     = require('mongoose'),
+    config       = require('./config/config');
 
 
-var userRoute = require('./routes/user');
+var userRoute   = require('./routes/user');
 var uploadRoute = require('./routes/upload');
 
 
@@ -41,7 +41,7 @@ app.use('/uploads', uploadRoute);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
-  var err = new Error('Not Found');
+  var err    = new Error('Not Found');
   err.status = 404;
   next(err);
 });

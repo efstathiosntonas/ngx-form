@@ -1,3 +1,4 @@
 export class Error {
-  constructor( public message: string) {}
+  constructor(public message: string) {
+  }
 }
