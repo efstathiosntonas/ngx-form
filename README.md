@@ -65,8 +65,8 @@ Enjoy!
 To get more help on the `angular-cli` use `ng --help` or go check out the [Angular-CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
 ## Preview of the app
-[!Form before entering text](https://cloud.githubusercontent.com/assets/717975/20238425/053567f6-a8f4-11e6-99cb-15403426fcf5.png)
-[!Form after entering text and selecting an image](https://cloud.githubusercontent.com/assets/717975/20238426/0538a132-a8f4-11e6-87f1-61c871acfea6.png)
-[!Server response after submitting form](https://cloud.githubusercontent.com/assets/717975/20238428/053e95ec-a8f4-11e6-93ab-04258e359e13.png)
-[!Users document from MongoDB](https://cloud.githubusercontent.com/assets/717975/20238429/05423e68-a8f4-11e6-9a2c-c2791ef0a4e9.png)
-[!Forms submitted by the user with unique file name, and user._id Ref `owner`](https://cloud.githubusercontent.com/assets/717975/20238427/053d1df2-a8f4-11e6-9b2a-616eafa3f517.png)
+![Form before entering text](https://cloud.githubusercontent.com/assets/717975/20238425/053567f6-a8f4-11e6-99cb-15403426fcf5.png)
+![Form after entering text and selecting an image](https://cloud.githubusercontent.com/assets/717975/20238426/0538a132-a8f4-11e6-87f1-61c871acfea6.png)
+![Server response after submitting form](https://cloud.githubusercontent.com/assets/717975/20238428/053e95ec-a8f4-11e6-93ab-04258e359e13.png)
+![Users document from MongoDB](https://cloud.githubusercontent.com/assets/717975/20238429/05423e68-a8f4-11e6-9a2c-c2791ef0a4e9.png)
+![Forms submitted by the user with unique file name, and user._id Ref `owner`](https://cloud.githubusercontent.com/assets/717975/20238427/053d1df2-a8f4-11e6-9b2a-616eafa3f517.png)
