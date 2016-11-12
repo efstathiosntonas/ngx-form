@@ -1,6 +1,8 @@
 CAUTION: This is a work in progress, do not use in dev enviroment.
 
-The design is minimal, later on i will make it much better and more beatiful.
+Project is built using the MEA2N/MEAN2 stack
+
+Design is minimal, later on i will make it much better and more beatiful.
 
 IDE used: WebStorm 2016.3 RC
 
@@ -19,7 +21,7 @@ IDE used: WebStorm 2016.3 RC
 
 This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.18.
 
-The aim of this project is to submit a form with one file upload and two text fields. The form is submitted to back end, the file is stored in the `uploadsFolder` and then the file path/url is stored in MongoDB among the two text fields. At the end, the form ID is assinged to the signed in user ID (via Ref) for later viewing all the form fields and file in the front end.
+The goal of this project is to submit a form with one file upload and two text fields. The form is submitted to back end, the file is stored in the `uploadsFolder` and then the file path/url is stored in MongoDB among the two text fields. At the end, the form ID is assinged to the signed in user ID (via Ref) for later viewing all the form fields and file in the front end.
 
 ## Specs
 1. User login/signup using JSON Web Token (jwt)
@@ -34,6 +36,7 @@ The aim of this project is to submit a form with one file upload and two text fi
 `Webpack` <br/>
 `Node v6.9.1` <br/>
 `MongoDB v3.2.10` <br/>
+`Express` <br/>
 `Multer` <br/>
 `ng2-toastr v1.3.0` <br/>
 `BootStrap 3`  (css is included in `assets` folder) <br/>
