@@ -9,5 +9,4 @@ export class ErrorService {
     const errorData = new Error(error.error.message);
     this.errorOccured.emit(errorData);
   }
-
 }

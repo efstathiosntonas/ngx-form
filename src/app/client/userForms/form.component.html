@@ -25,9 +25,9 @@
 
       <!-- File Button -->
       <div class="form-group">
-        <label class="col-md-4 control-label" for="fileButton">File Button</label>
+        <label class="col-md-4 control-label" for="filebutton">File Button</label>
         <div class="col-md-4">
-          <input type="file" class="input-file" id="fileButton" #file (change)="imgPreview($event)" accept="image/*">
+          <input type="file" class="input-file" id="filebutton" formControlName="fileUp" name="fileUpload" (change)="imgPreview($event)"  accept="image/*">
           <img src="{{ preview }}" class="img-thumbnail img-responsive topMargin"><br>
         </div>
       </div>

@@ -1,9 +1,5 @@
 var express     = require('express'),
     router      = express.Router(),
-    fs          = require('fs'),
-    multer      = require('multer'),
-    mime        = require("mime"),
-    path        = require('path'),
     crypto      = require("crypto"),
     nodemailer  = require('nodemailer'),
     async       = require('async'),
@@ -46,7 +42,7 @@ router.post('/', function (req, res, next) {
     function (token, user, done) {
       var options = {
         auth: {
-          //please edit the config file and add your sendgrid credentials
+          //please edit the config file and add your SendGrid credentials
           api_user: config.api_user,
           api_key: config.api_key
         }

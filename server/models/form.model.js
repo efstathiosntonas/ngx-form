@@ -4,9 +4,10 @@ var mongoose                = require('mongoose'),
     mongooseUniqueValidator = require('mongoose-unique-validator');
 
 var form = new Schema({
-  textInputOne: {type: String, required: true},
-  textInputTwo: {type: String, required: true},
-  imagePath: {type: String, required: true},
+  textInputOne: {type: String},
+  textInputTwo: {type: String},
+  imagePath: {type: String},
+  dateSubmitted: { type:Date, default: Date.now()},
   owner: {type: Schema.Types.ObjectId, ref: 'User'}
 });
 

@@ -12,13 +12,14 @@ import {routing} from "./client/routes.component";
 import {CommonModule, HashLocationStrategy, LocationStrategy} from "@angular/common";
 import {AuthGuardService} from "./client/auth/authguard.service";
 import {AuthService} from "./client/auth/auth.service";
-import {ErrorService} from "./errorHandler/error.service";
+import {ErrorService} from "./client/errorHandler/error.service";
 import {ToastModule, ToastOptions} from "ng2-toastr";
 import {LoginComponent} from "./client/user/login/login.component";
-import {ErrorComponent} from "./errorHandler/error.component";
+import {ErrorComponent} from "./client/errorHandler/error.component";
 import {MainPageComponent} from "./client/mainPage/mainPage.component";
 import {ResetPasswordComponent} from "./client/user/accountRecover/resetPassword.component";
 import {ForgetPasswordComponent} from "./client/user/accountRecover/forgetPassword.component";
+import {FormService} from "./client/form/form.service";
 
 let options = <ToastOptions> {
   animate: 'flyRight',
@@ -53,7 +54,8 @@ let options = <ToastOptions> {
     AuthGuardService,
     {provide: LocationStrategy, useClass: HashLocationStrategy},
     AuthService,
-    ErrorService
+    ErrorService,
+    FormService
   ],
   bootstrap: [AppComponent]
 })

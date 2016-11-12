@@ -1,13 +1,16 @@
 CAUTION: This is a work in progress, do not use in dev enviroment.
-Right now only user registration and login is working, the server is preped up for uploads, only the Angular2 part is missing to upload the form.
 
 The design is minimal, later on i will make it much better and more beatiful.
 
 IDE used: WebStorm 2016.3 RC
 
 ## TODO
-1. Create upload logic in Angular2
+1. ~~Create upload logic in Angular2~~ Done, the form is submitted by leveraging XHR, all images are saved at `uploadsForlder/user._id` path so every user has it's own folder seperated by id.
 2. ~~Reset user password via email using a token~~ Done, the app uses SendGrid, the free plan is good for starting up.
+3. Add an upload progress bar
+4. Resize the image before storing to file system
+5. Add a new menu link for a new page, 'My Forms' in order to display user's submitted forms
+6. Better styling
 
 
 
@@ -30,6 +33,7 @@ The aim of this project is to submit a form with one file upload and two text fi
 `Webpack` <br/>
 `Node v6.9.1` <br/>
 `MongoDB v3.2.10` <br/>
+`Multer` <br/>
 `ng2-toastr v1.3.0` <br/>
 `BootStrap 3`  (css is included in `assets` folder) <br/>
 `Font Awesome` (css is included in `assets` folder) <br/>

@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
 import {Http, Headers, Response} from '@angular/http';
-import {User} from './user';
+import {User} from './user.model';
 import {Observable} from 'rxjs';
 import 'rxjs/Rx' // you can cut it down to include only the nescessary parts like .map etc
 import {ToastsManager} from "ng2-toastr";
-import {ErrorService} from "../../errorHandler/error.service";
+import {ErrorService} from "../errorHandler/error.service";
 import {Reset} from "./resetPassword";
 
 
