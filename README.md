@@ -25,7 +25,7 @@ The aim of this project is to submit a form with one file upload and two text fi
 1. User login/signup using JSON Web Token (jwt)
 2. User password reset via email (nodemailer & SendGrid)
 3. Toastr Notifications (& Error Handling)
-4. Multipart form submission
+4. Multipart form submission with image preview before upload.
 5. Storing images to file system
 6. Storing image path to MongoDB among text fields
 
