@@ -7,10 +7,11 @@ IDE used: WebStorm 2016.3 RC
 ## TODO
 1. ~~Create upload logic in Angular2~~ Done, the form is submitted by leveraging XHR, all images are saved at `uploadsForlder/user._id` path so every user has it's own folder seperated by id.
 2. ~~Reset user password via email using a token~~ Done, the app uses SendGrid, the free plan is good for starting up.
-3. Add an upload progress bar
-4. Resize the image before storing to file system
-5. Add a new menu link for a new page, 'My Forms' in order to display user's submitted forms
-6. Better styling
+3. Redirect user to the `MyForms` page after submitting the form (see #6 below).
+4. Add an upload progress bar.
+5. Resize the image before storing to file system.
+6. Add a new menu link for a new page, `MyForms` in order to display user's submitted forms.
+7. Better styling.
 
 
 
@@ -21,7 +22,7 @@ This project was generated with [angular-cli](https://github.com/angular/angular
 The aim of this project is to submit a form with one file upload and two text fields. The form is submitted to back end, the file is stored in the `uploadsFolder` and then the file path/url is stored in MongoDB among the two text fields. At the end, the form ID is assinged to the signed in user ID (via Ref) for later viewing all the form fields and file in the front end.
 
 ## Specs
-1. User login/signup using Json Web Token(jwt)
+1. User login/signup using JSON Web Token (jwt)
 2. User password reset via email (nodemailer & SendGrid)
 3. Toastr Notifications (& Error Handling)
 4. Multipart form submission
