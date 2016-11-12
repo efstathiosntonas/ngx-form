@@ -54,7 +54,7 @@ If you want to make changes on the Angular2 app and auto-refresh the `dist` fold
 
 ## Running the server
 Run `npm start`
-If you want to make changes on the Server and auto refresh the back end code then run: `nodemon npm start`
+If you want to make changes on the Server and auto refresh the back end code then run: `nodemon npm start`. If you don't have nodemon installed, run `npm install nodemon -g`.
 
 ## Viewing the App
 Open your favourite web browser and point to `http://localhost:3000`
