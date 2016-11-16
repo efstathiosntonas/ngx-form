@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {FormGroup, FormControl, FormBuilder, Validators} from "@angular/forms";
-import {ToastsManager} from "ng2-toastr";
-import {Router} from "@angular/router";
-import {AuthService} from "../../auth/auth.service";
-import {User} from "../../auth/user.model";
+import {FormGroup, FormControl, FormBuilder, Validators} from '@angular/forms';
+import {ToastsManager} from 'ng2-toastr';
+import {Router} from '@angular/router';
+import {AuthService} from '../../auth/auth.service';
+import {User} from '../../auth/user.model';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.email = new FormControl('', [Validators.required, this.isEmail]);
+    this.email = new FormControl('', [Validators.required, this.emailValidator]);
     this.password = new FormControl('', [Validators.required, Validators.minLength(6)]);
 
     this.myForm = this._fb.group({
@@ -28,9 +28,9 @@ export class LoginComponent implements OnInit {
       password: this.password
     });
 
-    //check if the user is logged in while trying to access the login page, if the user is logged in, we redirect him to the form page
+    // check if the user is logged in while trying to access the login page, if the user is logged in, we redirect him to the form page
     if (this._authService.isLoggedIn()) {
-      this._router.navigate(['/form'])
+      this._router.navigate(['/form']);
     }
   }
 
@@ -44,21 +44,23 @@ export class LoginComponent implements OnInit {
           // we need these info in order to do stuff later when the user is signed in and verified
           localStorage.setItem('token', data.token);
           localStorage.setItem('userId', data.userId);
-          //navigate user to index page of our app
+          // navigate user to index page of our app
           this._router.navigate(['/']);
           // display toastr success message pop up to inform the user that he logged in successfully
           this.toastr.success('You have been logged in!');
         },
         error => console.log(error)
-      )
+      );
 
   }
 
 
   // input validator to check if the email entered by the user is actually text in an email form
-  private isEmail(control: FormControl): {[s: string]: boolean} {
-    if (!control.value.match("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")) {
-      return {invalidMail: true};
+  emailValidator(control) {
+    let EMAIL_REGEXP = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
+
+    if (!EMAIL_REGEXP.test(control.value)) {
+      return {invalidEmail: true};
     }
   }
 }

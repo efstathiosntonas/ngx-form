@@ -7,7 +7,7 @@ var form = new Schema({
   textInputOne: {type: String},
   textInputTwo: {type: String},
   imagePath: {type: String},
-  dateSubmitted: { type:Date, default: Date.now()},
+  dateSubmitted: { type:Date, default: Date.now},
   owner: {type: Schema.Types.ObjectId, ref: 'User'}
 });
 

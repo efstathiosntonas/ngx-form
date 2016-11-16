@@ -47,7 +47,7 @@ router.post('/:token', function(req, res) {
         if(!user) {
           return res.status(403).json({
             title: 'There was an error',
-            error: {message: 'Please check if your email or password is correct'}
+            error: {message: 'Please check if your email is correct'}
           })
         }
 

@@ -6,20 +6,22 @@ import {AppComponent} from './app.component';
 import {NavbarComponent} from './client/navbar/navbar.component';
 import {FormComponent} from './client/form/form.component';
 import {RegisterComponent} from './client/user/register/register.component';
-import {UserComponent} from "./client/user/user.component";
-import {RouterModule} from "@angular/router";
-import {routing} from "./client/routes.component";
-import {CommonModule, HashLocationStrategy, LocationStrategy} from "@angular/common";
-import {AuthGuardService} from "./client/auth/authguard.service";
-import {AuthService} from "./client/auth/auth.service";
-import {ErrorService} from "./client/errorHandler/error.service";
-import {ToastModule, ToastOptions} from "ng2-toastr";
-import {LoginComponent} from "./client/user/login/login.component";
-import {ErrorComponent} from "./client/errorHandler/error.component";
-import {MainPageComponent} from "./client/mainPage/mainPage.component";
-import {ResetPasswordComponent} from "./client/user/accountRecover/resetPassword.component";
-import {ForgetPasswordComponent} from "./client/user/accountRecover/forgetPassword.component";
-import {FormService} from "./client/form/form.service";
+import {UserComponent} from './client/user/user.component';
+import {RouterModule} from '@angular/router';
+import {routing} from './client/routes.component';
+import {CommonModule, HashLocationStrategy, LocationStrategy} from '@angular/common';
+import {AuthGuardService} from './client/auth/authguard.service';
+import {AuthService} from './client/auth/auth.service';
+import {ErrorService} from './client/errorHandler/error.service';
+import {ToastModule, ToastOptions} from 'ng2-toastr';
+import {LoginComponent} from './client/user/login/login.component';
+import {ErrorComponent} from './client/errorHandler/error.component';
+import {MainPageComponent} from './client/mainPage/mainPage.component';
+import {ResetPasswordComponent} from './client/user/accountRecover/resetPassword.component';
+import {ForgetPasswordComponent} from './client/user/accountRecover/forgetPassword.component';
+import {FormService} from './client/form/form.service';
+import {UserFormComponent} from './client/userForms/userForms.component';
+import {ProgressBarModule} from 'ng2-progress-bar';
 
 let options = <ToastOptions> {
   animate: 'flyRight',
@@ -38,7 +40,8 @@ let options = <ToastOptions> {
     ErrorComponent,
     MainPageComponent,
     ResetPasswordComponent,
-    ForgetPasswordComponent
+    ForgetPasswordComponent,
+    UserFormComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +51,8 @@ let options = <ToastOptions> {
     RouterModule,
     ReactiveFormsModule,
     routing,
-    ToastModule.forRoot(options)
+    ToastModule.forRoot(options),
+    ProgressBarModule
   ],
   providers: [
     AuthGuardService,

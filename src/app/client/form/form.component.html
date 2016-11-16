@@ -25,18 +25,27 @@
 
       <!-- File Button -->
       <div class="form-group">
-        <label class="col-md-4 control-label" for="fileButton">File Button</label>
-        <div class="col-md-4">
-          <input type="file" class="input-file" id="fileButton" #file (change)="imgPreview($event)" accept="image/*">
-          <img src="{{ preview }}" class="img-thumbnail img-responsive topMargin"><br>
+        <div class="col-md-4 col-centered">
+          <button type="button" class="btn">
+            <input #fileinput name="fileUp" type="file" (change)="onFileSelect($event)">
+          </button>
+          <div *ngIf="hasFiles()">
+            <div *ngFor="let file of files">
+              <img [src]="file.objectURL " *ngIf="isImage(file)" class="img-thumbnail img-responsive topMargin"><br>
+              <div>
+                <button type="button" class="btn-danger topMargin" (click)="remove(i)">Remove Image</button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
       <!-- Button -->
       <div class="form-group">
-        <label class="col-md-4 control-label" for="submitForm"></label>
-        <div class="col-md-4">
-          <button type="submit" [disabled]="!myForm.valid" id="submitForm" name="sumbitForm" class="btn btn-primary">Submit Form</button>
+        <div class="col-md-4 col-centered">
+          <button type="submit" [disabled]="!myForm.valid || !hasFiles()" id="submitForm" name="sumbitForm" class="btn btn-primary text-center bottomMargin">Submit</button>
+          <br/>
+          <progress-bar [value]="progress" [max]="100" *ngIf="hasFiles()"></progress-bar>
         </div>
       </div>
 

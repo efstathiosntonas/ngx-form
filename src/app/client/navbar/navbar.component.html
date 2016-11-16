@@ -13,6 +13,7 @@
       <ul class="nav navbar-nav">
         <li><a href="#">Home</a></li>
         <li><a [routerLink]="['/form']" *ngIf="isLoggedIn()">Add Form</a></li>
+        <li><a [routerLink]="['/user/forms']" *ngIf="isLoggedIn()">My Forms</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a [routerLink]="['/user/register']" *ngIf="!isLoggedIn()">Register</a></li>

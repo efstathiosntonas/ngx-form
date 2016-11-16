@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {ErrorService} from "./error.service";
-import {ToastsManager} from "ng2-toastr";
+import {ErrorService} from './error.service';
+import {ToastsManager} from 'ng2-toastr';
 
 
 @Component({
@@ -9,10 +9,10 @@ import {ToastsManager} from "ng2-toastr";
 })
 export class ErrorComponent implements OnInit {
 
+  error: Error;
+
   constructor(private errorService: ErrorService, private toastr: ToastsManager) {
   }
-
-  error: Error;
 
   ngOnInit() {
 
@@ -21,6 +21,6 @@ export class ErrorComponent implements OnInit {
         (error: Error) => {
           this.error = error;
           this.toastr.error(this.error.message);
-        })
+        });
   }
 }

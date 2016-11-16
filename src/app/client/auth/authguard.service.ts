@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
-import {ActivatedRouteSnapshot, RouterStateSnapshot, CanActivate, Router} from "@angular/router";
-import {Observable} from "rxjs";
-import {AuthService} from "./auth.service";
-import {ToastsManager} from "ng2-toastr";
+import {ActivatedRouteSnapshot, RouterStateSnapshot, CanActivate, Router} from '@angular/router';
+import {Observable} from 'rxjs';
+import {AuthService} from './auth.service';
+import {ToastsManager} from 'ng2-toastr';
 
 @Injectable()
 export class AuthGuardService implements CanActivate {
@@ -15,7 +15,7 @@ export class AuthGuardService implements CanActivate {
     // user is actually logged in
     if (this._authService.isLoggedIn()) {
       return true;
-      //user is not logged in, return the user to the login page
+      // user is not logged in, return the user to the login page
     } else {
       this._route.navigate(['/user/login']);
       this.toastr.error('Please login first!!');

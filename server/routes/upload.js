@@ -2,6 +2,7 @@ var express = require('express'),
     router  = express.Router(),
     fs      = require('fs'),
     multer  = require('multer'),
+    mime    = require('mime'),
     path    = require('path'),
     crypto  = require("crypto"),
     config  = require('../config/config'),
@@ -81,11 +82,34 @@ var storage = multer.diskStorage({
 });
 
 // telling multer what storage we want and assinging the upload.single() to a var for a cleaner code
-var upload = multer({storage: storage});
-//var image  = upload.single('fileUp');
+var upload = multer({
+  storage: storage,
+  limits: {
+    fileSize: 5000000, // 5MB filesize limit
+    parts: 3
+  },
+  fileFilter: function (req, file, cb) {
+
+    var filetypes = /jpeg|jpg|png/;
+    var mimetype  = filetypes.test(file.mimetype);
+    var extname   = filetypes.test(path.extname(file.originalname).toLowerCase());
+    if (mimetype && extname) {
+      return cb(null, true);
+    }
+    cb("Error: File upload only supports the following filetypes - " + filetypes);
+  }
+});
+
 
 //posting the form with the image to server
-router.post('/', upload.single('fileUp'), function (req, res, next) {
+router.post('/', upload.single('fileUp'), function (req, res, err) {
+  if (err.code === 'LIMIT_FILE_SIZE') {
+    return res.status(500).json({
+      status: 'There was an error',
+      error: err
+    });
+  }
+
   //finding the user who initialized the upload from front end
   User.findById(req.user._id, function (err, user) {
     if (err) {
@@ -123,10 +147,6 @@ router.post('/', upload.single('fileUp'), function (req, res, next) {
     });
   })
 });
-
-// var convert64 = function () {
-//   var raw = new Buffer(req.body.buffer)
-// };
 
 module.exports = router;
 

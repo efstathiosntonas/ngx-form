@@ -27,7 +27,7 @@ router.post('/', function (req, res, next) {
         if (!user) {
           return res.status(403).json({
             title: 'User not found',
-            error: {message: 'Please check if your email or password is correct'}
+            error: {message: 'Please check if your email is correct'}
           })
         }
 
