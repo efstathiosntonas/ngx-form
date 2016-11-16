@@ -25,6 +25,11 @@ This project was generated with [angular-cli](https://github.com/angular/angular
 
 The goal of this project is to submit a form with one file upload and two text fields. The form is submitted to back end, the file is stored in the `uploadsFolder` and then the file path/url is stored in MongoDB among the two text fields. At the end, the form ID is assinged to the signed in user ID (via Ref) for later viewing all the form fields and file in the front end.
 
+##Prerequisites
+1. MongoDB installed and running (http://mongodb.org)
+2. Node.js and NPM installed (http://nodejs.org)
+
+
 ## Specs
 1. User login/signup using JSON Web Token (jwt)
 2. User password reset via email (nodemailer & SendGrid)
@@ -52,7 +57,8 @@ The goal of this project is to submit a form with one file upload and two text f
 
 
 ## Installing Dependecies
-Run `npm install` in your command line.
+1. Clone this repo from Git.
+2. Run `npm install` in your command line.
 
 ## Building the Angular2 app
 Run `ng build`
