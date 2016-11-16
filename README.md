@@ -15,6 +15,7 @@ IDE used: WebStorm 2016.3 RC
 6. ~~Add a new menu link for a new page, `MyForms` in order to display user's submitted forms.~~ Done, link added on menu
 7. Better styling.
 8. Right now, front end is capable of uploading multiple files, I will later fix back end in order to support multiple files, if you try to upload multiple files the server will respond with status `500`
+9. Form deletion among the assosiated images from file system
 
 
 
