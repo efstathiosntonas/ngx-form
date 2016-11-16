@@ -15,20 +15,21 @@ export class FormService {
   constructor(private http: Http, private errorService: ErrorService) {
   }
 
-  submitForm(newForm: Form): Observable<any> {
-    const body = JSON.stringify(newForm);
-    console.log(body);
-    let headers = new Headers({'Content-Type': 'application/json'});
-    headers.append('Authorization', '' + this.token);
-    const token = localStorage.getItem('token') ? '?token=' + this.token : '';
-    return this.http.post(this.url + 'uploads' + token, body, {headers: headers})
-      .map((response: Response) => response.json())
-      .catch((error: Response) => {
-        this.errorService.handleError(error.json());
-        return Observable.throw(error.json());
-      });
-  }
+  // submitForm(newForm: Form): Observable<any> {
+  //   const body = JSON.stringify(newForm);
+  //   console.log(body);
+  //   let headers = new Headers({'Content-Type': 'application/json'});
+  //   headers.append('Authorization', '' + this.token);
+  //   const token = localStorage.getItem('token') ? '?token=' + this.token : '';
+  //   return this.http.post(this.url + 'uploads' + token, body, {headers: headers})
+  //     .map((response: Response) => response.json())
+  //     .catch((error: Response) => {
+  //       this.errorService.handleError(error.json());
+  //       return Observable.throw(error.json());
+  //     });
+  // }
 
+  // get user forms from backend in order to display them in the front end
   getUserForms() {
     let headers = new Headers({'Content-Type': 'application/json'});
     headers.append('Authorization', '' + this.token);

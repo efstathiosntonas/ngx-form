@@ -51,7 +51,7 @@ router.use('/', function (req, res, next) {
   })
 });
 
-//getting user forms to display them on front end
+// getting user forms to display them on front end
 router.get('/:id' ,function (req,res,next) {
   User.findById(({ _id: req.user._id }), function (err) {
     if (err) {

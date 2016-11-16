@@ -38,7 +38,7 @@ export class AuthService {
         return Observable.throw(error.json());
       });
   }
-
+  // sending request for password reset
   forget(reset: Reset) {
     const body = JSON.stringify(reset);
     const headers = new Headers({'Content-Type': 'application/json'});
@@ -50,6 +50,7 @@ export class AuthService {
       });
   }
 
+  // sending request with the newly created password
   reset(reset: Reset) {
     const body = JSON.stringify(reset);
     const headers = new Headers({'Content-Type': 'application/json'});

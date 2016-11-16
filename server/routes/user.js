@@ -6,7 +6,7 @@ var express      = require('express'),
 
 var User = require('../models/user.model');
 
-//user register
+// user register
 router.post('/register', function (req, res, next) {
   var user = new User({
     email: req.body.email,
@@ -26,7 +26,7 @@ router.post('/register', function (req, res, next) {
   })
 });
 
-//user login
+// user login
 router.post('/login', function (req, res, next) {
   User.findOne({email: req.body.email}, function (err, doc) {
     if (err) {

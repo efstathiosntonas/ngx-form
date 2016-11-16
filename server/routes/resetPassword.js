@@ -10,6 +10,7 @@ var express = require('express'),
 var User = require('../models/user.model');
 
 
+ // getting token from email and checking if it's valid
 router.get('/:token', function(req, res) {
   var token = req.params.token;
   User.findOne({ resetPasswordToken: token, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
@@ -32,6 +33,9 @@ router.get('/:token', function(req, res) {
   });
 
 });
+
+// after getting token from email, check if it's still valid and then proceed in password reset by
+// getting the user new password, hashing it and then reset the passwordToken and passwordExpires fields to undefined
 
 router.post('/:token', function(req, res) {
   async.waterfall([
@@ -61,6 +65,8 @@ router.post('/:token', function(req, res) {
         });
       });
     },
+
+    // sending notification email to user that his password has changed
     function(user, done) {
       var options = {
         auth: {

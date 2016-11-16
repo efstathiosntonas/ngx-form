@@ -1,6 +1,5 @@
 var express      = require('express'),
     path         = require('path'),
-    favicon      = require('serve-favicon'),
     logger       = require('morgan'),
     cookieParser = require('cookie-parser'),
     bodyParser   = require('body-parser'),
@@ -28,7 +27,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../dist')));
 app.use('/uploadsFolder', express.static(__dirname + '/uploadsFolder'));
 
-//CORS setup
+// CORS setup
 app.use(function (req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE, OPTIONS');
@@ -36,6 +35,7 @@ app.use(function (req, res, next) {
   next();
 });
 
+// setting up routes models
 app.use('/user', userRoute);
 app.use('/user/forgot', forgotRoutes);
 app.use('/user/reset', resetRoutes);

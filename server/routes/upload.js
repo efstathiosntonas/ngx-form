@@ -56,7 +56,7 @@ router.use('/', function (req, res, next) {
   })
 });
 
-//setting up multer
+// setting up multer
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
     var dest = 'server/uploadsFolder/' + req.user._id;  // i know, i should use dirname blah blah :)
@@ -101,7 +101,7 @@ var upload = multer({
 });
 
 
-//posting the form with the image to server
+// posting the form with the image to server
 router.post('/', upload.single('fileUp'), function (req, res, err) {
   if (err.code === 'LIMIT_FILE_SIZE') {
     return res.status(500).json({
@@ -110,7 +110,7 @@ router.post('/', upload.single('fileUp'), function (req, res, err) {
     });
   }
 
-  //finding the user who initialized the upload from front end
+  // finding the user who initialized the upload from front end
   User.findById(req.user._id, function (err, user) {
     if (err) {
       return res.status(500).json({
