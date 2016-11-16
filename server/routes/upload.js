@@ -81,7 +81,7 @@ var storage = multer.diskStorage({
   }
 });
 
-// telling multer what storage we want and assinging the upload.single() to a var for a cleaner code
+// telling multer what storage we want and filefiltering to check if file is an image, the 'parts' property declares how many fields we are expecting from front end
 var upload = multer({
   storage: storage,
   limits: {
@@ -101,7 +101,7 @@ var upload = multer({
 });
 
 
-// posting the form with the image to server
+// posting the form with the image to server, CAUTION: the 'fileUp' MUST match the name in our file input 'name' attribute ex. name="fileUp"
 router.post('/', upload.single('fileUp'), function (req, res, err) {
   if (err.code === 'LIMIT_FILE_SIZE') {
     return res.status(500).json({
