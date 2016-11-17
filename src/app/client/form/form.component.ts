@@ -39,6 +39,7 @@ export class FormComponent implements OnInit {
 
 
   onFileSelect(event) {
+    this.clear();
     let files = event.dataTransfer ? event.dataTransfer.files : event.target.files;
     for (let i = 0; i < files.length; i++) {
       let file = files[i];
@@ -128,9 +129,12 @@ export class FormComponent implements OnInit {
       if (xhr.readyState === 4) {
         this.progress = 0;
         if (xhr.status === 201) {
-          this.onUpload.emit({xhr: xhr, file: this.files});
-        } else {
+          this.router.navigateByUrl('/user/forms');
+          this.toastr.success('Form submitted successfully');
+        } else if(xhr.status === 404 || 500) {
+          this.toastr.error('There was an error!');
           this.onError.emit({xhr: xhr, file: this.files});
+
         }
 
         this.clear();
@@ -143,7 +147,5 @@ export class FormComponent implements OnInit {
     xhr.setRequestHeader('Authorization', this.authToken);
     xhr.send(formData);
     console.log(xhr);
-    this.router.navigateByUrl('/user/forms');
-    this.toastr.success('Form submitted successfully');
   }
 }

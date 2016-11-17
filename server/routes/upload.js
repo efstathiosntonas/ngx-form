@@ -29,7 +29,7 @@ router.use('/', function (req, res, next) {
     if (!decoded) {
       return res.status(404).json({
         code: 404,
-        message: 'Authentication failed, malformed jwt'
+        error: {message: 'Authentication failed, malformed jwt'}
       });
     }
     if (decoded) {
@@ -44,7 +44,7 @@ router.use('/', function (req, res, next) {
         if (!doc) {
           return res.status(404).json({
             code: 404,
-            message: 'The user was not found'
+            error: {message: 'The user was not found'}
           })
         }
         if (doc) {

@@ -24,7 +24,7 @@ router.use('/', function (req, res, next) {
     if (!decoded) {
       return res.status(404).json({
         code: 404,
-        message: 'Authentication failed, malformed jwt'
+        error: {message: 'Authentication failed, malformed jwt'}
       });
     }
     if (decoded) {
@@ -39,7 +39,7 @@ router.use('/', function (req, res, next) {
         if (!doc) {
           return res.status(404).json({
             code: 404,
-            message: 'The user was not found'
+            error: {message: 'The user was not found'}
           })
         }
         if (doc) {
@@ -52,8 +52,8 @@ router.use('/', function (req, res, next) {
 });
 
 // getting user forms to display them on front end
-router.get('/:id' ,function (req,res,next) {
-  User.findById(({ _id: req.user._id }), function (err) {
+router.get('/:id', function (req, res, next) {
+  User.findById(({_id: req.user._id}), function (err) {
     if (err) {
       return res.status(404).json({
         code: 404,
@@ -62,8 +62,8 @@ router.get('/:id' ,function (req,res,next) {
       })
     }
     else {
-      Form.find(({ owner: req.user._id}), function (err, forms) {
-        if(err) {
+      Form.find(({owner: req.user._id}), function (err, forms) {
+        if (err) {
           return res.status(404).json({
             code: 404,
             message: 'An error occured',
