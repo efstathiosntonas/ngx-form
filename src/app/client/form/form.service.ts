@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs';
+import {Observable} from 'rxjs/Observable';
 import {Response, Headers, Http} from '@angular/http';
 import {ErrorService} from '../errorHandler/error.service';
-import {Form} from './form.model';
+// import {Form} from './form.model';
 
 @Injectable()
 export class FormService {
@@ -51,4 +51,3 @@ export class FormService {
       });
   }
 }
-
