@@ -1,5 +1,5 @@
 module.exports = {
-  'database': 'localhost:27017/Angular2Form',
+  'database': '127.0.0.1:27017/Angular2Form',
   'secret': 'SUPERsecret', // change this to a hard to guess random string
   'api_user': 'YOUR SENDGRID USERNAME',
   'api_key' : 'YOUR SENDGRID PASSWORD',

@@ -3,11 +3,11 @@ language: node_js
 node_js:
   - stable
 
+services:
+  - mongodb
+
 install:
   - npm install
-
-  services:
-  - mongodb
 
 script:
   - ng build
