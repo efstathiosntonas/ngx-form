@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/predatorkill/ng2-forms-demo.svg?branch=master)](https://travis-ci.org/predatorkill/ng2-forms-demo)
 CAUTION: This is a work in progress, do not use in dev enviroment.
 
 Project is built using the MEA2N/MEAN2 stack
@@ -57,8 +58,8 @@ The goal of this project is to submit a form with one file upload and two text f
 
 
 ## Installing Dependecies
-1. Clone this repo from Git.
-2. Run `npm install` in your command line.
+1. Clone this repo from Git OR `npm install ng2-forms-demo`
+2. Run `npm install` in your command line 
 
 ## Building the Angular2 app
 Run `ng build`
