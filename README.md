@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/predatorkill/ng2-forms-demo.svg?branch=master)](https://travis-ci.org/predatorkill/ng2-forms-demo)
+[![Build Status](https://travis-ci.org/predatorkill/ng2-forms-demo.svg?branch=master)](https://travis-ci.org/predatorkill/ng2-forms-demo)<br/>
 CAUTION: This is a work in progress, do not use in dev enviroment.
 
 Project is built using the MEA2N/MEAN2 stack

@@ -7,4 +7,5 @@ install:
   - npm install
 
 script:
-  - npm test
+  - ng build
+  - npm start
