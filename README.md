@@ -30,7 +30,7 @@ The goal of this project is to submit a form with one file upload and two text f
 1. MongoDB installed and running (http://mongodb.org)
 2. Node.js and NPM installed (http://nodejs.org)
 3. [ImageMagick](http://www.imagemagick.org/script/index.php) or [GraphicsMagick](http://www.graphicsmagick.org/) installed,
-more info in [gm](https://github.com/aheckmann/gm) page on how to install depending your Operating System.
+more info in [gm](https://github.com/aheckmann/gm) page on how to install depending your Operating System. If installing ImageMagick on Windows, please check "Install Legacy Utitities (e.g. convert") during installation otherwise node will report errors.
 
 
 ## Specs
