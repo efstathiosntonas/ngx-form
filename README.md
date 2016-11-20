@@ -15,7 +15,7 @@ IDE used: WebStorm 2016.3 RC
 5. Resize the image before storing to file system.
 6. ~~Add a new menu link for a new page, `MyForms` in order to display user's submitted forms.~~ Done, link added on menu
 7. Better styling.
-8. Right now, front end is capable of uploading multiple files, I will later fix back end in order to support multiple files, if you try to upload multiple files the server will respond with status `500`
+8. Right now, front end is capable of uploading only 1 file, I will later fix back end in order to support multiple files
 9. Form deletion among the assosiated images from file system
 
 
@@ -58,7 +58,7 @@ The goal of this project is to submit a form with one file upload and two text f
 
 
 ## Installing Dependecies
-1. Clone this repo from Git OR `npm install ng2-forms-demo`
+1. Clone this repo from Git
 2. Run `npm install` in your command line 
 
 ## Building the Angular2 app

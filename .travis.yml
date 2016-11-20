@@ -17,7 +17,3 @@ services:
 
 install:
   - npm install
-
-script:
-  - ng build
-  - npm start

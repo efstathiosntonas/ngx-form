@@ -27,7 +27,7 @@ router.use('/', function (req, res, next) {
       })
     }
     if (!decoded) {
-      return res.status(404).json({
+      return res.status(403).json({
         code: 404,
         error: {message: 'Authentication failed, malformed jwt'}
       });
@@ -90,7 +90,7 @@ var upload = multer({
   },
   fileFilter: function (req, file, cb) {
 
-    var filetypes = /jpeg|jpg|png/;
+    var filetypes = /jpe?g|png/;
     var mimetype  = filetypes.test(file.mimetype);
     var extname   = filetypes.test(path.extname(file.originalname).toLowerCase());
     if (mimetype && extname) {
