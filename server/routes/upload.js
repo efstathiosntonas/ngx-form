@@ -8,6 +8,7 @@ var express = require('express'),
     config  = require('../config/config'),
     User    = require('../models/user.model'),
     Form    = require('../models/form.model'),
+    gm      = require('gm').subClass({imageMagick: true}),
     jwt     = require('jsonwebtoken');
 
 // this process does not hang the nodejs server on error
@@ -89,7 +90,6 @@ var upload = multer({
     parts: 3
   },
   fileFilter: function (req, file, cb) {
-
     var filetypes = /jpe?g|png/;
     var mimetype  = filetypes.test(file.mimetype);
     var extname   = filetypes.test(path.extname(file.originalname).toLowerCase());
@@ -99,7 +99,6 @@ var upload = multer({
     cb("Error: File upload only supports the following filetypes - " + filetypes);
   }
 });
-
 
 // posting the form with the image to server, CAUTION: the 'fileUp' MUST match the name in our file input 'name' attribute ex. name="fileUp"
 router.post('/', upload.single('fileUp'), function (req, res, err) {
@@ -124,6 +123,17 @@ router.post('/', upload.single('fileUp'), function (req, res, err) {
     // in the backend we are referencing each form to the user who uploaded it
     // so later on we can display the data in the front end
     console.log(req.file);
+    // resize middleware, just change 400 to whatever you like, the null parameter maintains aspect ratio
+    gm(req.file.path)
+      .resize(400,null)
+      .noProfile()
+      .write(req.file.path, function (err){
+        if(err) {
+          fs.unlink(req.file.path);  // this will result a 404 when frontend tries to access the image, I ll provide a fix soon
+          console.log(err)
+        }
+      });
+
     var form = new Form({
       textInputOne: req.body.textInput1,
       textInputTwo: req.body.textInput2,

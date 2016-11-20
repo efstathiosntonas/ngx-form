@@ -70,6 +70,7 @@ export class FormComponent implements OnInit {
 
   onImageLoad(img: any) {
     window.URL.revokeObjectURL(img.src);
+    console.log(window.URL.revokeObjectURL(img.src))
   }
 
   clear() {
@@ -100,6 +101,42 @@ export class FormComponent implements OnInit {
       i = Math.floor(Math.log(bytes) / Math.log(k));
 
     return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+  }
+
+  resizeImage(file) {
+   let  reader = new FileReader();
+    reader.onloadend = function() {
+      let tempImg = new Image();
+      tempImg.src = reader.result;
+      console.log(tempImg.src)
+      tempImg.onload = function() {
+
+        let MAX_WIDTH = 400;
+        let MAX_HEIGHT = 300;
+        let tempW = tempImg.width;
+        let tempH = tempImg.height;
+        if (tempW > tempH) {
+          if (tempW > MAX_WIDTH) {
+            tempH *= MAX_WIDTH / tempW;
+            tempW = MAX_WIDTH;
+          }
+        } else {
+          if (tempH > MAX_HEIGHT) {
+            tempW *= MAX_HEIGHT / tempH;
+            tempH = MAX_HEIGHT;
+          }
+        }
+
+        let canvas = document.createElement('canvas');
+        canvas.width = tempW;
+        canvas.height = tempH;
+        let ctx = canvas.getContext('2d');
+        ctx.drawImage(this, 0, 0, tempW, tempH);
+        let dataURL = canvas.toDataURL('image/jpeg');
+      }
+
+    };
+    reader.readAsArrayBuffer(file);
   }
 
 

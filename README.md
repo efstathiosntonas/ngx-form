@@ -12,10 +12,10 @@ IDE used: WebStorm 2016.3 RC
 2. ~~Reset user password via email using a token~~ Done, the app uses SendGrid, the free plan is good for starting up.
 3. ~~Redirect user to the `MyForms` page after submitting the form (see #6 below)~~ Done, the user now is redirected to a new page with a table of his forms
 4. ~~Add an upload progress bar.~~ Done, in local enviroments the speed is so high that you almost can't see the progress loading.
-5. Resize the image before storing to file system.
+5. ~~Resize the image before storing to file system.~~ Done, see Prerequisites below in order to install `gm`, needs a little bit more tweaking
 6. ~~Add a new menu link for a new page, `MyForms` in order to display user's submitted forms.~~ Done, link added on menu
 7. Better styling.
-8. Right now, front end is capable of uploading only 1 file, I will later fix back end in order to support multiple files
+8. ~Right now, front end is capable of uploading only 1 file, I will later fix back end in order to support multiple files~ Only one file for now
 9. Form deletion among the assosiated images from file system
 
 
@@ -29,6 +29,8 @@ The goal of this project is to submit a form with one file upload and two text f
 ##Prerequisites
 1. MongoDB installed and running (http://mongodb.org)
 2. Node.js and NPM installed (http://nodejs.org)
+3. [ImageMagick](http://www.imagemagick.org/script/index.php) or [GraphicsMagick](http://www.graphicsmagick.org/) installed,
+more info in [gm](https://github.com/aheckmann/gm) page on how to install depending your Operating System.
 
 
 ## Specs
@@ -40,6 +42,7 @@ The goal of this project is to submit a form with one file upload and two text f
 6. Storing image path to MongoDB among text fields
 7. Double check if image is actually a file by checking it's mime type in both back end and in front end
 8. Double check for the image size in both back end and front end, file limit now is 5.000.000 bytes (5MB)
+9. Image resize server side using [GraphicsMagick](https://github.com/aheckmann/gm)
 
 ## Packages Used
 `Angular-cli v1.0.0-beta.18` <br />
@@ -52,6 +55,7 @@ The goal of this project is to submit a form with one file upload and two text f
 `Multer v1.2.0` <br />
 `ng2-toastr v1.3.0` <br />
 `ng2-progress-bar 0.0.5` <br />
+`gm v1.23.0` <br />
 `BootStrap 3`  (css is included in `assets` folder) <br/>
 `Font Awesome` (css is included in `assets` folder) <br/>
 `Glyphicons`   (found in `fonts` folder under `assets`) <br/>
