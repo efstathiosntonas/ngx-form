@@ -15,7 +15,7 @@ IDE used: WebStorm 2016.3 RC
 5. ~~Resize the image before storing to file system.~~ Done, see Prerequisites below in order to install `gm`, needs a little bit more tweaking
 6. ~~Add a new menu link for a new page, `MyForms` in order to display user's submitted forms.~~ Done, link added on menu
 7. Better styling.
-8. ~Right now, front end is capable of uploading only 1 file, I will later fix back end in order to support multiple files~ Only one file for now
+8. ~~Right now, front end is capable of uploading only 1 file, I will later fix back end in order to support multiple files~~ Only one file for now
 9. Form deletion among the assosiated images from file system
 
 
