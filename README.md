@@ -1,16 +1,8 @@
 Project is built using the MEA2N/MEAN2 stack. This project could be used as an angular2-seed.
 
 ## TODO
-1. ~~Create upload logic in Angular2~~ Done, the form is submitted by leveraging XHR, all images are saved at `uploadsFolder/user._id` path so every user has it's own folder seperated by id.
-2. ~~Reset user password via email using a token~~ Done, the app uses SendGrid, the free plan is good for starting up.
-3. ~~Redirect user to the `MyForms` page after submitting the form (see #6 below)~~ Done, the user now is redirected to a new page with a table of his forms
-4. ~~Add an upload progress bar.~~ Done, in local enviroments the speed is so high that you almost can't see the progress loading.
-5. ~~Resize the image before storing to file system.~~ Done, see Prerequisites below in order to install `gm`, needs a little bit more tweaking
-6. ~~Add a new menu link for a new page, `MyForms` in order to display user's submitted forms.~~ Done, link added on menu
-7. ~~Better styling~~. Done, style is much nicer now.
-8. ~~Right now, front end is capable of uploading only 1 file, I will later fix back end in order to support multiple files~~ Only one file for now
-9. ~~Form deletion among the assosiated images from file system~~ Done, form is deleted among the file associated with it. User forms array is updated too.
-10. Resize the image client-side in order to reduce bandwidth of the server.
+1. Resize the image client-side in order to reduce bandwidth of the server.
+2. Allow user to edit form and change the image or text fields
 
 # Angular 2 Form
 
