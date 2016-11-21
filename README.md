@@ -1,11 +1,8 @@
-[![Build Status](https://travis-ci.org/predatorkill/ng2-forms-demo.svg?branch=master)](https://travis-ci.org/predatorkill/ng2-forms-demo)<br/>
 CAUTION: This is a work in progress, do not use in dev enviroment.
 
 Project is built using the MEA2N/MEAN2 stack
 
 Design is minimal, later on i will make it much better and more beatiful.
-
-IDE used: WebStorm 2016.3 RC
 
 ## TODO
 1. ~~Create upload logic in Angular2~~ Done, the form is submitted by leveraging XHR, all images are saved at `uploadsForlder/user._id` path so every user has it's own folder seperated by id.
@@ -16,13 +13,14 @@ IDE used: WebStorm 2016.3 RC
 6. ~~Add a new menu link for a new page, `MyForms` in order to display user's submitted forms.~~ Done, link added on menu
 7. Better styling.
 8. ~~Right now, front end is capable of uploading only 1 file, I will later fix back end in order to support multiple files~~ Only one file for now
-9. Form deletion among the assosiated images from file system
+9. ~~Form deletion among the assosiated images from file system~~ Done, form is deleted among the file associated with it. User forms array is updated too.
+10. Resize the image client-side in order to reduce bandwidth of the server.
 
 
 
 # Angular 2 Form
 
-This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.18.
+This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.24.
 
 The goal of this project is to submit a form with one file upload and two text fields. The form is submitted to back end, the file is stored in the `uploadsFolder` and then the file path/url is stored in MongoDB among the two text fields. At the end, the form ID is assinged to the signed in user ID (via Ref) for later viewing all the form fields and file in the front end.
 
@@ -40,20 +38,21 @@ more info in [gm](https://github.com/aheckmann/gm) page on how to install depend
 4. Multipart form submission with image preview before upload (some of the upload logic is taken from primeng ui).
 5. Storing images to file system
 6. Storing image path to MongoDB among text fields
-7. Double check if image is actually a file by checking it's mime type in both back end and in front end
+7. Triple check if image is actually a file by checking it's mime type in both back end and in front end (`gm` in back end checks if file is an image too by reading first bytes of the file, need to fix this to not allow form to be submitted at all)
 8. Double check for the image size in both back end and front end, file limit now is 5.000.000 bytes (5MB)
 9. Image resize server side using [GraphicsMagick](https://github.com/aheckmann/gm)
+10. Form deletion among the file from filesystem, user forms array is updated too.
 
 ## Packages Used
-`Angular-cli v1.0.0-beta.18` <br />
-`Angular v2.1.2` <br />
+`Angular-cli v1.0.0-beta.24` <br />
+`Angular v2.2.1` <br />
 `Webpack` <br />
 `Node v6.9.1` <br/>
 `MongoDB v3.2.10` <br/>
 `Mongoose v4.6.8` <br />
 `Express v4.14.0` <br />
 `Multer v1.2.0` <br />
-`ng2-toastr v1.3.0` <br />
+`ng2-toastr v1.3.1` <br />
 `ng2-progress-bar 0.0.5` <br />
 `gm v1.23.0` <br />
 `BootStrap 3`  (css is included in `assets` folder) <br/>

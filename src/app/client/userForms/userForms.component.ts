@@ -1,5 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 import {FormService} from '../form/form.service';
+import {Form} from "../form/form.model";
+import {ToastsManager} from "ng2-toastr";
 
 
 @Component({
@@ -10,7 +12,7 @@ import {FormService} from '../form/form.service';
 export class UserFormComponent implements OnInit {
   fetchedForms = [] ;
 
-  constructor(private formService: FormService) {
+  constructor(private formService: FormService, private toastr: ToastsManager) {
   }
 
   ngOnInit() {
@@ -19,5 +21,10 @@ export class UserFormComponent implements OnInit {
         (forms) => {
           this.fetchedForms = forms;
         });
+  }
+
+  onDelete(formId){
+    this.formService.deleteForm(formId)
+      .subscribe();
   }
 }

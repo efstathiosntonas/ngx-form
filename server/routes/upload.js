@@ -123,7 +123,7 @@ router.post('/', upload.single('fileUp'), function (req, res, err) {
     // in the backend we are referencing each form to the user who uploaded it
     // so later on we can display the data in the front end
     console.log(req.file);
-    // resize middleware, just change 400 to whatever you like, the null parameter maintains aspect ratio
+    // resize middleware, just change 400 to whatever you like, the null parameter maintains aspect ratio, if you want exact dimensions replace null with a height number as you wish
     gm(req.file.path)
       .resize(400,null)
       .noProfile()

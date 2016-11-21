@@ -2,7 +2,9 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {Response, Headers, Http} from '@angular/http';
 import {ErrorService} from '../errorHandler/error.service';
-// import {Form} from './form.model';
+import {Form} from './form.model';
+import {ToastsManager} from "ng2-toastr";
+import {Router} from "@angular/router";
 
 @Injectable()
 export class FormService {
@@ -12,7 +14,7 @@ export class FormService {
   private userId: string = localStorage.getItem('userId');
   private forms = [];
 
-  constructor(private http: Http, private errorService: ErrorService) {
+  constructor(private http: Http, private errorService: ErrorService, private toastr: ToastsManager, private _router: Router) {
   }
 
   // submitForm(newForm: Form): Observable<any> {
@@ -44,6 +46,22 @@ export class FormService {
         console.log(fetchedForms);
         this.forms = fetchedForms;
         return fetchedForms;
+      })
+      .catch((error: Response) => {
+        this.errorService.handleError(error.json());
+        return Observable.throw(error.json());
+      });
+  }
+
+  deleteForm(form: Form) {
+    this.forms.splice(this.forms.indexOf(form), 1);
+    let headers = new Headers({'Content-Type': 'application/json'});
+    headers.append('Authorization', '' + this.token);
+    return this.http.delete(this.url + 'forms/' + form, {headers: headers})
+      .map((response: Response) => {
+        this.toastr.error('Form deleted successfully!');
+        response.json();
+        this._router.navigate(['/form']);
       })
       .catch((error: Response) => {
         this.errorService.handleError(error.json());

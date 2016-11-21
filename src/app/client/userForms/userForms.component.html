@@ -20,6 +20,7 @@
       <td class="img-resized"><img class="img-thumbnail img-responsive" src="./uploadsFolder/{{form.owner}}/{{form.imagePath}}"></td>
       <td>{{form.owner}}</td>
       <td>{{form.dateSubmitted | date: 'dd/MM/yy'}}</td>
+      <td><button (click)="onDelete(form._id)"><i class="fa fa-trash-o fa-lg"></i></button></td>
     </tr>
     </tbody>
   </table>

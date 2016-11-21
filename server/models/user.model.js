@@ -1,7 +1,7 @@
-var mongoose            = require('mongoose'),
-    Schema              = mongoose.Schema,
-    Form                = require('../models/form.model'),
-mongooseUniqueValidator = require('mongoose-unique-validator');
+var mongoose                = require('mongoose'),
+    Schema                  = mongoose.Schema,
+    Form                    = require('../models/form.model'),
+    mongooseUniqueValidator = require('mongoose-unique-validator');
 
 var user = new Schema({
   email: {type: String, unique: true, required: true, lowercase: true},
