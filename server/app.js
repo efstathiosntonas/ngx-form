@@ -14,6 +14,7 @@ var userForms    = require('./routes/userForms');
 
 var app = express();
 
+mongoose.Promise = global.Promise;  // gets rid of the mongoose promise deprecated warning
 mongoose.connect(config.database);
 
 // view engine setup
