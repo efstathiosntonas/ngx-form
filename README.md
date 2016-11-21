@@ -1,9 +1,9 @@
 CAUTION: This is a work in progress, do not use in dev enviroment.
 
-Project is built using the MEA2N/MEAN2 stack. This project is a good angular2-seed.
+Project is built using the MEA2N/MEAN2 stack. This project could be used as an angular2-seed.
 
 ## TODO
-1. ~~Create upload logic in Angular2~~ Done, the form is submitted by leveraging XHR, all images are saved at `uploadsForlder/user._id` path so every user has it's own folder seperated by id.
+1. ~~Create upload logic in Angular2~~ Done, the form is submitted by leveraging XHR, all images are saved at `uploadsFolder/user._id` path so every user has it's own folder seperated by id.
 2. ~~Reset user password via email using a token~~ Done, the app uses SendGrid, the free plan is good for starting up.
 3. ~~Redirect user to the `MyForms` page after submitting the form (see #6 below)~~ Done, the user now is redirected to a new page with a table of his forms
 4. ~~Add an upload progress bar.~~ Done, in local enviroments the speed is so high that you almost can't see the progress loading.
@@ -79,15 +79,15 @@ Enjoy!
 To get more help on the `angular-cli` use `ng --help` or go check out the [Angular-CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
 # Preview of the app
-##Empty Form
-![Form before entering text](https://cloud.githubusercontent.com/assets/717975/20238425/053567f6-a8f4-11e6-99cb-15403426fcf5.png)
-###Form with preview image (image is responsive)
-![Form after entering text and selecting an image](https://cloud.githubusercontent.com/assets/717975/20238426/0538a132-a8f4-11e6-87f1-61c871acfea6.png)
-###Server Response in console logs
+### Login Form
+![Login Form](https://cloud.githubusercontent.com/assets/717975/20486222/8dddb670-b007-11e6-861a-18f2123f70f4.png)
+### Form
+![Form](https://cloud.githubusercontent.com/assets/717975/20486257/abfd4166-b007-11e6-8e2e-24d2afd746a0.png)
+### Server Response in console logs
 ![Server response after submitting form](https://cloud.githubusercontent.com/assets/717975/20238428/053e95ec-a8f4-11e6-93ab-04258e359e13.png)
-###Users document in MongoDB with forms array ref
-![Users document in MongoDB](https://cloud.githubusercontent.com/assets/717975/20238429/05423e68-a8f4-11e6-9a2c-c2791ef0a4e9.png)
-###Forms Document in MongoDB with ref to the user._id (owner field)
-![Forms submitted by the user with unique file name, and user._id Ref `owner`](https://cloud.githubusercontent.com/assets/717975/20238427/053d1df2-a8f4-11e6-9b2a-616eafa3f517.png)
-###User submitted forms page
-![User submitted forms page](https://cloud.githubusercontent.com/assets/717975/20337121/ac494ac2-abd7-11e6-842d-af9983b80c1b.png)
+### User Forms
+![User Forms](https://cloud.githubusercontent.com/assets/717975/20486295/d441f8d8-b007-11e6-9ca8-7b80a08e6077.png)
+### Users document in MongoDB with forms array ref
+![Users document in MongoDB](https://cloud.githubusercontent.com/assets/717975/20486315/eaa5b452-b007-11e6-9080-b1c8186bf404.png)
+### Forms Document in MongoDB with ref to the user._id (owner field)
+![User submitted forms page](https://cloud.githubusercontent.com/assets/717975/20486402/411bbf20-b008-11e6-9170-05f44d610cd8.png)

@@ -61,7 +61,7 @@ export class FormService {
       .map((response: Response) => {
         this.toastr.error('Form deleted successfully!');
         response.json();
-        this._router.navigate(['/form']);
+       // this._router.navigate(['/form']);
       })
       .catch((error: Response) => {
         this.errorService.handleError(error.json());
