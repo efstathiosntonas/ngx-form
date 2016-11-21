@@ -1,5 +1,3 @@
-CAUTION: This is a work in progress, do not use in dev enviroment.
-
 Project is built using the MEA2N/MEAN2 stack. This project could be used as an angular2-seed.
 
 ## TODO
