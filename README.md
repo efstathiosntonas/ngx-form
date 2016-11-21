@@ -1,8 +1,6 @@
 CAUTION: This is a work in progress, do not use in dev enviroment.
 
-Project is built using the MEA2N/MEAN2 stack
-
-Design is minimal, later on i will make it much better and more beatiful.
+Project is built using the MEA2N/MEAN2 stack. This project is a good angular2-seed.
 
 ## TODO
 1. ~~Create upload logic in Angular2~~ Done, the form is submitted by leveraging XHR, all images are saved at `uploadsForlder/user._id` path so every user has it's own folder seperated by id.
@@ -11,12 +9,10 @@ Design is minimal, later on i will make it much better and more beatiful.
 4. ~~Add an upload progress bar.~~ Done, in local enviroments the speed is so high that you almost can't see the progress loading.
 5. ~~Resize the image before storing to file system.~~ Done, see Prerequisites below in order to install `gm`, needs a little bit more tweaking
 6. ~~Add a new menu link for a new page, `MyForms` in order to display user's submitted forms.~~ Done, link added on menu
-7. Better styling.
+7. ~~Better styling~~. Done, style is much nicer now.
 8. ~~Right now, front end is capable of uploading only 1 file, I will later fix back end in order to support multiple files~~ Only one file for now
 9. ~~Form deletion among the assosiated images from file system~~ Done, form is deleted among the file associated with it. User forms array is updated too.
 10. Resize the image client-side in order to reduce bandwidth of the server.
-
-
 
 # Angular 2 Form
 
@@ -29,7 +25,6 @@ The goal of this project is to submit a form with one file upload and two text f
 2. Node.js and NPM installed (http://nodejs.org)
 3. [ImageMagick](http://www.imagemagick.org/script/index.php) or [GraphicsMagick](http://www.graphicsmagick.org/) installed,
 more info in [gm](https://github.com/aheckmann/gm) page on how to install depending your Operating System. If installing ImageMagick on Windows, please check "Install Legacy Utitities (e.g. convert") during installation otherwise node will report errors.
-
 
 ## Specs
 1. User login/signup using JSON Web Token (jwt)
@@ -58,7 +53,6 @@ more info in [gm](https://github.com/aheckmann/gm) page on how to install depend
 `BootStrap 3`  (css is included in `assets` folder) <br/>
 `Font Awesome` (css is included in `assets` folder) <br/>
 `Glyphicons`   (found in `fonts` folder under `assets`) <br/>
-
 
 ## Installing Dependecies
 1. Clone this repo from Git

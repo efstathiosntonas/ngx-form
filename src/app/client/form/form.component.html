@@ -1,6 +1,6 @@
 <app-navbar></app-navbar>
 <div class="container">
-  <form [formGroup]="myForm" (ngSubmit)="onSubmit()" class="form-horizontal" novalidate>
+  <form [formGroup]="myForm" (ngSubmit)="onSubmit()" class="form-horizontal register-form" novalidate>
     <fieldset>
 
       <!-- Form Name -->
@@ -8,7 +8,7 @@
 
       <!-- Text input-->
       <div class="form-group">
-        <label class="col-md-4 control-label" for="textinput1">Text Input One</label>
+        <label class="col-md-4 control-label" for="textinput1">Text Input One:</label>
         <div class="col-md-4">
           <input id="textinput1" formControlName="textInput1" name="textinput1" type="text" placeholder="enter text" class="form-control input-md">
           <div [hidden]="textInput1.valid || textInput1.pristine" class="alert alert-danger">Please enter some text</div>
@@ -16,7 +16,7 @@
       </div>
 
       <div class="form-group">
-        <label class="col-md-4 control-label" for="textinput2">Text Input Two</label>
+        <label class="col-md-4 control-label" for="textinput2">Text Input Two:</label>
         <div class="col-md-4">
           <input id="textinput2" formControlName="textInput2" name="textinput2" type="text" placeholder="enter text" class="form-control input-md">
           <div [hidden]="textInput2.valid || textInput2.pristine" class="alert alert-danger">Please enter some text</div>
@@ -31,7 +31,7 @@
           </button>
           <div *ngIf="hasFiles()">
             <div *ngFor="let file of files">
-              <img [src]="file.objectURL " *ngIf="isImage(file)"  (change)=" resizeImage(file)" class="img-thumbnail img-responsive topMargin"><br>
+              <img [src]="file.objectURL " *ngIf="isImage(file)" (change)=" resizeImage(file)" class="img-thumbnail img-responsive topMargin"><br>
               <div>
                 <button type="button" class="btn-danger topMargin" (click)="remove(i)">Remove Image</button>
               </div>

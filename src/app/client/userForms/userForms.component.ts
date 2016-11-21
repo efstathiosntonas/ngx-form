@@ -10,7 +10,7 @@ import {ToastsManager} from "ng2-toastr";
   styleUrls: ['userForms.component.css']
 })
 export class UserFormComponent implements OnInit {
-  fetchedForms = [] ;
+  fetchedForms = [];
 
   constructor(private formService: FormService, private toastr: ToastsManager) {
   }
@@ -23,7 +23,7 @@ export class UserFormComponent implements OnInit {
         });
   }
 
-  onDelete(formId){
+  onDelete(formId) {
     this.formService.deleteForm(formId)
       .subscribe();
   }
