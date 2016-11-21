@@ -79,6 +79,8 @@ To get more help on the `angular-cli` use `ng --help` or go check out the [Angul
 # Preview of the app
 ### Login Form
 ![Login Form](https://cloud.githubusercontent.com/assets/717975/20486222/8dddb670-b007-11e6-861a-18f2123f70f4.png)
+### Password Reset Form
+![password_reset_form](https://cloud.githubusercontent.com/assets/717975/20486679/5d7885bc-b009-11e6-854f-b9b73cc77f16.png)
 ### Form
 ![Form](https://cloud.githubusercontent.com/assets/717975/20486257/abfd4166-b007-11e6-8e2e-24d2afd746a0.png)
 ### Server Response in console logs

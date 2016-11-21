@@ -17,7 +17,6 @@ export class ResetPasswordComponent implements OnInit {
   myForm: FormGroup;
   password: FormControl;
   token: string;
-  newPassword: string;
 
   constructor(private _fb: FormBuilder, private _authService: AuthService, private _router: Router,
               private _activatedRoute: ActivatedRoute, private toastr: ToastsManager) {
@@ -26,7 +25,7 @@ export class ResetPasswordComponent implements OnInit {
 
   ngOnInit() {
 
-    this.password = new FormControl('', [Validators.required]);
+    this.password = new FormControl('', [Validators.required, Validators.minLength(6)]);
 
     this.myForm = this._fb.group({
       password: this.password
