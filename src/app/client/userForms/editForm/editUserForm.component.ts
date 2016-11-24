@@ -5,7 +5,6 @@ import {FormControl, FormGroup, Validators, FormBuilder} from "@angular/forms";
 import {ToastsManager} from "ng2-toastr";
 import {DomSanitizer} from "@angular/platform-browser";
 
-
 @Component({
   selector: 'app-edit-user-form',
   templateUrl: 'editUserForm.component.html',
@@ -32,7 +31,8 @@ export class EditUserFormComponent implements OnInit {
   public progress: number = 0;
   private submitStarted: boolean;
 
-  constructor(private formService: FormService, private toastr: ToastsManager, private _fb: FormBuilder, private router: Router, private route: ActivatedRoute, private sanitizer: DomSanitizer) {}
+  constructor(private formService: FormService, private toastr: ToastsManager, private _fb: FormBuilder, private router: Router, private route: ActivatedRoute, private sanitizer: DomSanitizer) {
+  }
 
   ngOnInit() {
 

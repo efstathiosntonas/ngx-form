@@ -4,7 +4,6 @@ import {Response, Headers, Http} from '@angular/http';
 import {ErrorService} from '../errorHandler/error.service';
 import {Form} from './form.model';
 import {ToastsManager} from "ng2-toastr";
-import {Router} from "@angular/router";
 import 'rxjs/add/operator/map'
 import 'rxjs/add/operator/catch'
 
@@ -17,8 +16,7 @@ export class FormService {
   private forms = [];
   private singleForm = Object;
 
-  constructor(private http: Http, private errorService: ErrorService, private toastr: ToastsManager, private _router: Router) {
-  }
+  constructor(private http: Http, private errorService: ErrorService, private toastr: ToastsManager) {}
 
   // get user forms from backend in order to display them in the front end
   getUserForms() {
@@ -63,9 +61,9 @@ export class FormService {
     headers.append('Authorization', '' + this.token);
     return this.http.get(this.url + 'forms/edit/' + formId, {headers: headers})
       .map((response: Response) => {
-      this.singleForm = response.json();
-      // console.log(this.singleForm)
-      return this.singleForm;
+        this.singleForm = response.json();
+        // console.log(this.singleForm)
+        return this.singleForm;
       })
       .catch((error: Response) => {
         this.errorService.handleError(error.json());

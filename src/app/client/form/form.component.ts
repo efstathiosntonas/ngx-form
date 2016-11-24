@@ -2,7 +2,6 @@ import {Component, OnInit, EventEmitter} from '@angular/core';
 import {FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
 import {ToastsManager} from 'ng2-toastr';
 import {Router} from '@angular/router';
-import {ErrorService} from '../errorHandler/error.service';
 import {DomSanitizer} from '@angular/platform-browser';
 
 
@@ -34,10 +33,7 @@ export class FormComponent implements OnInit {
   onUpload: EventEmitter<any> = new EventEmitter();
   onSelect: EventEmitter<any> = new EventEmitter();
 
-  constructor(private _fb: FormBuilder, private toastr: ToastsManager, private router: Router, private errorService: ErrorService,
-              private sanitizer: DomSanitizer) {
-  }
-
+  constructor(private _fb: FormBuilder, private toastr: ToastsManager, private router: Router, private sanitizer: DomSanitizer) {}
 
   onFileSelect(event) {
     this.clear();
@@ -141,7 +137,6 @@ export class FormComponent implements OnInit {
   //   reader.readAsArrayBuffer(file);
   // }
 
-
   ngOnInit() {
     this.files = [];
     this.textInput1 = new FormControl('', Validators.required);
@@ -174,9 +169,7 @@ export class FormComponent implements OnInit {
         } else if(xhr.status === 404 || 500) {
           this.toastr.error('There was an error!');
           this.onError.emit({xhr: xhr, file: this.files});
-
         }
-
         this.clear();
       }
     };

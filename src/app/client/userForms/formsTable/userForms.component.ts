@@ -1,8 +1,5 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormService} from '../../form/form.service';
-import {Form} from "../../form/form.model";
-import {ToastsManager} from "ng2-toastr";
-import {Router} from "@angular/router";
 
 
 @Component({
@@ -13,7 +10,7 @@ import {Router} from "@angular/router";
 export class UserFormComponent implements OnInit {
   fetchedForms = [];
 
-  constructor(private formService: FormService, private toastr: ToastsManager, private router: Router) {
+  constructor(private formService: FormService) {
   }
 
   ngOnInit() {
