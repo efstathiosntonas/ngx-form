@@ -46,7 +46,8 @@
           <button type="submit" [disabled]="!myForm.valid || !hasFiles()" id="submitForm" name="sumbitForm" class="btn btn-primary text-center bottomMargin">Submit</button>
           <button type="button" class="btn btn-warning" (click)="cancel()">Cancel</button>
           <br/>
-          <progress-bar [value]="progress" [max]="100" *ngIf="hasFiles()"></progress-bar>
+          <br/>
+          <progress-bar [value]="progress" [max]="100" *ngIf="hasFiles() && submitStarted"></progress-bar>
         </div>
       </div>
     </fieldset>

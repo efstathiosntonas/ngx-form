@@ -10,9 +10,10 @@ import {ErrorPageComponent} from "./errorPage/errorPage.component";
 
 const APP_ROUTES: Routes = [
   {path: '', component: MainPageComponent, pathMatch: 'full'},
-  // {path: '**', component: ErrorPageComponent},
   {path: 'user', component: UserComponent, children: USER_ROUTES},
-  {path: 'form', component: FormComponent, canActivate: [AuthGuardService]}
+  {path: 'form', component: FormComponent, canActivate: [AuthGuardService]},
+  {path: '404', component: ErrorPageComponent},
+  {path: '**', redirectTo: '404'},
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(APP_ROUTES);

@@ -30,6 +30,7 @@ export class EditUserFormComponent implements OnInit {
   invalidFileSizeMessageDetail: string = 'Maximum upload size is {0}.';
   public files: File[];
   public progress: number = 0;
+  private submitStarted: boolean;
 
   constructor(private formService: FormService, private toastr: ToastsManager, private _fb: FormBuilder, private router: Router, private route: ActivatedRoute, private sanitizer: DomSanitizer) {
 
@@ -122,8 +123,8 @@ export class EditUserFormComponent implements OnInit {
     return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
   }
 
-
   onSubmitEditedForm() {
+    this.submitStarted = true;
     let formId = this.route.snapshot.params['id'];
     let xhr = new XMLHttpRequest();
     let formData = new FormData();
