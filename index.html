@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Ng2-forms-demo by predatorkill</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Ng2-forms-demo</h1>
+      <h2 class="project-tagline">Angular2 - ng2 form using the MEAN2 / MEA2N stack. The form supports text fields and file uploading using jwt authentication. After submiting form, the file path is saved in MongoDB among the text fields.</h2>
+      <a href="https://github.com/predatorkill/ng2-forms-demo" class="btn">View on GitHub</a>
+      <a href="https://github.com/predatorkill/ng2-forms-demo/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/predatorkill/ng2-forms-demo/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <p>Project is built using the MEA2N/MEAN2 stack. This project could be used as an angular2-seed.</p>
+
+<h2>
+<a id="todo" class="anchor" href="#todo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>TODO</h2>
+
+<ol>
+<li>Resize the image client-side in order to reduce bandwidth of the server.</li>
+</ol>
+
+<h1>
+<a id="angular-2-form" class="anchor" href="#angular-2-form" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Angular 2 Form</h1>
+
+<p>This project was generated with <a href="https://github.com/angular/angular-cli">angular-cli</a> version 1.0.0-beta.21.</p>
+
+<p>The goal of this project is to submit a form with one file upload and two text fields. The form is submitted to back end, the file is stored in the <code>uploadsFolder</code> and then the file path/url is stored in MongoDB among the two text fields. At the end, the form ID is assinged to the signed in user ID (via Ref) for later viewing all the form fields and file in the front end.</p>
+
+<h2>
+<a id="prerequisites" class="anchor" href="#prerequisites" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Prerequisites</h2>
+
+<ol>
+<li>MongoDB installed and running (<a href="http://mongodb.org">http://mongodb.org</a>)</li>
+<li>Node.js and NPM installed (<a href="http://nodejs.org">http://nodejs.org</a>)</li>
+<li>
+<a href="http://www.imagemagick.org/script/index.php">ImageMagick</a> or <a href="http://www.graphicsmagick.org/">GraphicsMagick</a> installed,
+more info in <a href="https://github.com/aheckmann/gm">gm</a> page on how to install depending your Operating System. If installing ImageMagick on Windows, please check "Install Legacy Utitities (e.g. convert") during installation otherwise node will report errors.</li>
+</ol>
+
+<h2>
+<a id="specs" class="anchor" href="#specs" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Specs</h2>
+
+<ol>
+<li>User login/signup using JSON Web Token (jwt)</li>
+<li>User password reset via email (nodemailer &amp; SendGrid)</li>
+<li>Toastr Notifications (&amp; Error Handling)</li>
+<li>Multipart form submission with image preview before upload (some of the upload logic is taken from primeng ui).</li>
+<li>Storing images to file system</li>
+<li>Storing image path to MongoDB among text fields</li>
+<li>Triple check if image is actually a file by checking it's mime type in both back end and in front end (<code>gm</code> in back end checks if file is an image too by reading first bytes of the file, need to fix this to not allow form to be submitted at all)</li>
+<li>Double check for the image size in both back end and front end, file limit now is 5.000.000 bytes (5MB)</li>
+<li>Image resize server side using <a href="https://github.com/aheckmann/gm">GraphicsMagick</a>
+</li>
+<li>Form deletion among the file from filesystem, user forms array is updated too.</li>
+<li>Edit form</li>
+</ol>
+
+<h2>
+<a id="packages-used" class="anchor" href="#packages-used" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Packages Used</h2>
+
+<p><code>Angular-cli v1.0.0-beta.21</code> <br>
+<code>Angular v2.2.1</code> <br>
+<code>Webpack</code> <br>
+<code>Node v6.9.1</code> <br>
+<code>MongoDB v3.2.10</code> <br>
+<code>Mongoose v4.7.0</code> <br>
+<code>Express v4.14.0</code> <br>
+<code>Multer v1.2.0</code> <br>
+<code>ng2-toastr v1.3.1</code> <br>
+<code>ng2-progress-bar 0.0.5</code> <br>
+<code>gm v1.23.0</code> <br>
+<code>BootStrap 3</code>  (css is included in <code>assets</code> folder) <br>
+<code>Font Awesome</code> (css is included in <code>assets</code> folder) <br>
+<code>Glyphicons</code>   (found in <code>fonts</code> folder under <code>assets</code>) <br></p>
+
+<h2>
+<a id="installing-dependecies" class="anchor" href="#installing-dependecies" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installing Dependecies</h2>
+
+<ol>
+<li>Clone this repo from Git</li>
+<li>Run <code>npm install</code> in your command line </li>
+</ol>
+
+<h2>
+<a id="building-the-angular2-app" class="anchor" href="#building-the-angular2-app" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Building the Angular2 app</h2>
+
+<p>Run <code>ng build</code></p>
+
+<p>A new <code>dist</code> folder will be created with all files needed to run the Angular 2 app in front end.</p>
+
+<p>If you want to make changes on the Angular2 app and auto-refresh the <code>dist</code> folder then run the following command in your terminal:
+ <code>ng build --watch</code></p>
+
+<h2>
+<a id="running-the-server" class="anchor" href="#running-the-server" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Running the server</h2>
+
+<p>Run <code>npm start</code>
+If you want to make changes on the Server and auto refresh the back end code then run: <code>nodemon npm start</code>. If you don't have nodemon installed, run <code>npm install nodemon -g</code>.</p>
+
+<h2>
+<a id="viewing-the-app" class="anchor" href="#viewing-the-app" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Viewing the App</h2>
+
+<p>Open your favourite web browser and point to <code>http://localhost:3000</code></p>
+
+<p>Enjoy!</p>
+
+<h2>
+<a id="help-with-angular-cli" class="anchor" href="#help-with-angular-cli" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Help with angular-cli</h2>
+
+<p>To get more help on the <code>angular-cli</code> use <code>ng --help</code> or go check out the <a href="https://github.com/angular/angular-cli/blob/master/README.md">Angular-CLI README</a>.</p>
+
+<h1>
+<a id="preview-of-the-app" class="anchor" href="#preview-of-the-app" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Preview of the app</h1>
+
+<h3>
+<a id="login-form" class="anchor" href="#login-form" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Login Form</h3>
+
+<p><img src="https://cloud.githubusercontent.com/assets/717975/20486222/8dddb670-b007-11e6-861a-18f2123f70f4.png" alt="Login Form"></p>
+
+<h3>
+<a id="password-reset-form" class="anchor" href="#password-reset-form" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Password Reset Form</h3>
+
+<p><img src="https://cloud.githubusercontent.com/assets/717975/20486679/5d7885bc-b009-11e6-854f-b9b73cc77f16.png" alt="password_reset_form"></p>
+
+<h3>
+<a id="form" class="anchor" href="#form" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Form</h3>
+
+<p><img src="https://cloud.githubusercontent.com/assets/717975/20486257/abfd4166-b007-11e6-8e2e-24d2afd746a0.png" alt="Form"></p>
+
+<h3>
+<a id="server-response-in-console-logs" class="anchor" href="#server-response-in-console-logs" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Server Response in console logs</h3>
+
+<p><img src="https://cloud.githubusercontent.com/assets/717975/20238428/053e95ec-a8f4-11e6-93ab-04258e359e13.png" alt="Server response after submitting form"></p>
+
+<h3>
+<a id="user-forms" class="anchor" href="#user-forms" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>User Forms</h3>
+
+<p><img src="https://cloud.githubusercontent.com/assets/717975/20486295/d441f8d8-b007-11e6-9ca8-7b80a08e6077.png" alt="User Forms"></p>
+
+<h3>
+<a id="edit-form" class="anchor" href="#edit-form" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Edit Form</h3>
+
+<p><img src="https://cloud.githubusercontent.com/assets/717975/20598422/ce519cde-b251-11e6-919d-898855445f20.png" alt="edit_form"></p>
+
+<h3>
+<a id="users-document-in-mongodb-with-forms-array-ref" class="anchor" href="#users-document-in-mongodb-with-forms-array-ref" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Users document in MongoDB with forms array ref</h3>
+
+<p><img src="https://cloud.githubusercontent.com/assets/717975/20486315/eaa5b452-b007-11e6-9080-b1c8186bf404.png" alt="Users document in MongoDB"></p>
+
+<h3>
+<a id="forms-document-in-mongodb-with-ref-to-the-user_id-owner-field" class="anchor" href="#forms-document-in-mongodb-with-ref-to-the-user_id-owner-field" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Forms Document in MongoDB with ref to the user._id (owner field)</h3>
+
+<p><img src="https://cloud.githubusercontent.com/assets/717975/20486402/411bbf20-b008-11e6-9170-05f44d610cd8.png" alt="User submitted forms page"></p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/predatorkill/ng2-forms-demo">Ng2-forms-demo</a> is maintained by <a href="https://github.com/predatorkill">predatorkill</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
