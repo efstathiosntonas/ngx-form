@@ -32,9 +32,7 @@ export class EditUserFormComponent implements OnInit {
   public progress: number = 0;
   private submitStarted: boolean;
 
-  constructor(private formService: FormService, private toastr: ToastsManager, private _fb: FormBuilder, private router: Router, private route: ActivatedRoute, private sanitizer: DomSanitizer) {
-
-  }
+  constructor(private formService: FormService, private toastr: ToastsManager, private _fb: FormBuilder, private router: Router, private route: ActivatedRoute, private sanitizer: DomSanitizer) {}
 
   ngOnInit() {
 

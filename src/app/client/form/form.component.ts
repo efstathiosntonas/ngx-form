@@ -26,6 +26,7 @@ export class FormComponent implements OnInit {
   invalidFileSizeMessageDetail: string = 'Maximum upload size is {0}.';
   public files: File[];
   public progress: number = 0;
+  private submitStarted: boolean;
 
   name: string;
   onClear: EventEmitter<any> = new EventEmitter();
@@ -153,6 +154,7 @@ export class FormComponent implements OnInit {
   }
 
   onSubmit() {
+    this.submitStarted = true;
     let xhr = new XMLHttpRequest();
     let formData = new FormData();
     for (let i = 0; i < this.files.length; i++) {
