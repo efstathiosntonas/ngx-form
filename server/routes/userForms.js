@@ -132,4 +132,31 @@ router.delete('/:id', function (req, res, next) {
 });
 
 
+// retrieving a single form
+router.get('/edit/:id', function (req, res, next) {
+  Form.findById((req.params.id), function (err, form) {
+    if (err) {
+      return res.status(500).json({
+        message: 'An error occured',
+        err: err
+      })
+    }
+    if (!form) {
+      return res.status(404).json({
+        title: 'No form found',
+        error: {message: 'Form not found!'}
+      });
+    }
+    if (form.owner != req.user._id.toString()) {
+      return res.status(401).json({
+        title: 'Not your form!',
+        error: {message: 'Users do not match'}
+      });
+    }
+    res.status(200).json({
+      obj: form
+    });
+  });
+});
+
 module.exports = router;

@@ -5,6 +5,8 @@ import {ErrorService} from '../errorHandler/error.service';
 import {Form} from './form.model';
 import {ToastsManager} from "ng2-toastr";
 import {Router} from "@angular/router";
+import 'rxjs/add/operator/map'
+import 'rxjs/add/operator/catch'
 
 @Injectable()
 export class FormService {
@@ -13,29 +15,17 @@ export class FormService {
   private token: string = localStorage.getItem('token');
   private userId: string = localStorage.getItem('userId');
   private forms = [];
+  private singleForm = Object;
 
   constructor(private http: Http, private errorService: ErrorService, private toastr: ToastsManager, private _router: Router) {
   }
-
-  // submitForm(newForm: Form): Observable<any> {
-  //   const body = JSON.stringify(newForm);
-  //   console.log(body);
-  //   let headers = new Headers({'Content-Type': 'application/json'});
-  //   headers.append('Authorization', '' + this.token);
-  //   const token = localStorage.getItem('token') ? '?token=' + this.token : '';
-  //   return this.http.post(this.url + 'uploads' + token, body, {headers: headers})
-  //     .map((response: Response) => response.json())
-  //     .catch((error: Response) => {
-  //       this.errorService.handleError(error.json());
-  //       return Observable.throw(error.json());
-  //     });
-  // }
 
   // get user forms from backend in order to display them in the front end
   getUserForms() {
     let headers = new Headers({'Content-Type': 'application/json'});
     headers.append('Authorization', '' + this.token);
     return this.http.get(this.url + 'forms/' + this.userId, {headers: headers})
+      .timeout(1000)
       .map((response: Response) => {
         console.log(response);
         const forms = response.json().forms;
@@ -59,9 +49,23 @@ export class FormService {
     headers.append('Authorization', '' + this.token);
     return this.http.delete(this.url + 'forms/' + form, {headers: headers})
       .map((response: Response) => {
-        this.toastr.error('Form deleted successfully!');
+        this.toastr.success('Form deleted successfully!');
         response.json();
-       // this._router.navigate(['/form']);
+      })
+      .catch((error: Response) => {
+        this.errorService.handleError(error.json());
+        return Observable.throw(error.json());
+      });
+  }
+
+  getSingleForm(formId) {
+    let headers = new Headers({'Content-Type': 'application/json'});
+    headers.append('Authorization', '' + this.token);
+    return this.http.get(this.url + 'forms/edit/' + formId, {headers: headers})
+      .map((response: Response) => {
+      this.singleForm = response.json();
+      // console.log(this.singleForm)
+      return this.singleForm;
       })
       .catch((error: Response) => {
         this.errorService.handleError(error.json());

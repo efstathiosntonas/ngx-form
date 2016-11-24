@@ -2,11 +2,10 @@ Project is built using the MEA2N/MEAN2 stack. This project could be used as an a
 
 ## TODO
 1. Resize the image client-side in order to reduce bandwidth of the server.
-2. Allow user to edit form and change the image or text fields
 
 # Angular 2 Form
 
-This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.24.
+This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.21.
 
 The goal of this project is to submit a form with one file upload and two text fields. The form is submitted to back end, the file is stored in the `uploadsFolder` and then the file path/url is stored in MongoDB among the two text fields. At the end, the form ID is assinged to the signed in user ID (via Ref) for later viewing all the form fields and file in the front end.
 
@@ -27,14 +26,15 @@ more info in [gm](https://github.com/aheckmann/gm) page on how to install depend
 8. Double check for the image size in both back end and front end, file limit now is 5.000.000 bytes (5MB)
 9. Image resize server side using [GraphicsMagick](https://github.com/aheckmann/gm)
 10. Form deletion among the file from filesystem, user forms array is updated too.
+11. Editing a form
 
 ## Packages Used
-`Angular-cli v1.0.0-beta.24` <br />
+`Angular-cli v1.0.0-beta.21` <br />
 `Angular v2.2.1` <br />
 `Webpack` <br />
 `Node v6.9.1` <br/>
 `MongoDB v3.2.10` <br/>
-`Mongoose v4.6.8` <br />
+`Mongoose v4.7.0` <br />
 `Express v4.14.0` <br />
 `Multer v1.2.0` <br />
 `ng2-toastr v1.3.1` <br />

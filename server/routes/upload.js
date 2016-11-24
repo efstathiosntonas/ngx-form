@@ -158,6 +158,63 @@ router.post('/', upload.single('fileUp'), function (req, res, err) {
   })
 });
 
+// updating the form with new text fields values and image from front end
+router.patch('/edit/:id', upload.single('fileUp'), function (req, res, err) {
+  if (err.code === 'LIMIT_FILE_SIZE') {
+    return res.status(500).json({
+      status: 'There was an error',
+      error: err
+    });
+  }
+  gm(req.file.path)
+    .resize(400, null)
+    .noProfile()
+    .write(req.file.path, function (err) {
+      if (err) {
+        fs.unlink(req.file.path);  // this will result a 404 when frontend tries to access the image, I ll provide a fix soon
+        console.log(err)
+      }
+    });
+
+
+  Form.findById((req.params.id), function (err, form) {
+    if (err) {
+      return res.status(500).json({
+        message: 'An error occured',
+        err: err
+      })
+    }
+    if (!form) {
+      return res.status(404).json({
+        title: 'No form found',
+        error: {message: 'Form not found!'}
+      });
+    }
+    if (form.owner != req.user._id.toString()) {
+      return res.status(401).json({
+        title: 'Not your form!',
+        error: {message: 'Users do not match'}
+      });
+    }
+    fs.unlink('server/uploadsFolder/' + form.owner + '/' + form.imagePath);
+    form.textInputOne = req.body.textInput1;
+    form.textInputTwo = req.body.textInput2;
+    form.imagePath    = req.file.filename;
+    form.save(function (err, result) {
+      if (err) {
+        return res.status(404).json({
+          message: 'There was an error, please try again',
+          err: err
+        });
+      }
+      res.status(201).json({
+        message: 'Form Edited Successfully',
+        obj: result
+      });
+    });
+  });
+});
+
 module.exports = router;
 
 

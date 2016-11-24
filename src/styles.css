@@ -6,12 +6,20 @@
   float: none;
 }
 
+a.active {
+  font-weight: bold;
+}
+
 .topPad {
   margin-top: 150px;
 }
 
 .topPadTable {
   margin-top: 90px;
+}
+
+.table-responsive {
+  border: 0;
 }
 
 .lostPassword {
@@ -24,6 +32,15 @@
 
 .btn {
   border-radius: 0;
+}
+
+.btn-default {
+  border: 0;
+  background-color: lightblue;
+}
+
+.btn-default:hover {
+  background-color: lightskyblue;
 }
 
 .btn-danger {

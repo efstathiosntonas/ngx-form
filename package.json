@@ -1,6 +1,6 @@
 {
   "name": "ng2-forms-demo",
-  "version": "1.0.9",
+  "version": "1.0.11",
   "license": "MIT",
   "angular-cli": {},
   "scripts": {
@@ -43,16 +43,16 @@
     "@angular/platform-browser": "~2.2.1",
     "@angular/platform-browser-dynamic": "~2.2.1",
     "@angular/router": "~3.2.1",
-    "async": "latest",
-    "body-parser": "latest",
+    "async": "^2.1.4",
+    "body-parser": "^1.15.2",
     "cookie-parser": "^1.4.3",
     "core-js": "^2.4.1",
     "debug": "^2.3.3",
     "express": "latest",
     "jsonwebtoken": "^7.1.9",
     "mime": "latest",
-    "mongoose": "^4.6.8",
-    "mongoose-unique-validator": "^1.0.2",
+    "mongoose": "^4.7.0",
+    "mongoose-unique-validator": "^1.0.3",
     "morgan": "latest",
     "multer": "latest",
     "ng2-progress-bar": "0.0.5",
@@ -64,13 +64,13 @@
     "serve-favicon": "^2.3.0",
     "ts-helpers": "^1.1.1",
     "tslint": "^3.15.1",
-    "zone.js": "^0.6.23",
+    "zone.js": "^0.7.2",
     "gm": "latest"
   },
   "devDependencies": {
     "@types/jasmine": "^2.5.38",
-    "@types/node": "^6.0.48",
-    "angular-cli": "1.0.0-beta.20-4",
+    "@types/node": "^6.0.51",
+    "angular-cli": "1.0.0-beta.21",
     "codelyzer": "1.0.0-beta.4",
     "jasmine-core": "2.4.1",
     "jasmine-spec-reporter": "2.5.0",
@@ -81,7 +81,7 @@
     "karma-remap-istanbul": "^0.2.1",
     "protractor": "4.0.11",
     "ts-node": "1.7.0",
-    "tslint": "4.0.1",
+    "tslint": "4.0.2",
     "typescript": "~2.0.10"
   }
 }
