@@ -1,4 +1,4 @@
-Project is built using the MEA2N/MEAN2 stack. This project could be used as an angular2-seed.
+Angular 2 Form with file upload to file system, image path stored to Mongo. Project is built using the MEA2N/MEAN2 stack. This project could be used as an angular2-seed.
 
 ## TODO
 1. Resize the image client-side in order to reduce bandwidth of the server.
