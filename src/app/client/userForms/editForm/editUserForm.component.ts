@@ -1,4 +1,4 @@
-import {Component, OnInit, EventEmitter} from '@angular/core';
+import {Component, OnInit, EventEmitter, Renderer, ViewChild, ElementRef, AfterViewInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {FormService} from "../../form/form.service";
 import {FormControl, FormGroup, Validators, FormBuilder} from "@angular/forms";
@@ -10,7 +10,7 @@ import {DomSanitizer} from "@angular/platform-browser";
   templateUrl: 'editUserForm.component.html',
   styleUrls: ['editUserForm.component.css']
 })
-export class EditUserFormComponent implements OnInit {
+export class EditUserFormComponent implements OnInit, AfterViewInit {
 
   onClear: EventEmitter<any> = new EventEmitter();
   onError: EventEmitter<any> = new EventEmitter();
@@ -30,8 +30,9 @@ export class EditUserFormComponent implements OnInit {
   public files: File[];
   public progress: number = 0;
   private submitStarted: boolean;
+  @ViewChild('textOne') textOne: ElementRef;
 
-  constructor(private formService: FormService, private toastr: ToastsManager, private _fb: FormBuilder, private router: Router, private route: ActivatedRoute, private sanitizer: DomSanitizer) {
+  constructor(private formService: FormService, private toastr: ToastsManager, private _fb: FormBuilder, private router: Router, private route: ActivatedRoute, private sanitizer: DomSanitizer, private renderer: Renderer) {
   }
 
   ngOnInit() {
@@ -55,6 +56,12 @@ export class EditUserFormComponent implements OnInit {
       textInput1: this.textInput1,
       textInput2: this.textInput2
     });
+  }
+
+  ngAfterViewInit() {
+    setTimeout(() => {
+      this.renderer.invokeElementMethod(this.textOne.nativeElement, 'focus', []);
+    }, 50);
   }
 
   cancel() {
