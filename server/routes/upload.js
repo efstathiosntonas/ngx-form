@@ -167,15 +167,17 @@ router.patch('/edit/:id', upload.single('fileUp'), function (req, res, err) {
       error: err
     });
   }
-  gm(req.file.path)
-    .resize(400, null)
-    .noProfile()
-    .write(req.file.path, function (err) {
-      if (err) {
-        fs.unlink(req.file.path);  // this will result a 404 when frontend tries to access the image, I ll provide a fix soon
-        console.log(err)
-      }
-    });
+  if(req.file != undefined) {
+    gm(req.file.path)
+      .resize(400, null)
+      .noProfile()
+      .write(req.file.path, function (err) {
+        if (err) {
+          fs.unlink(req.file.path);  // this will result a 404 when frontend tries to access the image, I ll provide a fix soon
+          console.log(err)
+        }
+      });
+  }
 
 
   Form.findById((req.params.id), function (err, form) {
@@ -197,10 +199,15 @@ router.patch('/edit/:id', upload.single('fileUp'), function (req, res, err) {
         error: {message: 'Users do not match'}
       });
     }
-    fs.unlink('server/uploadsFolder/' + form.owner + '/' + form.imagePath);
+    if(req.file !== undefined) {
+      fs.unlink('server/uploadsFolder/' + form.owner + '/' + form.imagePath);
+    }
     form.textInputOne = req.body.textInput1;
     form.textInputTwo = req.body.textInput2;
-    form.imagePath    = req.file.filename;
+    if(req.file !== undefined){
+      form.imagePath    = req.file.filename;
+    }
+
     form.save(function (err, result) {
       if (err) {
         return res.status(404).json({

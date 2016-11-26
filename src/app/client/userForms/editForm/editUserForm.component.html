@@ -6,14 +6,14 @@
       <div class="form-group">
         <label class="col-md-4 control-label" for="textinput1">Text Input One:</label>
         <div class="col-md-4">
-          <input id="textinput1" #textOne formControlName="textInput1" name="textinput1" type="text" value="{{form.textInputOne}}" class="form-control input-md">
+          <input id="textinput1" #textOne formControlName="textInput1" name="textinput1" type="text"  [(ngModel)]="form.textInputOne" class="form-control input-md">
           <div [hidden]="textInput1.valid || textInput1.pristine" class="alert alert-danger">Please enter some text</div>
         </div>
       </div>
       <div class="form-group">
         <label class="col-md-4 control-label" for="textinput2">Text Input Two:</label>
         <div class="col-md-4">
-          <input id="textinput2" formControlName="textInput2" name="textinput2" type="text" value="{{form.textInputTwo}}" class="form-control input-md">
+          <input id="textinput2" formControlName="textInput2" name="textinput2" type="text" [(ngModel)]="form.textInputTwo" class="form-control input-md">
           <div [hidden]="textInput2.valid || textInput2.pristine" class="alert alert-danger">Please enter some text</div>
         </div>
       </div>
@@ -43,7 +43,7 @@
       <!-- Submit Button -->
       <div class="form-group">
         <div class="col-md-4 col-centered">
-          <button type="submit" [disabled]="!myForm.valid || !hasFiles()" id="submitForm" name="sumbitForm" class="btn btn-primary text-center bottomMargin">Submit</button>
+          <button type="submit" [disabled]="!myForm.valid && myForm.untouched" id="submitForm" name="sumbitForm" class="btn btn-primary text-center bottomMargin">Submit</button>
           <button type="button" class="btn btn-warning" (click)="cancel()">Cancel</button>
           <br/>
           <br/>

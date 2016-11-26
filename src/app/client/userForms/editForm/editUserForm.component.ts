@@ -68,6 +68,7 @@ export class EditUserFormComponent implements OnInit, AfterViewInit {
   onFileSelect(event) {
     this.clear();
     let files = event.dataTransfer ? event.dataTransfer.files : event.target.files;
+    console.log(files)
     for (let i = 0; i < files.length; i++) {
       let file = files[i];
       if (this.validate(file)) {
@@ -95,7 +96,9 @@ export class EditUserFormComponent implements OnInit, AfterViewInit {
   }
 
   hasFiles(): boolean {
-    return this.files && this.files.length > 0;
+    if(typeof this.files != 'number') {
+      return this.files && this.files.length > 0;
+    }
   }
 
   remove(index: number) {
@@ -128,8 +131,11 @@ export class EditUserFormComponent implements OnInit, AfterViewInit {
     let formId = this.route.snapshot.params['id'];
     let xhr = new XMLHttpRequest();
     let formData = new FormData();
-    for (let i = 0; i < this.files.length; i++) {
-      formData.append('fileUp', this.files[i], this.files[i].name);
+    console.log(typeof this.files);
+    if(typeof this.files === 'object') {
+      for (let i = 0; i < this.files.length; i++) {
+        formData.append('fileUp', this.files[i], this.files[i].name);
+      }
     }
     xhr.upload.addEventListener('progress', (event: ProgressEvent) => {
       if (event.lengthComputable) {

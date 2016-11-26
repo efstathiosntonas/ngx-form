@@ -31,8 +31,7 @@ export class FormComponent implements OnInit, AfterViewInit {
   name: string;
   onClear: EventEmitter<any> = new EventEmitter();
 
-  constructor(private _fb: FormBuilder, private toastr: ToastsManager, private router: Router, private sanitizer: DomSanitizer, private renderer: Renderer) {
-  }
+  constructor(private _fb: FormBuilder, private toastr: ToastsManager, private router: Router, private sanitizer: DomSanitizer, private renderer: Renderer) {}
 
   onFileSelect(event) {
     this.clear();
@@ -97,7 +96,7 @@ export class FormComponent implements OnInit, AfterViewInit {
     return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
   }
 
-  // TODO  sample code to resize image before uploading to reduce bandwidth from server
+   // TODO  sample code to resize image before uploading to reduce bandwidth from server
   // resizeImage(file) {
   //  let  reader = new FileReader();
   //   reader.onloadend = function() {
@@ -169,7 +168,7 @@ export class FormComponent implements OnInit, AfterViewInit {
         if (xhr.status === 201) {
           this.router.navigateByUrl('/user/forms');
           this.toastr.success('Form submitted successfully');
-        } else if (xhr.status !== 201) {
+        } else if(xhr.status !== 201) {
           this.toastr.error('There was an error!');
         }
         this.clear();
