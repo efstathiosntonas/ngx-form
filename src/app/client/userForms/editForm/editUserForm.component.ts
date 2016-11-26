@@ -13,9 +13,6 @@ import {DomSanitizer} from "@angular/platform-browser";
 export class EditUserFormComponent implements OnInit, AfterViewInit {
 
   onClear: EventEmitter<any> = new EventEmitter();
-  onError: EventEmitter<any> = new EventEmitter();
-  onUpload: EventEmitter<any> = new EventEmitter();
-  onSelect: EventEmitter<any> = new EventEmitter();
 
   fetchedForm: any[] = [];
   myForm: FormGroup;
@@ -81,9 +78,7 @@ export class EditUserFormComponent implements OnInit, AfterViewInit {
       } else if (!this.isImage(file)) {
         this.toastr.error('Only images are allowed');
       }
-
     }
-    this.onSelect.emit({originalEvent: event, files: files});
   }
 
   clear() {
@@ -147,9 +142,8 @@ export class EditUserFormComponent implements OnInit, AfterViewInit {
         if (xhr.status === 201) {
           this.router.navigateByUrl('/user/forms');
           this.toastr.success('Form edited successfully');
-        } else if (xhr.status === 404 || 500) {
+        } else if (xhr.status !== 201) {
           this.toastr.error('There was an error!');
-          this.onError.emit({xhr: xhr, file: this.files});
         }
         this.clear();
       }

@@ -129,8 +129,9 @@ router.post('/', upload.single('fileUp'), function (req, res, err) {
       .noProfile()
       .write(req.file.path, function (err) {
         if (err) {
-          fs.unlink(req.file.path);  // this will result a 404 when frontend tries to access the image, I ll provide a fix soon
-          console.log(err)
+          console.log(err);
+          fs.unlink(req.file.path);
+          // });// this will result a 404 when frontend tries to access the image, I ll provide a fix soon
         }
       });
 

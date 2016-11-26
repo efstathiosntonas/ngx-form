@@ -1,4 +1,4 @@
-import {Component, OnInit, EventEmitter} from '@angular/core';
+import {Component, OnInit, EventEmitter, ViewChild, ElementRef, AfterViewInit, Renderer} from '@angular/core';
 import {FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
 import {ToastsManager} from 'ng2-toastr';
 import {Router} from '@angular/router';
@@ -10,7 +10,7 @@ import {DomSanitizer} from '@angular/platform-browser';
   templateUrl: 'form.component.html',
   styleUrls: ['form.component.css']
 })
-export class FormComponent implements OnInit {
+export class FormComponent implements OnInit, AfterViewInit {
 
   // setting up the form
   myForm: FormGroup;
@@ -26,14 +26,13 @@ export class FormComponent implements OnInit {
   public files: File[];
   public progress: number = 0;
   private submitStarted: boolean;
+  @ViewChild('textOne') textOne: ElementRef;
 
   name: string;
   onClear: EventEmitter<any> = new EventEmitter();
-  onError: EventEmitter<any> = new EventEmitter();
-  onUpload: EventEmitter<any> = new EventEmitter();
-  onSelect: EventEmitter<any> = new EventEmitter();
 
-  constructor(private _fb: FormBuilder, private toastr: ToastsManager, private router: Router, private sanitizer: DomSanitizer) {}
+  constructor(private _fb: FormBuilder, private toastr: ToastsManager, private router: Router, private sanitizer: DomSanitizer, private renderer: Renderer) {
+  }
 
   onFileSelect(event) {
     this.clear();
@@ -48,9 +47,7 @@ export class FormComponent implements OnInit {
       } else if (!this.isImage(file)) {
         this.toastr.error('Only images are allowed');
       }
-
     }
-    this.onSelect.emit({originalEvent: event, files: files});
   }
 
   isImage(file: File): boolean {
@@ -100,7 +97,7 @@ export class FormComponent implements OnInit {
     return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
   }
 
-   // TODO  sample code to resize image before uploading to reduce bandwidth from server
+  // TODO  sample code to resize image before uploading to reduce bandwidth from server
   // resizeImage(file) {
   //  let  reader = new FileReader();
   //   reader.onloadend = function() {
@@ -148,6 +145,12 @@ export class FormComponent implements OnInit {
     });
   }
 
+  ngAfterViewInit() {
+    setTimeout(() => {
+      this.renderer.invokeElementMethod(this.textOne.nativeElement, 'focus', []);
+    }, 50);
+  }
+
   onSubmit() {
     this.submitStarted = true;
     let xhr = new XMLHttpRequest();
@@ -166,9 +169,8 @@ export class FormComponent implements OnInit {
         if (xhr.status === 201) {
           this.router.navigateByUrl('/user/forms');
           this.toastr.success('Form submitted successfully');
-        } else if(xhr.status === 404 || 500) {
+        } else if (xhr.status !== 201) {
           this.toastr.error('There was an error!');
-          this.onError.emit({xhr: xhr, file: this.files});
         }
         this.clear();
       }
