@@ -26,7 +26,7 @@ more info in [gm](https://github.com/aheckmann/gm) page on how to install depend
 8. Double check for the image size in both back end and front end, file limit now is 5.000.000 bytes (5MB)
 9. Image resize server side using [GraphicsMagick](https://github.com/aheckmann/gm)
 10. Form deletion among the file from filesystem, user forms array is updated too.
-11. Edit form
+11. Edit form, user can edit the text inputs and the image or update only the image or update only the text fields.
 
 ## Packages Used
 `Angular-cli v1.0.0-beta.21` <br />
