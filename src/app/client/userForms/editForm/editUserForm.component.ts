@@ -28,6 +28,7 @@ export class EditUserFormComponent implements OnInit, AfterViewInit {
   public progress: number = 0;
   private submitStarted: boolean;
   @ViewChild('textOne') textOne: ElementRef;
+  @ViewChild('fileInput') fileInput: ElementRef;
 
   constructor(private formService: FormService, private toastr: ToastsManager, private _fb: FormBuilder, private router: Router, private route: ActivatedRoute, private sanitizer: DomSanitizer, private renderer: Renderer) {
   }
@@ -68,7 +69,6 @@ export class EditUserFormComponent implements OnInit, AfterViewInit {
   onFileSelect(event) {
     this.clear();
     let files = event.dataTransfer ? event.dataTransfer.files : event.target.files;
-    console.log(files)
     for (let i = 0; i < files.length; i++) {
       let file = files[i];
       if (this.validate(file)) {
@@ -103,6 +103,7 @@ export class EditUserFormComponent implements OnInit, AfterViewInit {
 
   remove(index: number) {
     this.files.splice(index, 1);
+    this.fileInput.nativeElement.value = '';
   }
 
   validate(file: File): boolean {
@@ -131,7 +132,6 @@ export class EditUserFormComponent implements OnInit, AfterViewInit {
     let formId = this.route.snapshot.params['id'];
     let xhr = new XMLHttpRequest();
     let formData = new FormData();
-    console.log(typeof this.files);
     if(typeof this.files === 'object') {
       for (let i = 0; i < this.files.length; i++) {
         formData.append('fileUp', this.files[i], this.files[i].name);

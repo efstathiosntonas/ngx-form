@@ -27,6 +27,7 @@ export class FormComponent implements OnInit, AfterViewInit {
   public progress: number = 0;
   private submitStarted: boolean;
   @ViewChild('textOne') textOne: ElementRef;
+  @ViewChild('fileInput') fileInput: ElementRef;
 
   name: string;
   onClear: EventEmitter<any> = new EventEmitter();
@@ -73,6 +74,7 @@ export class FormComponent implements OnInit, AfterViewInit {
 
   remove(index: number) {
     this.files.splice(index, 1);
+    this.fileInput.nativeElement.value = '';
   }
 
   validate(file: File): boolean {

@@ -27,7 +27,7 @@
       <div class="form-group">
         <div class="col-md-4 col-centered">
           <button type="button" class="btn">
-            <input #fileinput name="fileUp" type="file" (change)="onFileSelect($event)">
+            <input #fileInput name="fileUp" type="file" (change)="onFileSelect($event)">
           </button>
           <div *ngIf="hasFiles()">
             <div *ngFor="let file of files">
