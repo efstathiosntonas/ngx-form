@@ -34,6 +34,7 @@ export class FormComponent implements OnInit, AfterViewInit {
 
   constructor(private _fb: FormBuilder, private toastr: ToastsManager, private router: Router, private sanitizer: DomSanitizer, private renderer: Renderer) {}
 
+  // event fired when the user selects an image
   onFileSelect(event) {
     this.clear();
     let files = event.dataTransfer ? event.dataTransfer.files : event.target.files;
@@ -49,7 +50,7 @@ export class FormComponent implements OnInit, AfterViewInit {
       }
     }
   }
-
+  // check if the image is actually an image by checking the mime type
   isImage(file: File): boolean {
     if (!file.type.match('image/*')) {
       this.toastr.error('Only images are allowed');
@@ -57,26 +58,21 @@ export class FormComponent implements OnInit, AfterViewInit {
     }
     return true;
   }
-
+  // check if the form has files ready to be uploaded
   hasFiles(): boolean {
     return this.files && this.files.length > 0;
   }
-
-  onImageLoad(img: any) {
-    window.URL.revokeObjectURL(img.src);
-    console.log(window.URL.revokeObjectURL(img.src))
-  }
-
+  // clears the form
   clear() {
     this.files = [];
     this.onClear.emit();
   }
-
+  // remove the image from the preview
   remove(index: number) {
     this.files.splice(index, 1);
     this.fileInput.nativeElement.value = '';
   }
-
+  // check the image file size
   validate(file: File): boolean {
     if (this.maxSize && file.size > this.maxSize) {
       this.toastr.error(this.invalidFileSizeMessageDetail.replace('{0}', this.formatSize(this.maxSize)),
@@ -85,7 +81,7 @@ export class FormComponent implements OnInit, AfterViewInit {
     }
     return true;
   }
-
+// format the size to display it in toastr in case the user uploaded a file bigger than 5MB
   formatSize(bytes) {
     if (bytes === 0) {
       return '0 B';
@@ -145,13 +141,13 @@ export class FormComponent implements OnInit, AfterViewInit {
       textInput2: this.textInput2
     });
   }
-
+  // focus on first input box after the view is initialized
   ngAfterViewInit() {
     setTimeout(() => {
       this.renderer.invokeElementMethod(this.textOne.nativeElement, 'focus', []);
     }, 50);
   }
-
+  // submit the form to back end
   onSubmit() {
     this.submitStarted = true;
     let xhr = new XMLHttpRequest();
@@ -170,7 +166,7 @@ export class FormComponent implements OnInit, AfterViewInit {
         if (xhr.status === 201) {
           this.router.navigateByUrl('/user/forms');
           this.toastr.success('Form submitted successfully');
-        } else if(xhr.status !== 201) {
+        } else if (xhr.status !== 201) {
           this.toastr.error('There was an error!');
         }
         this.clear();

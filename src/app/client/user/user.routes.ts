@@ -5,9 +5,8 @@ import {ResetPasswordComponent} from './accountRecover/resetPassword.component';
 import {ForgetPasswordComponent} from './accountRecover/forgetPassword.component';
 import {UserFormComponent} from '../userForms/formsTable/userForms.component';
 import {AuthGuardService} from '../auth/authguard.service';
-import {EditUserFormComponent} from "../userForms/editForm/editUserForm.component";
-import {ErrorPageComponent} from "../errorPage/errorPage.component";
-import {AppComponent} from "../../app.component";
+import {EditUserFormComponent} from '../userForms/editForm/editUserForm.component';
+import {AppComponent} from '../../app.component';
 
 export const USER_ROUTES: Routes = [
   {path: '', component: AppComponent},

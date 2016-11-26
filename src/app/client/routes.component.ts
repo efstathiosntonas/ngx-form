@@ -5,7 +5,7 @@ import {UserComponent} from './user/user.component';
 import {FormComponent} from './form/form.component';
 import {AuthGuardService} from './auth/authguard.service';
 import {MainPageComponent} from './mainPage/mainPage.component';
-import {ErrorPageComponent} from "./errorPage/errorPage.component";
+import {ErrorPageComponent} from './errorPage/errorPage.component';
 
 
 const APP_ROUTES: Routes = [

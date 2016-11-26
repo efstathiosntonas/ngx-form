@@ -163,11 +163,12 @@ router.post('/', upload.single('fileUp'), function (req, res, err) {
 router.patch('/edit/:id', upload.single('fileUp'), function (req, res, err) {
   if (err.code === 'LIMIT_FILE_SIZE') {
     return res.status(500).json({
-      status: 'There was an error',
+      status: 'There was an error, file size too big',
       error: err
     });
   }
-  if(req.file != undefined) {
+  // check if the user has uploaded a new file, if he has, continue to image resize
+  if (req.file != undefined) {
     gm(req.file.path)
       .resize(400, null)
       .noProfile()
@@ -178,7 +179,6 @@ router.patch('/edit/:id', upload.single('fileUp'), function (req, res, err) {
         }
       });
   }
-
 
   Form.findById((req.params.id), function (err, form) {
     if (err) {
@@ -196,16 +196,18 @@ router.patch('/edit/:id', upload.single('fileUp'), function (req, res, err) {
     if (form.owner != req.user._id.toString()) {
       return res.status(401).json({
         title: 'Not your form!',
-        error: {message: 'Users do not match'}
+        error: {message: 'Users do not match, not your form'}
       });
     }
-    if(req.file !== undefined) {
+    // check if user has uploaded a new file, if he has, delete the old file
+    if (req.file !== undefined) {
       fs.unlink('server/uploadsFolder/' + form.owner + '/' + form.imagePath);
     }
     form.textInputOne = req.body.textInput1;
     form.textInputTwo = req.body.textInput2;
-    if(req.file !== undefined){
-      form.imagePath    = req.file.filename;
+    // check if the user has uploaded a new file, if he has, then store the image path to Mongo and replace the old one
+    if (req.file !== undefined) {
+      form.imagePath = req.file.filename;
     }
 
     form.save(function (err, result) {

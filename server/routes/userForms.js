@@ -147,10 +147,11 @@ router.get('/edit/:id', function (req, res, next) {
         error: {message: 'Form not found!'}
       });
     }
+    // checking if the owner of the form is correct
     if (form.owner != req.user._id.toString()) {
       return res.status(401).json({
         title: 'Not your form!',
-        error: {message: 'Users do not match'}
+        error: {message: 'Users do not match, not your form'}
       });
     }
     res.status(200).json({

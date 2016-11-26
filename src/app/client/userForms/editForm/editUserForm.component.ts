@@ -1,9 +1,9 @@
 import {Component, OnInit, EventEmitter, Renderer, ViewChild, ElementRef, AfterViewInit} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
-import {FormService} from "../../form/form.service";
-import {FormControl, FormGroup, Validators, FormBuilder} from "@angular/forms";
-import {ToastsManager} from "ng2-toastr";
-import {DomSanitizer} from "@angular/platform-browser";
+import {ActivatedRoute, Router} from '@angular/router';
+import {FormService} from '../../form/form.service';
+import {FormControl, FormGroup, Validators, FormBuilder} from '@angular/forms';
+import {ToastsManager} from 'ng2-toastr';
+import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-edit-user-form',
@@ -34,14 +34,14 @@ export class EditUserFormComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-
+    // grabbing the form id from the url
     let formId = this.route.snapshot.params['id'];
     this.formService.getSingleForm(formId)
       .subscribe(
         data => {
           const formArray = [];
           for (let key in data) {
-            formArray.push(data[key])
+            formArray.push(data[key]);
           }
           this.fetchedForm = formArray;
         }
@@ -55,17 +55,17 @@ export class EditUserFormComponent implements OnInit, AfterViewInit {
       textInput2: this.textInput2
     });
   }
-
+  // focus on first input box after the view is initialized
   ngAfterViewInit() {
     setTimeout(() => {
       this.renderer.invokeElementMethod(this.textOne.nativeElement, 'focus', []);
     }, 50);
   }
-
+  // cancel and return to the user's forms page
   cancel() {
     this.router.navigate(['user/forms']);
   }
-
+  // event fired when the user selects an image
   onFileSelect(event) {
     this.clear();
     let files = event.dataTransfer ? event.dataTransfer.files : event.target.files;
@@ -81,12 +81,12 @@ export class EditUserFormComponent implements OnInit, AfterViewInit {
       }
     }
   }
-
+  // clears the form
   clear() {
     this.files = [];
     this.onClear.emit();
   }
-
+  // check if the image is actually an image by checking the mime type
   isImage(file: File): boolean {
     if (!file.type.match('image/*')) {
       this.toastr.error('Only images are allowed');
@@ -94,18 +94,18 @@ export class EditUserFormComponent implements OnInit, AfterViewInit {
     }
     return true;
   }
-
+  // check if the form has files ready to be uploaded
   hasFiles(): boolean {
-    if(typeof this.files != 'number') {
+    if (typeof this.files !== 'number') {
       return this.files && this.files.length > 0;
     }
   }
-
+  // remove the image from the preview
   remove(index: number) {
     this.files.splice(index, 1);
     this.fileInput.nativeElement.value = '';
   }
-
+  // check the image file size
   validate(file: File): boolean {
     if (this.maxSize && file.size > this.maxSize) {
       this.toastr.error(this.invalidFileSizeMessageDetail.replace('{0}', this.formatSize(this.maxSize)),
@@ -114,7 +114,7 @@ export class EditUserFormComponent implements OnInit, AfterViewInit {
     }
     return true;
   }
-
+// format the size to display it in toastr in case the user uploaded a file bigger than 5MB
   formatSize(bytes) {
     if (bytes === 0) {
       return '0 B';
@@ -126,13 +126,14 @@ export class EditUserFormComponent implements OnInit, AfterViewInit {
 
     return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
   }
-
+ // submit the form to back end
   onSubmitEditedForm() {
     this.submitStarted = true;
     let formId = this.route.snapshot.params['id'];
     let xhr = new XMLHttpRequest();
     let formData = new FormData();
-    if(typeof this.files === 'object') {
+    // checking if the user tries to upload a new image, if he does then the new image will be uploaded
+    if (typeof this.files === 'object') {
       for (let i = 0; i < this.files.length; i++) {
         formData.append('fileUp', this.files[i], this.files[i].name);
       }

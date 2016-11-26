@@ -3,9 +3,9 @@ import {Observable} from 'rxjs/Observable';
 import {Response, Headers, Http} from '@angular/http';
 import {ErrorService} from '../errorHandler/error.service';
 import {Form} from './form.model';
-import {ToastsManager} from "ng2-toastr";
-import 'rxjs/add/operator/map'
-import 'rxjs/add/operator/catch'
+import {ToastsManager} from 'ng2-toastr';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
 
 @Injectable()
 export class FormService {
