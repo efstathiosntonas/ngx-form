@@ -39,7 +39,7 @@ more info in [gm](https://github.com/aheckmann/gm) page on how to install depend
 `angular2-jwt v0.1.25` (only for checking the expiration date of the jwt token) <br />
 `jsonwebtoken v7.1.9` <br />
 `Multer v1.2.0` <br />
-`ng2-toastr v1.3.1` <br />
+`ng2-toastr v1.3.2` <br />
 `ng2-progress-bar 0.0.5` <br />
 `gm v1.23.0` <br />
 `BootStrap 3`  (css is included in `assets` folder) <br/>
