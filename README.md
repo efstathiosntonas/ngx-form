@@ -1,5 +1,7 @@
 Angular 2 Form with file upload to file system, image path stored to Mongo. Project is built using the MEA2N/MEAN2 stack. This project could be used as an angular2-seed.
 
+[![NPM](https://nodei.co/npm/ng2-forms-demo.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/ng2-forms-demo/)
+
 ## TODO
 1. Resize the image client-side in order to reduce bandwidth of the server.
 
