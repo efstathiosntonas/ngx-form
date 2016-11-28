@@ -19,7 +19,7 @@ export class EditUserFormComponent implements OnInit, AfterViewInit {
   textInput1: FormControl;
   textInput2: FormControl;
 
-  authToken: string = localStorage.getItem('token');
+  jwt: string = localStorage.getItem('id_token');
   url: string = 'http://localhost:3000/uploads/edit/';
   maxSize: number = 5000000;
   invalidFileSizeMessage: string = '{0}: Invalid file size, ';
@@ -38,13 +38,13 @@ export class EditUserFormComponent implements OnInit, AfterViewInit {
     let formId = this.route.snapshot.params['id'];
     this.formService.getSingleForm(formId)
       .subscribe(
-        data => {
+        (data => {
           const formArray = [];
           for (let key in data) {
             formArray.push(data[key]);
           }
           this.fetchedForm = formArray;
-        }
+        })
       );
 
     this.textInput1 = new FormControl('', Validators.required);
@@ -159,7 +159,7 @@ export class EditUserFormComponent implements OnInit, AfterViewInit {
     formData.append('textInput1', this.myForm.value.textInput1);
     formData.append('textInput2', this.myForm.value.textInput2);
     xhr.withCredentials = true;
-    xhr.setRequestHeader('Authorization', this.authToken);
+    xhr.setRequestHeader('Authorization', this.jwt);
     xhr.send(formData);
     console.log(xhr);
   }

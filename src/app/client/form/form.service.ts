@@ -11,7 +11,7 @@ import 'rxjs/add/operator/catch';
 export class FormService {
 
   private url: string = 'http://localhost:3000/';
-  private token: string = localStorage.getItem('token');
+  private token: string = localStorage.getItem('id_token');
   private userId: string = localStorage.getItem('userId');
   private forms = [];
   private singleForm = Object;
@@ -62,7 +62,6 @@ export class FormService {
     return this.http.get(this.url + 'forms/edit/' + formId, {headers: headers})
       .map((response: Response) => {
         this.singleForm = response.json();
-        // console.log(this.singleForm)
         return this.singleForm;
       })
       .catch((error: Response) => {

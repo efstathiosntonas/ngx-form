@@ -22,29 +22,29 @@ router.use('/', function (req, res, next) {
   jwt.verify(token, config.secret, function (err, decoded) {
     if (err) {
       return res.status(401).json({
-        code: 401,
+        title: 'Authentication failed',
         message: 'Authentication failed',
         error: err
       })
     }
     if (!decoded) {
       return res.status(403).json({
-        code: 404,
-        error: {message: 'Authentication failed, malformed jwt'}
+        title: 'Authentication failed',
+        error: {message: 'Authentication failed'}
       });
     }
     if (decoded) {
       User.findById(decoded.user._id, function (err, doc) {
         if (err) {
           return res.status(500).json({
-            code: 500,
+            title: 'Fetching user failed',
             message: 'Fetching user failed',
             err: err
           });
         }
         if (!doc) {
           return res.status(404).json({
-            code: 404,
+            title: 'The user was not found',
             error: {message: 'The user was not found'}
           })
         }
@@ -104,7 +104,7 @@ var upload = multer({
 router.post('/', upload.single('fileUp'), function (req, res, err) {
   if (err.code === 'LIMIT_FILE_SIZE') {
     return res.status(500).json({
-      status: 'There was an error',
+      message: 'There was an error',
       error: err
     });
   }

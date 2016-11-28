@@ -23,7 +23,7 @@ import {FormService} from './client/form/form.service';
 import {UserFormComponent} from './client/userForms/formsTable/userForms.component';
 import {EditUserFormComponent} from './client/userForms/editForm/editUserForm.component';
 import {ProgressBarModule} from 'ng2-progress-bar';
-import { ErrorPageComponent } from './client/errorPage/errorPage.component';
+import {ErrorPageComponent} from './client/errorPage/errorPage.component';
 
 
 let options = <ToastOptions> {

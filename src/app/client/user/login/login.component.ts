@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild, ElementRef, Renderer} from '@angular/core';
 import {FormGroup, FormControl, FormBuilder, Validators} from '@angular/forms';
 import {ToastsManager} from 'ng2-toastr';
 import {Router} from '@angular/router';
@@ -15,8 +15,9 @@ export class LoginComponent implements OnInit {
   email: FormControl;
   userId: string;
   password: FormControl;
+  @ViewChild('userEmail') userEmail: ElementRef;
 
-  constructor(private _fb: FormBuilder, private _authService: AuthService, private _router: Router, private toastr: ToastsManager) {
+  constructor(private _fb: FormBuilder, private _authService: AuthService, private _router: Router, private toastr: ToastsManager, private renderer: Renderer) {
   }
 
   ngOnInit() {
@@ -34,6 +35,12 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  ngAfterViewInit() {
+    setTimeout(() => {
+      this.renderer.invokeElementMethod(this.userEmail.nativeElement, 'focus', []);
+    }, 50);
+  }
+
   // submit the login form with the user credentials and navigate the user to the index page of our app
   onSubmit() {
     const user = new User(this.myForm.value.email, this.myForm.value.password);
@@ -42,7 +49,7 @@ export class LoginComponent implements OnInit {
         data => {
           // if the user credentials are correct, set the localStorage token and userId,
           // we need these info in order to do stuff later when the user is signed in and verified
-          localStorage.setItem('token', data.token);
+          localStorage.setItem('id_token', data.token);
           localStorage.setItem('userId', data.userId);
           // navigate user to index page of our app
           this._router.navigate(['/']);
@@ -53,8 +60,6 @@ export class LoginComponent implements OnInit {
       );
 
   }
-
-
   // input validator to check if the email entered by the user is actually text in an email form
   emailValidator(control) {
     let EMAIL_REGEXP = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;

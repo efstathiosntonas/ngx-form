@@ -7,6 +7,7 @@ import 'rxjs/operator/catch';
 import {ToastsManager} from 'ng2-toastr';
 import {ErrorService} from '../errorHandler/error.service';
 import {Reset} from './resetPassword';
+import {tokenNotExpired} from 'angular2-jwt';
 
 @Injectable()
 
@@ -71,8 +72,7 @@ export class AuthService {
 
   // check if the user is logged in or not in html files for both pages (login/register)
   isLoggedIn() {
-    return localStorage.getItem('token') !== null;
+   // return localStorage.getItem('id_token') !== null && tokenNotExpired();
+    return tokenNotExpired();
   }
-
-
 }

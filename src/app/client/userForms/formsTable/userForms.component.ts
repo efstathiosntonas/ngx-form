@@ -16,9 +16,8 @@ export class UserFormComponent implements OnInit {
   ngOnInit() {
     this.formService.getUserForms()
       .subscribe(
-        (forms) => {
-          this.fetchedForms = forms;
-        });
+        forms => this.fetchedForms = forms,
+        error =>console.log(error))
   }
 
   onDelete(formId) {

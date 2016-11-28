@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild, ElementRef, Renderer} from '@angular/core';
 import {FormGroup, FormControl, FormBuilder, Validators} from '@angular/forms';
 import {AuthService} from '../../auth/auth.service';
 import {Router} from '@angular/router';
@@ -15,8 +15,9 @@ import {ToastsManager} from 'ng2-toastr';
 export class ForgetPasswordComponent implements OnInit {
   myForm: FormGroup;
   email: FormControl;
+  @ViewChild('userEmail') userEmail: ElementRef;
 
-  constructor(private _fb: FormBuilder, private _authService: AuthService, private _router: Router, private toastr: ToastsManager) {
+  constructor(private _fb: FormBuilder, private _authService: AuthService, private _router: Router, private toastr: ToastsManager, private renderer: Renderer) {
   }
 
   ngOnInit() {
@@ -29,6 +30,12 @@ export class ForgetPasswordComponent implements OnInit {
     if (this._authService.isLoggedIn()) {
       this._router.navigate(['/']);
     }
+  }
+
+  ngAfterViewInit() {
+    setTimeout(() => {
+      this.renderer.invokeElementMethod(this.userEmail.nativeElement, 'focus', []);
+    }, 50);
   }
 
   onSubmit() {

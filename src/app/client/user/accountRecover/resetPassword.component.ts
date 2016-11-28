@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Renderer, ElementRef, ViewChild} from '@angular/core';
 import {FormGroup, FormControl, FormBuilder, Validators} from '@angular/forms';
 import {AuthService} from '../../auth/auth.service';
 import {Router, ActivatedRoute} from '@angular/router';
@@ -17,9 +17,10 @@ export class ResetPasswordComponent implements OnInit {
   myForm: FormGroup;
   password: FormControl;
   token: string;
+  @ViewChild('newPassword') newPassword: ElementRef;
 
   constructor(private _fb: FormBuilder, private _authService: AuthService, private _router: Router,
-              private _activatedRoute: ActivatedRoute, private toastr: ToastsManager) {
+              private _activatedRoute: ActivatedRoute, private toastr: ToastsManager, private renderer: Renderer) {
     this.token = _activatedRoute.snapshot.params['token'];
   }
 
@@ -34,6 +35,12 @@ export class ResetPasswordComponent implements OnInit {
     if (this._authService.isLoggedIn()) {
       this._router.navigate(['/']);
     }
+  }
+
+  ngAfterViewInit() {
+    setTimeout(() => {
+      this.renderer.invokeElementMethod(this.newPassword.nativeElement, 'focus', []);
+    }, 50);
   }
 
   onSubmit() {

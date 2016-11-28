@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Renderer, ViewChild, ElementRef} from '@angular/core';
 import {FormGroup, FormControl, FormBuilder, Validators} from '@angular/forms';
 import {ToastsManager} from 'ng2-toastr';
 import {Router} from '@angular/router';
@@ -14,8 +14,9 @@ export class RegisterComponent implements OnInit {
   myForm: FormGroup;
   email: FormControl;
   password: FormControl;
+  @ViewChild('userEmail') userEmail: ElementRef;
 
-  constructor(private _fb: FormBuilder, private _authService: AuthService, private _router: Router, private toastr: ToastsManager) {
+  constructor(private _fb: FormBuilder, private _authService: AuthService, private _router: Router, private toastr: ToastsManager, private renderer: Renderer) {
   }
 
   ngOnInit() {
@@ -32,6 +33,12 @@ export class RegisterComponent implements OnInit {
       email: this.email,
       password: this.password
     });
+  }
+
+  ngAfterViewInit() {
+    setTimeout(() => {
+      this.renderer.invokeElementMethod(this.userEmail.nativeElement, 'focus', []);
+    }, 50);
   }
 
   // submit the register form to the backend with the user's desired credentials

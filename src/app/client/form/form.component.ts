@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
 import {ToastsManager} from 'ng2-toastr';
 import {Router} from '@angular/router';
 import {DomSanitizer} from '@angular/platform-browser';
+import {AuthService} from "../auth/auth.service";
 
 
 @Component({
@@ -18,7 +19,7 @@ export class FormComponent implements OnInit, AfterViewInit {
   textInput2: FormControl;
 
   // get the Auth Token from localStorage in order to Authenticate to back end while submitting the form
-  authToken: string = localStorage.getItem('token');
+  authToken: string = localStorage.getItem('id_token');
   url: string = 'http://localhost:3000/uploads';
   maxSize: number = 5000000;
   invalidFileSizeMessage: string = '{0}: Invalid file size, ';
@@ -32,7 +33,7 @@ export class FormComponent implements OnInit, AfterViewInit {
   name: string;
   onClear: EventEmitter<any> = new EventEmitter();
 
-  constructor(private _fb: FormBuilder, private toastr: ToastsManager, private router: Router, private sanitizer: DomSanitizer, private renderer: Renderer) {}
+  constructor(private _fb: FormBuilder, private toastr: ToastsManager, private router: Router, private sanitizer: DomSanitizer, private renderer: Renderer, private authService: AuthService) {}
 
   // event fired when the user selects an image
   onFileSelect(event) {
@@ -94,43 +95,6 @@ export class FormComponent implements OnInit, AfterViewInit {
     return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
   }
 
-   // TODO  sample code to resize image before uploading to reduce bandwidth from server
-  // resizeImage(file) {
-  //  let  reader = new FileReader();
-  //   reader.onloadend = function() {
-  //     let tempImg = new Image();
-  //     tempImg.src = reader.result;
-  //     console.log(tempImg.src)
-  //     tempImg.onload = function() {
-  //
-  //       let MAX_WIDTH = 400;
-  //       let MAX_HEIGHT = 300;
-  //       let tempW = tempImg.width;
-  //       let tempH = tempImg.height;
-  //       if (tempW > tempH) {
-  //         if (tempW > MAX_WIDTH) {
-  //           tempH *= MAX_WIDTH / tempW;
-  //           tempW = MAX_WIDTH;
-  //         }
-  //       } else {
-  //         if (tempH > MAX_HEIGHT) {
-  //           tempW *= MAX_HEIGHT / tempH;
-  //           tempH = MAX_HEIGHT;
-  //         }
-  //       }
-  //
-  //       let canvas = document.createElement('canvas');
-  //       canvas.width = tempW;
-  //       canvas.height = tempH;
-  //       let ctx = canvas.getContext('2d');
-  //       ctx.drawImage(this, 0, 0, tempW, tempH);
-  //       let dataURL = canvas.toDataURL('image/jpeg');
-  //     }
-  //
-  //   };
-  //   reader.readAsArrayBuffer(file);
-  // }
-
   ngOnInit() {
     this.files = [];
     this.textInput1 = new FormControl('', Validators.required);
@@ -146,6 +110,10 @@ export class FormComponent implements OnInit, AfterViewInit {
     setTimeout(() => {
       this.renderer.invokeElementMethod(this.textOne.nativeElement, 'focus', []);
     }, 50);
+  }
+
+  isLoggedIn() {
+    return this.authService.isLoggedIn();
   }
   // submit the form to back end
   onSubmit() {
@@ -181,3 +149,41 @@ export class FormComponent implements OnInit, AfterViewInit {
     console.log(xhr);
   }
 }
+
+
+// TODO  sample code to resize image before uploading to reduce bandwidth from server
+// resizeImage(file) {
+//  let  reader = new FileReader();
+//   reader.onloadend = function() {
+//     let tempImg = new Image();
+//     tempImg.src = reader.result;
+//     console.log(tempImg.src)
+//     tempImg.onload = function() {
+//
+//       let MAX_WIDTH = 400;
+//       let MAX_HEIGHT = 300;
+//       let tempW = tempImg.width;
+//       let tempH = tempImg.height;
+//       if (tempW > tempH) {
+//         if (tempW > MAX_WIDTH) {
+//           tempH *= MAX_WIDTH / tempW;
+//           tempW = MAX_WIDTH;
+//         }
+//       } else {
+//         if (tempH > MAX_HEIGHT) {
+//           tempW *= MAX_HEIGHT / tempH;
+//           tempH = MAX_HEIGHT;
+//         }
+//       }
+//
+//       let canvas = document.createElement('canvas');
+//       canvas.width = tempW;
+//       canvas.height = tempH;
+//       let ctx = canvas.getContext('2d');
+//       ctx.drawImage(this, 0, 0, tempW, tempH);
+//       let dataURL = canvas.toDataURL('image/jpeg');
+//     }
+//
+//   };
+//   reader.readAsArrayBuffer(file);
+// }

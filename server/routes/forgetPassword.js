@@ -30,7 +30,7 @@ router.post('/', function (req, res, next) {
         }
         if (!user) {
           return res.status(403).json({
-            title: 'User not found',
+            title: 'Please check if your email is correct',
             error: {message: 'Please check if your email is correct'}
           })
         }
