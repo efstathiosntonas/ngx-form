@@ -14,15 +14,17 @@
       <th>Delete</th>
     </tr>
     </thead>
-    <tbody *ngFor="let form of fetchedForms">
-    <tr>
+    <tbody>
+    <tr *ngFor="let form of fetchedForms">
       <td class="img-resized"><img class="img-thumbnail img-responsive" src="./uploadsFolder/{{form.owner}}/{{form.imagePath}}"></td>
-      <td>{{ form._id }}</td>
-      <td>{{ form.textInputOne }}</td>
-      <td>{{ form.textInputTwo }}</td>
+      <td>{{form._id }}</td>
+      <td>{{form.textInputOne}}</td>
+      <td>{{form.textInputTwo}}</td>
       <td>{{form.owner}}</td>
       <td>{{form.dateSubmitted | date: 'medium'}}</td>
-      <td>{{form.updatedAt | date: 'medium'}}</td>
+      <td>
+        <span *ngIf="form.dateSubmitted != form.updatedAt">{{form.updatedAt | date: 'medium'}}</span>
+      </td>
       <td>
         <button class="btn-default" [routerLink]="['edit', form._id]"><i class="fa fa-pencil"></i></button>
       </td>
