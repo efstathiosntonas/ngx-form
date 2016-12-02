@@ -4,6 +4,8 @@ Angular 2 Form with file upload to file system, image path stored to Mongo. Proj
 
 ## TODO
 1. Resize the image client-side in order to reduce bandwidth of the server.
+2. Edit users in admin area
+3. User Profile page
 
 # Angular 2 Form
 
@@ -29,16 +31,17 @@ more info in [gm](https://github.com/aheckmann/gm) page on how to install depend
 9. Image resize server side using [GraphicsMagick](https://github.com/aheckmann/gm)
 10. Form deletion among the file from filesystem, user forms array is updated too.
 11. Edit form, user can edit the text inputs and the image or update only the image or update only the text fields.
+12. Admin area, admin can edit or delete all forms in database
 
 ## Packages Used
 `Angular-cli v1.0.0-beta.21` <br />
-`Angular v2.2.1` <br />
+`Angular v2.2.4` <br />
 `Webpack` <br />
 `Node v6.9.1` <br/>
 `MongoDB v3.2.10` <br/>
-`Mongoose v4.7.0` <br />
+`Mongoose v4.7.1` <br />
 `Express v4.14.0` <br />
-`angular2-jwt v0.1.25` (only for checking the expiration date of the jwt token) <br />
+`angular2-jwt v0.1.25` (only for checking the expiration date of the jwt token and the user role (admin or user)) <br />
 `jsonwebtoken v7.1.9` <br />
 `Multer v1.2.0` <br />
 `ng2-toastr v1.3.2` <br />
@@ -50,8 +53,10 @@ more info in [gm](https://github.com/aheckmann/gm) page on how to install depend
 
 ## Installing Dependecies
 1. Clone this repo from Git
-2. Run `npm install` in your command line 
-3. Edit `config.js` in `/server/config` folder 
+2. Run `npm install` in your command line.
+3. Edit `config.js` in `/server/config` folder.
+4. Run `node seed.js` to insert the admin user. Admin email is `test@test.com` and password is `testpass`.
+5. After login navigate to `localhost:3000/#/admin` to access admin panel.
 
 ## Building the Angular2 app
 Run `ng build`
@@ -86,6 +91,8 @@ To get more help on the `angular-cli` use `ng --help` or go check out the [Angul
 ![form_table](https://cloud.githubusercontent.com/assets/717975/20667369/936c703a-b571-11e6-9e60-164d858c5793.png)
 ### Edit Form
 ![edit_form](https://cloud.githubusercontent.com/assets/717975/20598422/ce519cde-b251-11e6-919d-898855445f20.png)
+### Admin Page
+![admin_page](https://cloud.githubusercontent.com/assets/717975/20824439/80fa30da-b865-11e6-9af2-a7c6c2f1d7d3.png)
 ### Users document in MongoDB with forms array ref
 ![Users document in MongoDB](https://cloud.githubusercontent.com/assets/717975/20486315/eaa5b452-b007-11e6-9080-b1c8186bf404.png)
 ### Forms Document in MongoDB with ref to the user._id (owner field)

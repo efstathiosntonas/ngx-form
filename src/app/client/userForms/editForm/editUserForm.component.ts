@@ -30,7 +30,9 @@ export class EditUserFormComponent implements OnInit, AfterViewInit {
   @ViewChild('textOne') textOne: ElementRef;
   @ViewChild('fileInput') fileInput: ElementRef;
 
-  constructor(private formService: FormService, private toastr: ToastsManager, private _fb: FormBuilder, private router: Router, private route: ActivatedRoute, private sanitizer: DomSanitizer, private renderer: Renderer) {
+  constructor(private formService: FormService, private toastr: ToastsManager,
+              private _fb: FormBuilder, private router: Router, private route: ActivatedRoute,
+              private sanitizer: DomSanitizer, private renderer: Renderer) {
   }
 
   ngOnInit() {

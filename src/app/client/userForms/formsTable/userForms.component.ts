@@ -17,7 +17,7 @@ export class UserFormComponent implements OnInit {
     this.formService.getUserForms()
       .subscribe(
         forms => this.fetchedForms = forms,
-        error =>console.log(error))
+        error => console.log(error));
   }
 
   onDelete(formId) {

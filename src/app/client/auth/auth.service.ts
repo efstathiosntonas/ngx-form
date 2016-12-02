@@ -70,9 +70,11 @@ export class AuthService {
     this.toastr.info('You have been logged out');
   }
 
-  // check if the user is logged in or not in html files for both pages (login/register)
+  // check if the user is logged in or not, if token is expired, token is deleted from localstorage
   isLoggedIn() {
-   // return localStorage.getItem('id_token') !== null && tokenNotExpired();
+    if (!tokenNotExpired()) {
+      localStorage.removeItem('id_token');
+    }
     return tokenNotExpired();
   }
 }

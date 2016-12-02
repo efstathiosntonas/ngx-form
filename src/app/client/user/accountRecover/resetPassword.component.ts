@@ -1,4 +1,4 @@
-import {Component, OnInit, Renderer, ElementRef, ViewChild} from '@angular/core';
+import {Component, OnInit, Renderer, ElementRef, ViewChild, AfterViewInit} from '@angular/core';
 import {FormGroup, FormControl, FormBuilder, Validators} from '@angular/forms';
 import {AuthService} from '../../auth/auth.service';
 import {Router, ActivatedRoute} from '@angular/router';
@@ -12,7 +12,7 @@ import {ToastsManager} from 'ng2-toastr';
   styleUrls: ['resetPagesStyle.css']
 })
 
-export class ResetPasswordComponent implements OnInit {
+export class ResetPasswordComponent implements OnInit, AfterViewInit {
 
   myForm: FormGroup;
   password: FormControl;

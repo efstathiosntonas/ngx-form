@@ -8,7 +8,9 @@ var user = new Schema({
   password: {type: String, required: true},
   forms: [{type: Schema.Types.ObjectId, ref: 'Form'}],
   resetPasswordToken: String,
-  resetPasswordExpires: String
+  resetPasswordExpires: String,
+  // you might want more user roles, so an array would be fine
+  role: {type: Array, default: ['user']}
 });
 
 user.plugin(mongooseUniqueValidator);

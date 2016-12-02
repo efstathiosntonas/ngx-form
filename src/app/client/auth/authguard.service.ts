@@ -7,7 +7,7 @@ import {ToastsManager} from 'ng2-toastr';
 @Injectable()
 export class AuthGuardService implements CanActivate {
 
-  constructor(private authService: AuthService, private _route: Router, private toastr: ToastsManager) {
+  constructor(private authService: AuthService, private router: Router, private toastr: ToastsManager) {
   }
 
   // we check if the user is logged in or not
@@ -17,7 +17,7 @@ export class AuthGuardService implements CanActivate {
       return true;
       // user is not logged in, return the user to the login page
     } else {
-      this._route.navigate(['/user/login']);
+      this.router.navigate(['/user/login']);
       this.toastr.error('Please login first');
     }
   }

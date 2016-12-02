@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild, ElementRef, Renderer} from '@angular/core';
+import {Component, OnInit, ViewChild, ElementRef, Renderer, AfterViewInit} from '@angular/core';
 import {FormGroup, FormControl, FormBuilder, Validators} from '@angular/forms';
 import {AuthService} from '../../auth/auth.service';
 import {Router} from '@angular/router';
@@ -12,12 +12,13 @@ import {ToastsManager} from 'ng2-toastr';
   styleUrls: ['resetPagesStyle.css']
 })
 
-export class ForgetPasswordComponent implements OnInit {
+export class ForgetPasswordComponent implements OnInit, AfterViewInit {
   myForm: FormGroup;
   email: FormControl;
   @ViewChild('userEmail') userEmail: ElementRef;
 
-  constructor(private _fb: FormBuilder, private _authService: AuthService, private _router: Router, private toastr: ToastsManager, private renderer: Renderer) {
+  constructor(private _fb: FormBuilder, private _authService: AuthService,
+              private _router: Router, private toastr: ToastsManager, private renderer: Renderer) {
   }
 
   ngOnInit() {

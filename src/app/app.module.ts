@@ -24,6 +24,11 @@ import {UserFormComponent} from './client/userForms/formsTable/userForms.compone
 import {EditUserFormComponent} from './client/userForms/editForm/editUserForm.component';
 import {ProgressBarModule} from 'ng2-progress-bar';
 import {ErrorPageComponent} from './client/errorPage/errorPage.component';
+import {AdminPageComponent} from './client/admin/adminPage/adminPage.component';
+import {AdminService} from './client/admin/services/admin.service';
+import {EditUsersFormsComponent} from './client/admin/editUsersForms/editUsersForms.component';
+import {AdminGuardService} from './client/admin/services/adminGuard';
+import {AdminComponent} from './client/admin/admin.component';
 
 
 let options = <ToastOptions> {
@@ -46,7 +51,10 @@ let options = <ToastOptions> {
     ForgetPasswordComponent,
     UserFormComponent,
     EditUserFormComponent,
-    ErrorPageComponent
+    ErrorPageComponent,
+    AdminPageComponent,
+    EditUsersFormsComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
@@ -64,7 +72,9 @@ let options = <ToastOptions> {
     {provide: LocationStrategy, useClass: HashLocationStrategy},
     AuthService,
     ErrorService,
-    FormService
+    FormService,
+    AdminService,
+    AdminGuardService
   ],
   bootstrap: [AppComponent]
 })

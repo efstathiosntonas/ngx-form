@@ -1,4 +1,4 @@
-import {Component, OnInit, Renderer, ViewChild, ElementRef} from '@angular/core';
+import {Component, OnInit, Renderer, ViewChild, ElementRef, AfterViewInit} from '@angular/core';
 import {FormGroup, FormControl, FormBuilder, Validators} from '@angular/forms';
 import {ToastsManager} from 'ng2-toastr';
 import {Router} from '@angular/router';
@@ -10,13 +10,14 @@ import {User} from '../../auth/user.model';
   templateUrl: 'register.component.html',
   styleUrls: ['register.component.css']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent implements OnInit, AfterViewInit {
   myForm: FormGroup;
   email: FormControl;
   password: FormControl;
   @ViewChild('userEmail') userEmail: ElementRef;
 
-  constructor(private _fb: FormBuilder, private _authService: AuthService, private _router: Router, private toastr: ToastsManager, private renderer: Renderer) {
+  constructor(private _fb: FormBuilder, private _authService: AuthService,
+              private _router: Router, private toastr: ToastsManager, private renderer: Renderer) {
   }
 
   ngOnInit() {

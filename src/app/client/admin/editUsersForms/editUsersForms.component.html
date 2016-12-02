@@ -5,7 +5,7 @@
       <div class="form-group">
         <label class="col-md-4 control-label" for="textinput1">Text Input One:</label>
         <div class="col-md-4">
-          <input id="textinput1" #textOne formControlName="textInput1" name="textinput1" type="text"  [(ngModel)]="form.textInputOne" class="form-control input-md">
+          <input id="textinput1" #textOne formControlName="textInput1" name="textinput1" type="text" [(ngModel)]="form.textInputOne" class="form-control input-md">
           <div [hidden]="textInput1.valid || textInput1.pristine" class="alert alert-danger">Please enter some text</div>
         </div>
       </div>
