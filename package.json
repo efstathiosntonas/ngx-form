@@ -1,6 +1,6 @@
 {
   "name": "ng2-forms-demo",
-  "version": "1.0.26",
+  "version": "1.0.27",
   "license": "MIT",
   "angular-cli": {},
   "scripts": {
@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/predatorkill/ng2-forms-demo"
+    "url": "https://github.com/predatorkill/ng2-form-demo"
   },
   "keywords": [
     "MEAN2",
