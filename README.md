@@ -55,7 +55,7 @@ more info in [gm](https://github.com/aheckmann/gm) page on how to install depend
 1. Clone this repo from Git
 2. Run `npm install` in your command line.
 3. Edit `config.js` in `/server/config` folder.
-4. Run `node seed.js` to insert the admin user. Admin email is `test@test.com` and password is `testpass`.
+4. Run `node seed.js` to insert the admin user. Admin email is `test@test.com` and password is `testpass`. Make sure mongod is running.
 5. After login navigate to `localhost:3000/#/admin` to access admin panel.
 
 ## Building the Angular2 app
