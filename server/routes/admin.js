@@ -130,7 +130,7 @@ router.delete('/:id', function (req, res, next) {
           }
         });
         // deleting the file associated with the form from the filesystem leaving the user's folder intact
-        fs.unlink('server/uploadsFolder/' + form.owner + '/' + form.imagePath);
+        fs.unlink('server/uploads/forms/' + form.owner + '/' + form.imagePath);
         // deleting the form from the database
         form.remove(function (err, result) {
           if (err) {
@@ -156,7 +156,7 @@ var storage = multer.diskStorage({
       if (err) {
         throw err;
       }
-    var dest = 'server/uploadsFolder/' + form.owner;
+    var dest = 'server/uploads/forms/' + form.owner;
     var stat = null;
     try {
       stat = fs.statSync(dest);
@@ -232,7 +232,7 @@ router.patch('/edit/:id', upload.single('fileUp'), function (req, res, err) {
       }
       // check if user has uploaded a new file, if he has, delete the old file
       if (req.file !== undefined) {
-       fs.unlink('server/uploadsFolder/' + form.owner + '/' + form.imagePath);
+       fs.unlink('server/uploads/forms/' + form.owner + '/' + form.imagePath);
       }
       form.textInputOne = req.body.textInput1;
       form.textInputTwo = req.body.textInput2;

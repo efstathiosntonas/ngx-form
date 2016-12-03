@@ -60,7 +60,7 @@ router.use('/', function (req, res, next) {
 // setting up multer
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    var dest = 'server/uploadsFolder/' + req.user._id;  // i know, i should use dirname blah blah :)
+    var dest = 'server/uploads/forms/' + req.user._id;  // i know, i should use dirname blah blah :)
     var stat = null;
     try {
       stat = fs.statSync(dest);
@@ -122,7 +122,7 @@ router.post('/', upload.single('fileUp'), function (req, res, err) {
     // at the end we assinging the owner of the form by passing the user _id to the form
     // in the backend we are referencing each form to the user who uploaded it
     // so later on we can display the data in the front end
-    console.log(req.file);
+    // console.log(req.file);
     // resize middleware, just change 400 to whatever you like, the null parameter maintains aspect ratio, if you want exact dimensions replace null with a height number as you wish
     gm(req.file.path)
       .resize(400, null)
@@ -201,7 +201,7 @@ router.patch('/edit/:id', upload.single('fileUp'), function (req, res, err) {
     }
     // check if user has uploaded a new file, if he has, delete the old file
     if (req.file !== undefined) {
-      fs.unlink('server/uploadsFolder/' + form.owner + '/' + form.imagePath);
+      fs.unlink('server/uploads/forms/' + form.owner + '/' + form.imagePath);
     }
     form.textInputOne = req.body.textInput1;
     form.textInputTwo = req.body.textInput2;

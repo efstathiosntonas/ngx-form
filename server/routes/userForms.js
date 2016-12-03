@@ -109,7 +109,7 @@ router.delete('/:id', function (req, res, next) {
       }
     });
     // deleting the file associated with the form from the filesystem leaving the user's folder intact
-    fs.unlink('server/uploadsFolder/' + form.owner + '/' + form.imagePath);
+    fs.unlink('server/uploads/forms/' + form.owner + '/' + form.imagePath);
     // deleting the form from the database
     form.remove(function (err, result) {
       if (err) {

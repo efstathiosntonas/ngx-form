@@ -8,11 +8,13 @@ var mongoose     = require('mongoose'),
 var databaseURL = config.database;
 
 var user = new Schema({
-  email: {type: String, unique: true, required: true, lowercase: true},
-  password: {type: String, required: true},
-  forms: [{type: Array}],
-  role: {type: Array, default: ['user']}
-});
+    email: {type: String, unique: true, required: true, lowercase: true},
+    password: {type: String, required: true},
+    forms: [{type: Array}],
+    role: {type: Array, default: ['user']}
+  },
+  {timestamps: true}
+);
 
 user.pre('save', function (next) {
   var user = this;

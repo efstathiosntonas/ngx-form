@@ -32,6 +32,7 @@ more info in [gm](https://github.com/aheckmann/gm) page on how to install depend
 10. Form deletion among the file from filesystem, user forms array is updated too.
 11. Edit form, user can edit the text inputs and the image or update only the image or update only the text fields.
 12. Admin area, admin can edit or delete all forms in database
+13. User Profile area, user can upload a profile picture, change his password, view profile info like email, user id, role and joined date
 
 ## Packages Used
 `Angular-cli v1.0.0-beta.21` <br />
@@ -93,6 +94,8 @@ To get more help on the `angular-cli` use `ng --help` or go check out the [Angul
 ![edit_form](https://cloud.githubusercontent.com/assets/717975/20598422/ce519cde-b251-11e6-919d-898855445f20.png)
 ### Admin Page
 ![admin_page](https://cloud.githubusercontent.com/assets/717975/20824439/80fa30da-b865-11e6-9af2-a7c6c2f1d7d3.png)
+### Profile Page
+![profile_page](https://cloud.githubusercontent.com/assets/717975/20858250/54bfe52e-b94a-11e6-863d-9b0139c89263.png)
 ### Users document in MongoDB with forms array ref
 ![Users document in MongoDB](https://cloud.githubusercontent.com/assets/717975/20486315/eaa5b452-b007-11e6-9080-b1c8186bf404.png)
 ### Forms Document in MongoDB with ref to the user._id (owner field)

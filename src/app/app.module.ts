@@ -29,6 +29,9 @@ import {AdminService} from './client/admin/services/admin.service';
 import {EditUsersFormsComponent} from './client/admin/editUsersForms/editUsersForms.component';
 import {AdminGuardService} from './client/admin/services/adminGuard';
 import {AdminComponent} from './client/admin/admin.component';
+import { UserProfileComponent } from './client/user/profile/userProfile.component';
+import {ProfileService} from "./client/user/profile/profile.service";
+import { ChangePasswordComponent } from './client/user/profile/changePassword/changePassword.component';
 
 
 let options = <ToastOptions> {
@@ -54,7 +57,9 @@ let options = <ToastOptions> {
     ErrorPageComponent,
     AdminPageComponent,
     EditUsersFormsComponent,
-    AdminComponent
+    AdminComponent,
+    UserProfileComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -74,7 +79,8 @@ let options = <ToastOptions> {
     ErrorService,
     FormService,
     AdminService,
-    AdminGuardService
+    AdminGuardService,
+    ProfileService
   ],
   bootstrap: [AppComponent]
 })

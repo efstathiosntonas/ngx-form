@@ -54,8 +54,6 @@ router.post('/:token', function(req, res) {
             error: {message: 'Please check if your email is correct'}
           })
         }
-
-
         user.password = passwordHash.generate(req.body.password);
         user.resetPasswordToken = undefined;
         user.resetPasswordExpires = undefined;
