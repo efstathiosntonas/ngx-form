@@ -125,6 +125,8 @@ var storage = multer.diskStorage({
     try {
       stat = fs.statSync(dest);
       console.log(dest);
+      var profileDir = 'server/uploads/profiles/' + req.user._id;
+      rmDir(profileDir, false);
     }
     catch (err) {
       fs.mkdirSync(dest);
@@ -239,5 +241,22 @@ router.post('/password', function (req, res, next) {
     }
   });
 });
+
+rmDir = function(dirPath, removeSelf) {
+  if (removeSelf === undefined)
+    removeSelf = true;
+  try { var files = fs.readdirSync(dirPath); }
+  catch(e) { return; }
+  if (files.length > 0)
+    for (var i = 0; i < files.length; i++) {
+      var filePath = dirPath + '/' + files[i];
+      if (fs.statSync(filePath).isFile())
+        fs.unlinkSync(filePath);
+      else
+        rmDir(filePath);
+    }
+  if (removeSelf)
+    fs.rmdirSync(dirPath);
+};
 
 module.exports = router;
