@@ -10,7 +10,7 @@ Angular 2 Form with file upload to file system, image path stored to Mongo. Proj
 
 This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.21.
 
-The goal of this project is to submit a form with one file upload and two text fields. The form is submitted to back end, the file is stored in the `uploadsFolder` and then the file path/url is stored in MongoDB among the two text fields. At the end, the form ID is assinged to the signed in user ID (via Ref) for later viewing all the form fields and file in the front end.
+The goal of this project is to submit a form with one file upload and two text fields. The form is submitted to back end, the file is stored in the `uploads/forms/:userID` and then the file name (string) is stored in MongoDB among the two text fields. At the end, the form ID is assinged to the signed in user ID (via Ref) for later viewing all the form fields and file in the front end. User profile image is stored at `uploads/profiles/:userID`.
 
 ##Prerequisites
 1. MongoDB installed and running (http://mongodb.org)
@@ -55,7 +55,7 @@ more info in [gm](https://github.com/aheckmann/gm) page on how to install depend
 1. Clone this repo from Git
 2. Run `npm install` in your command line.
 3. Edit `config.js` in `/server/config` folder.
-4. Run `node seed.js` to insert the admin user. Admin email is `test@test.com` and password is `testpass`. Make sure mongod is running.
+4. Run `node seed.js` to insert the admin user into database. Admin email is `test@test.com` and password is `testpass`.  Make sure mongod is running.
 5. After login navigate to `localhost:3000/#/admin` to access admin panel.
 
 ## Building the Angular2 app
