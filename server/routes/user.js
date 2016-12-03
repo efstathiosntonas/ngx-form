@@ -124,7 +124,6 @@ var storage = multer.diskStorage({
     var stat = null;
     try {
       stat = fs.statSync(dest);
-      console.log(dest);
       var profileDir = 'server/uploads/profiles/' + req.user._id;
       rmDir(profileDir, false);
     }
@@ -183,8 +182,8 @@ router.post('/image', upload.single('profilePic'), function (req, res, err) {
     // at the end we assinging the owner of the form by passing the user _id to the form
     // in the backend we are referencing each form to the user who uploaded it
     // so later on we can display the data in the front end
-    // console.log(req.file);
     // resize middleware, just change 400 to whatever you like, the null parameter maintains aspect ratio, if you want exact dimensions replace null with a height number as you wish
+    // console.log(req.file);
     gm(req.file.path)
       .resize(400, null)
       .noProfile()
@@ -192,7 +191,7 @@ router.post('/image', upload.single('profilePic'), function (req, res, err) {
         if (err) {
           console.log(err);
           fs.unlink(req.file.path);
-          // });// this will result a 404 when frontend tries to access the image, I ll provide a fix soon
+          // this will result a 404 when frontend tries to access the image, I ll provide a fix soon
         }
       });
     user.update({$set: {profilePic: req.file.filename}}, function (err, result) {
@@ -242,7 +241,7 @@ router.post('/password', function (req, res, next) {
   });
 });
 
-rmDir = function(dirPath, removeSelf) {
+ var rmDir = function(dirPath, removeSelf) {
   if (removeSelf === undefined)
     removeSelf = true;
   try { var files = fs.readdirSync(dirPath); }

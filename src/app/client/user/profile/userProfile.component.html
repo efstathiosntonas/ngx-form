@@ -1,0 +1,54 @@
+<div class="container" style="padding-top: 60px;">
+  <h1 class="page-header">Your Profile</h1>
+  <div class="row">
+    <!-- left column -->
+    <div class="col-md-4 col-sm-6 col-xs-12">
+      <form (ngSubmit)="onSubmit()">
+        <div *ngFor="let user of fetchedUser" class="text-center">
+          <img src="./uploads/profiles/{{user._id}}/{{user.profilePic}}" #profileImage onerror="this.src ='assets/images/profile-placeholder.jpg'" class="img-resized avatar img-thumbnail" alt="avatar">
+          <!-- USE this if you want circled profile image <img src="./uploads/profiles/{{user._id}}/{{user.profilePic}}" onerror="this.src ='assets/images/profile-placeholder.jpg'" class="img-resized avatar img-circle img-thumbnail" alt="avatar" placeholder="/img.jpg">-->
+          <h6>Upload a different photo...</h6>
+          <input #fileInput name="profilePic" type="file" (change)="onFileSelect($event)" class="text-center center-block well well-sm">
+          <button type="submit" [disabled]="!hasFiles()" id="submitForm" name="sumbitForm" class="btn btn-primary text-center bottomMargin">Upload Image</button>
+          <progress-bar [value]="progress" [max]="100" *ngIf="hasFiles() && submitStarted"></progress-bar>
+        </div>
+      </form>
+    </div>
+    <!-- edit form column -->
+    <div class="col-md-8 col-sm-6 col-xs-12 personal-info">
+      <h3>Personal info</h3>
+      <form *ngFor="let user of fetchedUser" class="form-horizontal" role="form">
+        <div class="form-group">
+          <label class="col-lg-3 control-label">User ID:</label>
+          <div class="col-lg-8">
+            <p class="form-control-static">{{user._id}}</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-3 control-label">Email:</label>
+          <div class="col-lg-8">
+            <p class="form-control-static">{{user.email}}</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-3 control-label">Joined at:</label>
+          <div class="col-lg-8">
+            <p class="form-control-static">{{user.createdAt | date: 'medium'}}</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-3 control-label">Your role:</label>
+          <div class="col-lg-8">
+            <p class="form-control-static">{{user.role}}</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-3 control-label"></label>
+          <div class="col-md-8">
+            <button class="btn btn-primary" [routerLink]="['password']" type="button">Change Password</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

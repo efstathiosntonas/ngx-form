@@ -28,6 +28,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../dist')));
 app.use('/uploads', express.static(__dirname + '/uploads'));
+//app.use('/uploads/profiles', express.static(__dirname + '/uploads/profiles'));
 
 // CORS setup
 app.use(function (req, res, next) {
