@@ -16,7 +16,6 @@ export class AdminGuardService implements CanActivate {
       return true;
     } else {
       this.router.navigate(['/']);
-      this.toastr.error('You are not the Administrator');
     }
   }
 }

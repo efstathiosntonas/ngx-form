@@ -12,10 +12,10 @@ import {ToastsManager} from "ng2-toastr";
 })
 export class UserProfileComponent implements OnInit {
   private userId: string = localStorage.getItem('userId');
+  private authToken: string = localStorage.getItem('id_token');
+  url: string = 'http://localhost:3000/user/image';
   user: UserProfile;
   fetchedUser: any[] = [];
-  authToken: string = localStorage.getItem('id_token');
-  url: string = 'http://localhost:3000/user/image';
   maxSize: number = 5000000;
   invalidFileSizeMessage: string = '{0}: Invalid file size, ';
   invalidFileSizeMessageDetail: string = 'Maximum upload size is {0}.';
@@ -133,6 +133,7 @@ export class UserProfileComponent implements OnInit {
           this.toastr.error('There was an error!');
         }
         this.clear();
+        this.submitStarted = false;
       }
     };
     xhr.open('POST', this.url, true);
