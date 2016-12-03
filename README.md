@@ -5,7 +5,6 @@ Angular 2 Form with file upload to file system, image path stored to Mongo. Proj
 ## TODO
 1. Resize the image client-side in order to reduce bandwidth of the server.
 2. Edit users in admin area
-3. User Profile page
 
 # Angular 2 Form
 
