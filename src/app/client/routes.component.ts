@@ -5,6 +5,7 @@ import {UserComponent} from './user/user.component';
 import {FormComponent} from './form/form.component';
 import {AuthGuardService} from './auth/authguard.service';
 import {MainPageComponent} from './mainPage/mainPage.component';
+import {CompanieComponent} from './companie/companie.component';
 import {ADMIN_ROUTES} from './admin/admin.routes';
 import {AdminComponent} from './admin/admin.component';
 import {ErrorPageComponent} from './errorPage/errorPage.component';
@@ -12,6 +13,7 @@ import {ErrorPageComponent} from './errorPage/errorPage.component';
 
 const APP_ROUTES: Routes = [
   {path: '', component: MainPageComponent, pathMatch: 'full'},
+  {path: 'companie', component: CompanieComponent, pathMatch: 'full'},
   {path: 'user', component: UserComponent, children: USER_ROUTES},
   {path: 'form', component: FormComponent, canActivate: [AuthGuardService]},
   {path: 'admin', component: AdminComponent, children: ADMIN_ROUTES},

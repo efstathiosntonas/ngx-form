@@ -17,9 +17,11 @@ import {ToastModule, ToastOptions} from 'ng2-toastr';
 import {LoginComponent} from './client/user/login/login.component';
 import {ErrorComponent} from './client/errorHandler/error.component';
 import {MainPageComponent} from './client/mainPage/mainPage.component';
+import {CompanieComponent} from './client/companie/companie.component';
 import {ResetPasswordComponent} from './client/user/accountRecover/resetPassword.component';
 import {ForgetPasswordComponent} from './client/user/accountRecover/forgetPassword.component';
 import {FormService} from './client/form/form.service';
+import {CompanieService} from './client/companie/companie.service';
 import {UserFormComponent} from './client/userForms/formsTable/userForms.component';
 import {EditUserFormComponent} from './client/userForms/editForm/editUserForm.component';
 import {ProgressBarModule} from 'ng2-progress-bar';
@@ -32,6 +34,14 @@ import {AdminComponent} from './client/admin/admin.component';
 import { UserProfileComponent } from './client/user/profile/userProfile.component';
 import {ProfileService} from "./client/user/profile/profile.service";
 import { ChangePasswordComponent } from './client/user/profile/changePassword/changePassword.component';
+
+import {Ng2PaginationModule} from 'ng2-pagination'; // <-- import the module
+
+import { ModalModule } from 'angular2-modal';
+import { BootstrapModalModule } from 'angular2-modal/plugins/bootstrap';
+
+
+
 
 
 let options = <ToastOptions> {
@@ -50,6 +60,7 @@ let options = <ToastOptions> {
     NavbarComponent,
     ErrorComponent,
     MainPageComponent,
+    CompanieComponent,
     ResetPasswordComponent,
     ForgetPasswordComponent,
     UserFormComponent,
@@ -59,7 +70,8 @@ let options = <ToastOptions> {
     EditUsersFormsComponent,
     AdminComponent,
     UserProfileComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -70,13 +82,19 @@ let options = <ToastOptions> {
     ReactiveFormsModule,
     routing,
     ToastModule.forRoot(options),
-    ProgressBarModule
+    ProgressBarModule,
+    BrowserModule,
+    FormsModule,
+    Ng2PaginationModule,
+    ModalModule.forRoot(),
+    BootstrapModalModule
   ],
   providers: [
     AuthGuardService,
     {provide: LocationStrategy, useClass: HashLocationStrategy},
     AuthService,
     ErrorService,
+    CompanieService,
     FormService,
     AdminService,
     AdminGuardService,
