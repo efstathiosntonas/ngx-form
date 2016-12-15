@@ -35,8 +35,8 @@ import {AdminComponent} from './client/admin/admin.component';
 import { UserProfileComponent } from './client/user/profile/userProfile.component';
 import {ProfileService} from "./client/user/profile/profile.service";
 import { ChangePasswordComponent } from './client/user/profile/changePassword/changePassword.component';
-
-import {Ng2PaginationModule} from 'ng2-pagination'; // <-- import the module
+import { MaterialModule } from '@angular/material';
+import {Ng2PaginationModule} from 'ng2-pagination';
 
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
@@ -86,7 +86,8 @@ let options = <ToastOptions> {
     BrowserModule,
     FormsModule,
     Ng2PaginationModule,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    MaterialModule.forRoot()
   ],
   providers: [
     AuthGuardService,

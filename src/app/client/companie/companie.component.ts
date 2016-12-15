@@ -63,8 +63,6 @@ export class CompanieComponent implements OnInit {
                   console.log(error);
                 }
               );
-
-
         },
         error => {
           console.log(error);

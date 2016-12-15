@@ -22,35 +22,40 @@
           <form (ngSubmit)="onSubmit()" #companieForm="ngForm">
               <div class="form-group">
 
+
+
                   <!-- BIND THIS VALUE TO companie.text IN ANGULAR -->
                   <div *ngIf="companie._id">
                     You are editing {{companie.text}}.
                     <p (click)="removeId()">Create new?<p>
                   </div>
                   <div *ngIf="!companie._id">Creating new</div>
-<!--
+
                   <md-input placeholder="amount" align="end">
                     <span md-prefix>$&nbsp;</span>
                     <span md-suffix>.00</span>
                   </md-input>
-                -->
 
+                  <br>
 
-                  <input type="text" name="text"
-                  class="form-control input-lg text-center"
+                  <md-input  name="text"
+
                   placeholder="CompanieText"
                   [(ngModel)]="companie.text"
                   #text="ngModel" required>
+                  </md-input>
                   <div [hidden]="text.valid || text.pristine"
                        class="alert alert-danger">
                     Name is required
                   </div>
+                  <br>
 
-                  <input type="text" name="address"
-                  class="form-control input-lg text-center"
+                  <md-input  name="address"
+
                   placeholder="Address"
                   [(ngModel)]="companie.address"
                   #address="ngModel" required>
+                  </md-input>
                   <div [hidden]="address.valid || address.pristine"
                        class="alert alert-danger">
                     address is required
