@@ -22,6 +22,7 @@ import {ResetPasswordComponent} from './client/user/accountRecover/resetPassword
 import {ForgetPasswordComponent} from './client/user/accountRecover/forgetPassword.component';
 import {FormService} from './client/form/form.service';
 import {CompanieService} from './client/companie/companie.service';
+import {RegionService} from './client/region/region.service';
 import {UserFormComponent} from './client/userForms/formsTable/userForms.component';
 import {EditUserFormComponent} from './client/userForms/editForm/editUserForm.component';
 import {ProgressBarModule} from 'ng2-progress-bar';
@@ -37,8 +38,6 @@ import { ChangePasswordComponent } from './client/user/profile/changePassword/ch
 
 import {Ng2PaginationModule} from 'ng2-pagination'; // <-- import the module
 
-import { ModalModule } from 'angular2-modal';
-import { BootstrapModalModule } from 'angular2-modal/plugins/bootstrap';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {NgbdModalContent } from './client/companie/companie.component';
@@ -95,6 +94,7 @@ let options = <ToastOptions> {
     AuthService,
     ErrorService,
     CompanieService,
+    RegionService,
     FormService,
     AdminService,
     AdminGuardService,

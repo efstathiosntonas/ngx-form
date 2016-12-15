@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../auth/auth.service';
 import {CompanieService} from './companie.service';
+import {RegionService} from '../region/region.service';
 import {ChangeDetectionStrategy, Input} from "@angular/core";
 import {NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 
@@ -11,6 +12,7 @@ import {NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 })
 export class NgbdModalContent {
   companie = [];
+  region = [];
   constructor(public activeModal: NgbActiveModal) {}
 }
 
@@ -36,6 +38,7 @@ export class CompanieComponent implements OnInit {
 
   constructor(
     private companieService: CompanieService,
+    private regionService: RegionService,
     private modalService: NgbModal
   ) {
     this.getCompanies(this.paginationData.currentPage);
@@ -50,6 +53,18 @@ export class CompanieComponent implements OnInit {
       .subscribe(
         res => {
           modalRef.componentInstance.companie = res;
+
+            this.regionService.getRegion(res.region_id)
+              .subscribe(
+                res => {
+                  modalRef.componentInstance.region = res;
+                },
+                error => {
+                  console.log(error);
+                }
+              );
+
+
         },
         error => {
           console.log(error);
@@ -80,7 +95,7 @@ export class CompanieComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getCompanies(1) ;
+    //this.getCompanies(1) ;
 
   }
 

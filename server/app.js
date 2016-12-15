@@ -8,6 +8,7 @@ var express      = require('express'),
 
 var userRoute    = require('./routes/user');
 var companieRoute    = require('./routes/companie');
+var regionRoute    = require('./routes/region');
 var uploadRoute  = require('./routes/upload');
 var forgotRoutes = require('./routes/forgetPassword');
 var resetRoutes  = require('./routes/resetPassword');
@@ -41,6 +42,7 @@ app.use(function (req, res, next) {
 // setting up routes models
 app.use('/user', userRoute);
 app.use('/companie', companieRoute);
+app.use('/region', regionRoute);
 app.use('/user/forgot', forgotRoutes);
 app.use('/user/reset', resetRoutes);
 app.use('/uploads', uploadRoute);

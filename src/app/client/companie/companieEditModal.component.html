@@ -9,9 +9,75 @@
   <p>{{companie._id}}</p>
   <p>{{companie.text}}</p>
   <p>{{companie.address}}</p>
-  <p>{{companie.region_id}}</p>
+
+  <p>{{region.text}}</p>
 
 </div>
+
+
+
+  <!-- FORM TO CREATE TODOS -->
+  <div id="companie-form" class="row">
+      <div class="col-sm-8 col-sm-offset-2 text-center">
+          <form (ngSubmit)="onSubmit()" #companieForm="ngForm">
+              <div class="form-group">
+
+                  <!-- BIND THIS VALUE TO companie.text IN ANGULAR -->
+                  <div *ngIf="companie._id">
+                    You are editing {{companie.text}}.
+                    <p (click)="removeId()">Create new?<p>
+                  </div>
+                  <div *ngIf="!companie._id">Creating new</div>
+<!--
+                  <md-input placeholder="amount" align="end">
+                    <span md-prefix>$&nbsp;</span>
+                    <span md-suffix>.00</span>
+                  </md-input>
+                -->
+
+
+                  <input type="text" name="text"
+                  class="form-control input-lg text-center"
+                  placeholder="CompanieText"
+                  [(ngModel)]="companie.text"
+                  #text="ngModel" required>
+                  <div [hidden]="text.valid || text.pristine"
+                       class="alert alert-danger">
+                    Name is required
+                  </div>
+
+                  <input type="text" name="address"
+                  class="form-control input-lg text-center"
+                  placeholder="Address"
+                  [(ngModel)]="companie.address"
+                  #address="ngModel" required>
+                  <div [hidden]="address.valid || address.pristine"
+                       class="alert alert-danger">
+                    address is required
+                  </div>
+
+
+              </div>
+
+
+              <select class="form-control" id="region_id" name="region_id"  [(ngModel)]="companie.region_id" required>
+                <option *ngFor="let r of regions" [ngValue]="r._id">{{r.text}}</option>
+              </select>
+
+
+
+              <button type="submit" class="btn btn-primary btn-lg" [disabled]="!companieForm.form.valid">Add</button>
+          </form>
+      </div>
+  </div>
+
+
+
+
+
+
+
+
 <div class="modal-footer">
   <button type="button" class="btn btn-secondary" (click)="activeModal.close('Close click')">Close</button>
 </div>
