@@ -40,7 +40,8 @@ import {Ng2PaginationModule} from 'ng2-pagination'; // <-- import the module
 import { ModalModule } from 'angular2-modal';
 import { BootstrapModalModule } from 'angular2-modal/plugins/bootstrap';
 
-
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgbdModalContent } from './client/companie/companie.component';
 
 
 
@@ -71,12 +72,12 @@ let options = <ToastOptions> {
     AdminComponent,
     UserProfileComponent,
     ChangePasswordComponent,
+    NgbdModalContent,
 
   ],
   imports: [
     BrowserModule,
     CommonModule,
-    FormsModule,
     HttpModule,
     RouterModule,
     ReactiveFormsModule,
@@ -86,8 +87,7 @@ let options = <ToastOptions> {
     BrowserModule,
     FormsModule,
     Ng2PaginationModule,
-    ModalModule.forRoot(),
-    BootstrapModalModule
+    NgbModule.forRoot()
   ],
   providers: [
     AuthGuardService,
@@ -100,6 +100,7 @@ let options = <ToastOptions> {
     AdminGuardService,
     ProfileService
   ],
+  entryComponents: [NgbdModalContent],
   bootstrap: [AppComponent]
 })
 export class AppModule {

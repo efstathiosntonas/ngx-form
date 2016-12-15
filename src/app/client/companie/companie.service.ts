@@ -36,6 +36,22 @@ export class CompanieService {
         return Observable.throw(error.json());
       });
   }
+
+  getCompanie(id: string) {
+    let headers = new Headers({'Content-Type': 'application/json'});
+    headers.append('Authorization', '' + this.token);
+    return this.http.get(this.url + 'companie/' + id, {headers: headers})
+      .map((response: Response) => {
+        return response.json().item;
+      //  this.singleForm = response.json();
+        //return this.singleForm;
+      })
+      .catch((error: Response) => {
+        this.errorService.handleError(error.json());
+        return Observable.throw(error.json());
+      });
+  }
+
   //
   // deleteForm(form: Form) {
   //   this.forms.splice(this.forms.indexOf(form), 1);

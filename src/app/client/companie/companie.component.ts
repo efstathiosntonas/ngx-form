@@ -2,6 +2,20 @@ import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../auth/auth.service';
 import {CompanieService} from './companie.service';
 import {ChangeDetectionStrategy, Input} from "@angular/core";
+import {NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
+
+
+@Component({
+  selector: 'ngbd-modal-content',
+  templateUrl: 'companieEditModal.component.html',
+})
+export class NgbdModalContent {
+  companie = [];
+  constructor(public activeModal: NgbActiveModal) {}
+}
+
+
+
 
 
 
@@ -11,8 +25,6 @@ import {ChangeDetectionStrategy, Input} from "@angular/core";
   styleUrls: ['companie.component.css'],
 
 })
-
-
 export class CompanieComponent implements OnInit {
   private fetchedCompanies : Array<CompanieComponent> = [];
   loading: boolean;
@@ -23,9 +35,27 @@ export class CompanieComponent implements OnInit {
   };
 
   constructor(
-    private companieService: CompanieService
+    private companieService: CompanieService,
+    private modalService: NgbModal
   ) {
     this.getCompanies(this.paginationData.currentPage);
+  }
+
+  onEdit(id: string) {
+
+    const modalRef = this.modalService.open(NgbdModalContent);
+    //modalRef.componentInstance.name = id;
+
+    this.companieService.getCompanie(id)
+      .subscribe(
+        res => {
+          modalRef.componentInstance.companie = res;
+        },
+        error => {
+          console.log(error);
+        }
+      );
+
   }
 
   getPage(page: number) {
@@ -51,10 +81,6 @@ export class CompanieComponent implements OnInit {
 
   ngOnInit() {
     this.getCompanies(1) ;
-
-  }
-
-  onEdit() {
 
   }
 

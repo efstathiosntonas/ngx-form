@@ -97,9 +97,10 @@ router.get('/page/:page', function (req, res, next) {
 
 
 
+
 // getting user forms to display them on front end
 router.get('/:id', function (req, res, next) {
-  Companie.findById(({_id: req.companie._id}), function (err, item) {
+  Companie.findById(({_id: req.params.id}), function (err, item) {
     if (err) {
       return res.status(404).json({
         message: 'No forms found for this user',
