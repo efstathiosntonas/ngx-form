@@ -44,7 +44,6 @@
     "@angular/platform-browser-dynamic": "~2.2.4",
     "@angular/router": "~3.2.4",
     "angular2-jwt": "^0.1.25",
-    "angular2-modal": "^2.0.2",
     "async": "^2.1.4",
     "body-parser": "^1.15.2",
     "cookie-parser": "^1.4.3",
