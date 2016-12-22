@@ -34,18 +34,18 @@ more info in [gm](https://github.com/aheckmann/gm) page on how to install depend
 13. User Profile area, user can upload a profile picture, change his password, view profile info like email, user id, role and joined date
 
 ## Packages Used
-`Angular-cli v1.0.0-beta.21` <br />
-`Angular v2.2.4` <br />
+`Angular-cli v1.0.0-beta.24` <br />
+`Angular v2.4.1` <br />
 `Webpack` <br />
 `Node v6.9.1` <br/>
 `MongoDB v3.2.10` <br/>
 `Mongoose v4.7.1` <br />
 `Express v4.14.0` <br />
-`angular2-jwt v0.1.25` (only for checking the expiration date of the jwt token and the user role (admin or user)) <br />
+`angular2-jwt v0.1.27` (only for checking the expiration date of the jwt token and the user role (admin or user)) <br />
 `jsonwebtoken v7.1.9` <br />
-`Multer v1.2.0` <br />
+`Multer v1.2.1` <br />
 `ng2-toastr v1.3.2` <br />
-`ng2-progress-bar 0.0.5` <br />
+`ng2-progress-bar 0.0.8` <br />
 `gm v1.23.0` <br />
 `BootStrap 3`  (css is included in `assets` folder) <br/>
 `Font Awesome` (css is included in `assets` folder) <br/>
@@ -55,7 +55,7 @@ more info in [gm](https://github.com/aheckmann/gm) page on how to install depend
 1. Clone this repo from Git
 2. Run `npm install` in your command line.
 3. Edit `config.js` in `/server/config` folder.
-4. Run `node seed.js` to insert the admin user into database. Admin email is `test@test.com` and password is `testpass`.  Make sure mongod is running.
+4. Run `node seed.js` to insert the admin user into database and create uploads folder. Admin email is `test@test.com` and password is `testpass`.  Make sure mongod is running.
 5. After login navigate to `localhost:3000/#/admin` to access admin panel.
 
 ## Building the Angular2 app
