@@ -3,7 +3,11 @@ var mongoose     = require('mongoose'),
     config       = require('./server/config/config'),
     MongoClient  = require('mongodb').MongoClient,
     async        = require('async'),
-    Schema       = mongoose.Schema;
+    fs           = require('fs'),
+    Schema       = mongoose.Schema,
+    uploadsDir   = './server/uploads',
+    formsDir     = './server/uploads/forms',
+    profilesDir  = './server/uploads/profiles';
 
 var databaseURL = config.database;
 
@@ -31,6 +35,25 @@ var User = mongoose.model('User', user);
 
 async.series([
     function (callback) {
+      if (!fs.existsSync(uploadsDir)){
+        fs.mkdirSync(uploadsDir);
+      }else
+      {
+        console.log("Uploads directory already exist");
+      }
+      if (!fs.existsSync(formsDir)){
+        fs.mkdirSync(formsDir);
+      }else
+      {
+        console.log("Forms directory already exist");
+      }
+      if (!fs.existsSync(profilesDir)){
+        fs.mkdirSync(profilesDir);
+      }else
+      {
+        console.log("Profiles directory already exist");
+      }
+
       MongoClient.connect(databaseURL, function (err, db) {
         if (err) throw err;
         db.dropDatabase(function (err, result) {

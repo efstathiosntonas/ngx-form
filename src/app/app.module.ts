@@ -1,53 +1,63 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {HttpModule} from '@angular/http';
+import {HttpModule, RequestOptions, Http} from '@angular/http';
 import {AppComponent} from './app.component';
-import {NavbarComponent} from './client/navbar/navbar.component';
-import {FormComponent} from './client/form/form.component';
-import {RegisterComponent} from './client/user/register/register.component';
-import {UserComponent} from './client/user/user.component';
+import {NavbarComponent} from './navbar/navbar.component';
+import {FormComponent} from './form/form.component';
+import {RegisterComponent} from './user/register/register.component';
+import {UserComponent} from './user/user.component';
 import {RouterModule} from '@angular/router';
-import {routing} from './client/routes.component';
+import {routing} from './routes.component';
 import {CommonModule, HashLocationStrategy, LocationStrategy} from '@angular/common';
-import {AuthGuardService} from './client/auth/authguard.service';
-import {AuthService} from './client/auth/auth.service';
-import {ErrorService} from './client/errorHandler/error.service';
+import {AuthGuardService} from './auth/authguard.service';
+import {AuthService} from './auth/auth.service';
+import {ErrorService} from './errorHandler/error.service';
 import {ToastModule, ToastOptions} from 'ng2-toastr';
-import {LoginComponent} from './client/user/login/login.component';
-import {ErrorComponent} from './client/errorHandler/error.component';
-import {MainPageComponent} from './client/mainPage/mainPage.component';
-import {CompanieComponent} from './client/companie/companie.component';
-import {ResetPasswordComponent} from './client/user/accountRecover/resetPassword.component';
-import {ForgetPasswordComponent} from './client/user/accountRecover/forgetPassword.component';
-import {FormService} from './client/form/form.service';
-import {CompanieService} from './client/companie/companie.service';
-import {RegionService} from './client/region/region.service';
-import {UserFormComponent} from './client/userForms/formsTable/userForms.component';
-import {EditUserFormComponent} from './client/userForms/editForm/editUserForm.component';
+
+import {LoginComponent} from './user/login/login.component';
+import {ErrorComponent} from './errorHandler/error.component';
+import {MainPageComponent} from './mainPage/mainPage.component';
+import {CompanieComponent} from './companie/companie.component';
+import {ResetPasswordComponent} from './user/accountRecover/resetPassword.component';
+import {ForgetPasswordComponent} from './user/accountRecover/forgetPassword.component';
+import {FormService} from './form/form.service';
+import {CompanieService} from './companie/companie.service';
+import {RegionService} from './region/region.service';
+
+import {EditUserFormComponent} from './userForms/editForm/editUserForm.component';
 import {ProgressBarModule} from 'ng2-progress-bar';
-import {ErrorPageComponent} from './client/errorPage/errorPage.component';
-import {AdminPageComponent} from './client/admin/adminPage/adminPage.component';
-import {AdminService} from './client/admin/services/admin.service';
-import {EditUsersFormsComponent} from './client/admin/editUsersForms/editUsersForms.component';
-import {AdminGuardService} from './client/admin/services/adminGuard';
-import {AdminComponent} from './client/admin/admin.component';
-import { UserProfileComponent } from './client/user/profile/userProfile.component';
-import {ProfileService} from "./client/user/profile/profile.service";
-import { ChangePasswordComponent } from './client/user/profile/changePassword/changePassword.component';
+import {ErrorPageComponent} from './errorPage/errorPage.component';
+import {AdminPageComponent} from './admin/adminPage/adminPage.component';
+import {AdminService} from './admin/services/admin.service';
+import {EditUsersFormsComponent} from './admin/editUsersForms/editUsersForms.component';
+import {AdminGuardService} from './admin/services/adminGuard';
+import {AdminComponent} from './admin/admin.component';
+import { UserProfileComponent } from './user/profile/userProfile.component';
+import {ProfileService} from "./user/profile/profile.service";
+import { ChangePasswordComponent } from './user/profile/changePassword/changePassword.component';
 import { MaterialModule } from '@angular/material';
 import {Ng2PaginationModule} from 'ng2-pagination';
 
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {NgbdModalContent } from './client/companie/companie.component';
+import {NgbdModalContent } from './companie/companie.component';
 
+
+
+import {UserFormsComponent} from './userForms/formsTable/userForms.component';
+
+import {AuthHttp, AuthConfig} from 'angular2-jwt';
 
 
 let options = <ToastOptions> {
   animate: 'flyRight',
   positionClass: 'toast-top-right',
 };
+
+export function authHttpServiceFactory(http: Http, options: RequestOptions) {
+  return new AuthHttp( new AuthConfig({}), http, options);
+}
 
 @NgModule({
   declarations: [
@@ -63,7 +73,7 @@ let options = <ToastOptions> {
     CompanieComponent,
     ResetPasswordComponent,
     ForgetPasswordComponent,
-    UserFormComponent,
+    UserFormsComponent,
     EditUserFormComponent,
     ErrorPageComponent,
     AdminPageComponent,
@@ -99,7 +109,12 @@ let options = <ToastOptions> {
     FormService,
     AdminService,
     AdminGuardService,
-    ProfileService
+    ProfileService,
+    {
+      provide: AuthHttp,
+      useFactory: authHttpServiceFactory,
+      deps: [ Http, RequestOptions ]
+    }
   ],
   entryComponents: [NgbdModalContent],
   bootstrap: [AppComponent]

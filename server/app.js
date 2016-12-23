@@ -13,7 +13,8 @@ var uploadRoute  = require('./routes/upload');
 var forgotRoutes = require('./routes/forgetPassword');
 var resetRoutes  = require('./routes/resetPassword');
 var userForms    = require('./routes/userForms');
-var adminPage = require('./routes/admin');
+var userProfile  = require('./routes/userProfile');
+var adminPage    = require('./routes/admin');
 
 var app = express();
 
@@ -47,6 +48,7 @@ app.use('/user/forgot', forgotRoutes);
 app.use('/user/reset', resetRoutes);
 app.use('/uploads', uploadRoute);
 app.use('/forms', userForms);
+app.use('/profile', userProfile);
 app.use('/admin', adminPage);
 
 // catch 404 and forward to error handler
