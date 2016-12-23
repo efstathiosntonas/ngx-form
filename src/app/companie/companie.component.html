@@ -1,8 +1,10 @@
 
 
 <div class="container topPadTable">
-  <h2 class="text-center">Companies</h2>
-  <button class="btn-default" (click)="onEdit()"><i class="fa fa-pencil"></i></button>
+  <h2 class="text-center">Companies
+  <button class="btn-default" (click)="onOpenModal()"><i class="fa fa-plus-circle"></i></button>
+  </h2>
+
   <hr>
 {{totalItems}}
   <table  class="table table-hover table-responsive table-condensed">
@@ -29,7 +31,7 @@
 
 
       <td>
-        <button class="btn-default" (click)="onEdit(companie._id)"><i class="fa fa-pencil"></i></button>
+        <button class="btn-default" (click)="onOpenModal(companie._id)"><i class="fa fa-pencil"></i></button>
       </td>
       <td>
         <button class="btn-danger" (click)="onDelete(companie._id)"><i class="fa fa-trash"></i></button>

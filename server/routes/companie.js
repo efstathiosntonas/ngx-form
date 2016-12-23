@@ -51,11 +51,38 @@ router.use('/', function (req, res, next) {
   })
 });
 
+//update
+router.put('/:id', function (req, res, next) {
+  Companie.findById(({_id: req.params.id}), function (err, item) {
+    if (err) {
+      return res.status(404).json({
+        message: 'No forms found for this user',
+        err: err
+      })
+    } else {
+      //  item = req.body;
+        item.address = req.body.address;
+        item.text = req.body.text;
+        item.region_id = req.body.region_id;
 
+        item.save(function (err, result) {
+          if (err) {
+            return res.status(404).json({
+              message: 'There was an error, please try again',
+              err: err
+            });
+          }
+          res.status(201).json({
+            message: 'Profile picture uploaded successfully',
+            obj: result
+          });
+        });
+
+    }
+  })
+});
 
 router.post('/', function (req, res, next) {
-  delete req.body._id;
-//  console.log(req.body);
   var companie = new Companie(req.body);
   companie.save(function (err, result) {
     if (err) {
@@ -137,10 +164,9 @@ router.get('/:id', function (req, res, next) {
   })
 });
 
-// deleting forms among associated files
 
 router.delete('/:id', function (req, res, next) {
-  Form.findById((req.params.id), function (err, form) {
+  Companie.findById((req.params.id), function (err, item) {
 
     if (err) {
       return res.status(500).json({
@@ -148,31 +174,16 @@ router.delete('/:id', function (req, res, next) {
         err: err
       })
     }
-    if (!form) {
+    if (!item) {
       return res.status(404).json({
         title: 'No form found',
         error: {message: 'Form not found!'}
       });
     }
-    if (form.owner != req.user._id.toString()) {
-      return res.status(401).json({
-        title: 'Not your form!',
-        error: {message: 'Users do not match'}
-      });
-    }
-    // finding the owner of the form and deleting the form _id from the array 'forms'
-    User.findOneAndUpdate({'_id': req.user._id}, {$pull: {forms: req.params.id}}, {new: true}, function (err) {
-      if (err) {
-        return res.status(404).json({
-          title: 'An error occured',
-          error: err
-        })
-      }
-    });
-    // deleting the file associated with the form from the filesystem leaving the user's folder intact
-    fs.unlink('server/uploads/forms/' + form.owner + '/' + form.imagePath);
+
+
     // deleting the form from the database
-    form.remove(function (err, result) {
+    item.remove(function (err, result) {
       if (err) {
         return res.status(500).json({
           title: 'An error occured',
@@ -180,7 +191,7 @@ router.delete('/:id', function (req, res, next) {
         });
       }
       res.status(200).json({
-        message: 'Form is deleted',
+        message: 'Item is deleted',
         obj: result
       });
     })

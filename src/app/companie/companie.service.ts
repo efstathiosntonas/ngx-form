@@ -51,9 +51,25 @@ export class CompanieService {
         return Observable.throw(error.json());
       });
   }
+  deleteCompanie(id: string) {
+    let headers = new Headers({'Content-Type': 'application/json'});
+    headers.append('Authorization', '' + this.token);
+    return this.http.delete(this.url + 'companie/' + id, {headers: headers})
+      .map((response: Response) => {
+      //  console.log("delete",response)
+        return response.json();
+      //  this.singleForm = response.json();
+        //return this.singleForm;
+      })
+      .catch((error: Response) => {
+        this.errorService.handleError(error.json());
+        return Observable.throw(error.json());
+      });
+  }
 
   saveCompanie(companie) {
   //  console.log("this.token",this.token);
+    delete companie._id;
     const body = JSON.stringify(companie);
     const headers = new Headers({'Content-Type': 'application/json'});
   //  let headers = new Headers({'Content-Type': 'application/json'});
@@ -66,6 +82,17 @@ export class CompanieService {
       });
   }
 
+  updateCompanie(companie) {
+    const body = JSON.stringify(companie);
+    const headers = new Headers({'Content-Type': 'application/json'});
+    headers.append('Authorization', '' + this.token);
+    return this.http.put(this.url + 'companie/' + companie._id, body, {headers: headers})
+      .map(response => response.json())
+      .catch((error: Response) => {
+        this.errorService.handleError(error.json());
+        return Observable.throw(error.json());
+      });
+  }
 
 
   //

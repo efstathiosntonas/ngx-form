@@ -26,12 +26,14 @@ export class NgbdModalContent {
 
   save() {
     if(this.companie._id) {
-      console.log("edit",this.companie);
+      this.companieService.updateCompanie(this.companie)
+        .subscribe(
+          data => {
+            this.activeModal.close('Close click');
+            this.toastr.success('Great!', 'Save successfully');
+          }
+        );
     } else {
-      console.log("Create",this.companie);
-
-    //  const companie = new Companie("toto");
-    //  const companie = this.companie;
       this.companieService.saveCompanie(this.companie)
         .subscribe(
           data => {
@@ -39,8 +41,7 @@ export class NgbdModalContent {
             this.toastr.success('Great!', 'Save successfully');
           }
         );
-
-    }
+     }
   }
 
 }
@@ -67,37 +68,49 @@ export class CompanieComponent implements OnInit {
   constructor(
     private companieService: CompanieService,
     private regionService: RegionService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private toastr: ToastsManager
   ) {
     this.getCompanies(this.paginationData.currentPage);
   }
 
-  onEdit(id: string) {
+  onOpenModal(id: string) {
     const modalRef = this.modalService.open(NgbdModalContent);
     //modalRef.componentInstance.name = id;
     modalRef.componentInstance.fetchedRegions = this.fetchedRegions;
     if(id) {
-        this.companieService.getCompanie(id)
-          .subscribe(
-            res => {
-              modalRef.componentInstance.companie = res;
-
-                this.regionService.getRegion(res.region_id)
-                  .subscribe(
-                    res => {
-                      modalRef.componentInstance.region = res;
-                    },
-                    error => {
-                      console.log(error);
-                    }
-                  );
-            },
-            error => {
-              console.log(error);
-            }
-          );
+      this.companieService.getCompanie(id)
+        .subscribe(
+          res => {
+            modalRef.componentInstance.companie = res;
+            this.regionService.getRegion(res.region_id)
+              .subscribe(
+                res => {
+                  modalRef.componentInstance.region = res;
+                },
+                error => {
+                  console.log(error);
+                }
+              );
+          },
+          error => {
+            console.log(error);
+          }
+        );
       }
+  }
 
+  onDelete(id: string) {
+    this.companieService.deleteCompanie(id)
+      .subscribe(
+        res => {
+          this.toastr.success('Great!', res.message);
+          console.log(res);
+        },
+        error => {
+          console.log(error);
+        }
+      );
   }
 
   getPage(page: number) {
