@@ -1,6 +1,7 @@
 var express = require('express'),
     router  = express.Router(),
     config  = require('../config/config'),
+    User    = require('../models/user.model'),
     fs      = require('fs'),
     jwt     = require('jsonwebtoken');
     Region    = require('../models/region.model'),
@@ -27,7 +28,7 @@ router.use('/', function (req, res, next) {
       });
     }
     if (decoded) {
-      Region.find( function (err, doc) {
+      User.findById(decoded.user._id, function (err, doc) {
         if (err) {
           return res.status(500).json({
             message: 'Fetching user failed',
@@ -41,7 +42,7 @@ router.use('/', function (req, res, next) {
           })
         }
         if (doc) {
-          req.region = doc;
+          req.user = doc;
           next();
         }
       })
@@ -58,41 +59,36 @@ router.get('/page/:page', function (req, res, next) {
   var skip = (itemsPerPage * pageNumber);
   var limit = (itemsPerPage * pageNumber) + itemsPerPage;
 
+  Region.find().count((err, totalItems) => {
+    if(err)
+      res.send(err);
+    else
+      Region.aggregate(
+      [
+        { $skip : skip },
+        { $limit : itemsPerPage }
+      ], function(err, data) {
+           if (err) {
+             res.send(err);
+           }
+           else {
+             var jsonOb =
+              {
+                "paginationData" : {
+                  "totalItems": totalItems,
+                  "currentPage" : currentPage,
+                  "itemsPerPage" : itemsPerPage
+                },
+                "data": data
+              };
+             res.send(jsonOb);
+           }
+         }
+      );
 
-
-      Region.find().count((err, totalItems) => {
-        if(err)
-          res.send(err);
-        else
-            Region.aggregate(
-            [
-              { $skip : skip },
-              { $limit : itemsPerPage }
-
-            ], function(err, data) {
-                 if (err) {
-                   res.send(err);
-                 }
-                 else {
-                   var jsonOb =
-                    {
-                      "paginationData" : {
-                        "totalItems": totalItems,
-                        "currentPage" : currentPage,
-                        "itemsPerPage" : itemsPerPage
-                      },
-                      "data": data
-                    };
-
-                   res.send(jsonOb);
-                 }
-               }
-            );
-
-      });
+  });
 
 });
-
 
 
 

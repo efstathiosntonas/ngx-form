@@ -52,6 +52,22 @@ export class CompanieService {
       });
   }
 
+  saveCompanie(companie) {
+  //  console.log("this.token",this.token);
+    const body = JSON.stringify(companie);
+    const headers = new Headers({'Content-Type': 'application/json'});
+  //  let headers = new Headers({'Content-Type': 'application/json'});
+    headers.append('Authorization', '' + this.token);
+    return this.http.post(this.url + 'companie/',body, {headers: headers})
+      .map(response => response.json())
+      .catch((error: Response) => {
+        this.errorService.handleError(error.json());
+        return Observable.throw(error.json());
+      });
+  }
+
+
+
   //
   // deleteForm(form: Form) {
   //   this.forms.splice(this.forms.indexOf(form), 1);

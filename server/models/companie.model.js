@@ -4,7 +4,11 @@ var mongoose                = require('mongoose'),
     mongooseUniqueValidator = require('mongoose-unique-validator');
 
 var companie = new Schema({
+  //  _id: String,
     address: String,
+    text: String,
+    region_id: mongoose.Schema.Types.ObjectId
+
   },
   {
     timestamps: true

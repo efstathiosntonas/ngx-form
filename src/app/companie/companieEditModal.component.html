@@ -22,13 +22,9 @@
           <form (ngSubmit)="onSubmit()" #companieForm="ngForm">
               <div class="form-group">
 
-
-
-
                   <!-- BIND THIS VALUE TO companie.text IN ANGULAR -->
                   <div *ngIf="companie._id">
                     You are editing {{companie.text}}.
-                    <p (click)="removeId()">Create new?<p>
                   </div>
                   <div *ngIf="!companie._id">Creating new</div>
 
@@ -67,12 +63,11 @@
 
 
               <select class="form-control" id="region_id" name="region_id"  [(ngModel)]="companie.region_id" required>
-                <option *ngFor="let r of regions" [ngValue]="r._id">{{r.text}}</option>
+                <option *ngFor="let r of fetchedRegions" [ngValue]="r._id">{{r.text}}</option>
               </select>
 
 
-
-              <button type="submit" class="btn btn-primary btn-lg" [disabled]="!companieForm.form.valid">Add</button>
+              <button type="button" (click)="save()" class="btn-default" [disabled]="!companieForm.form.valid">Add</button>
           </form>
       </div>
   </div>

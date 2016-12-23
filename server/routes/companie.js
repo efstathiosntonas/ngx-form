@@ -29,7 +29,7 @@ router.use('/', function (req, res, next) {
       });
     }
     if (decoded) {
-      Companie.find( function (err, doc) {
+      User.findById(decoded.user._id, function (err, doc) {
         if (err) {
           return res.status(500).json({
             message: 'Fetching user failed',
@@ -43,13 +43,34 @@ router.use('/', function (req, res, next) {
           })
         }
         if (doc) {
-          req.companie = doc;
+          req.user = doc;
           next();
         }
       })
     }
   })
 });
+
+
+
+router.post('/', function (req, res, next) {
+  delete req.body._id;
+//  console.log(req.body);
+  var companie = new Companie(req.body);
+  companie.save(function (err, result) {
+    if (err) {
+      return res.status(403).json({
+        title: 'There was an issue',
+        error: {message: 'The email you entered already exists'}
+      });
+    }
+    res.status(200).json({
+      message: 'Registration Successfull',
+      obj: result
+    })
+  })
+});
+
 
 
 // get all forms from database
@@ -62,36 +83,36 @@ router.get('/page/:page', function (req, res, next) {
 
 
 
-      Companie.find().count((err, totalItems) => {
-        if(err)
-          res.send(err);
-        else
-            Companie.aggregate(
-            [
-              { $skip : skip },
-              { $limit : itemsPerPage }
+  Companie.find().count((err, totalItems) => {
+    if(err)
+      res.send(err);
+    else
+        Companie.aggregate(
+        [
+          { $skip : skip },
+          { $limit : itemsPerPage }
 
-            ], function(err, data) {
-                 if (err) {
-                   res.send(err);
-                 }
-                 else {
-                   var jsonOb =
-                    {
-                      "paginationData" : {
-                        "totalItems": totalItems,
-                        "currentPage" : currentPage,
-                        "itemsPerPage" : itemsPerPage
-                      },
-                      "data": data
-                    };
+        ], function(err, data) {
+             if (err) {
+               res.send(err);
+             }
+             else {
+               var jsonOb =
+                {
+                  "paginationData" : {
+                    "totalItems": totalItems,
+                    "currentPage" : currentPage,
+                    "itemsPerPage" : itemsPerPage
+                  },
+                  "data": data
+                };
 
-                   res.send(jsonOb);
-                 }
-               }
-            );
+               res.send(jsonOb);
+             }
+           }
+        );
 
-      });
+  });
 
 });
 
