@@ -35,16 +35,8 @@
   "author": "Efstathios Ntonas",
   "private": false,
   "dependencies": {
-
-
-
-
     "@angular/material": "^2.0.0-alpha.11-3",
-
-
     "@ng-bootstrap/ng-bootstrap": "^1.0.0-alpha.14",
-
-
     "@angular/common": "~2.4.1",
     "@angular/compiler": "~2.4.1",
     "@angular/core": "~2.4.1",

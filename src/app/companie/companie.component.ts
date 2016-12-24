@@ -7,12 +7,15 @@ import {Companie} from './companie.model';
 import {ChangeDetectionStrategy, Input} from "@angular/core";
 import {NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {ToastsManager} from 'ng2-toastr';
+import { Inject, forwardRef} from '@angular/core';
+
 
 @Component({
   selector: 'ngbd-modal-content',
   templateUrl: './companieEditModal.component.html',
 })
 export class NgbdModalContent {
+
   companie = {
     "_id" : ""
   };
@@ -21,26 +24,40 @@ export class NgbdModalContent {
   constructor(
     private companieService: CompanieService,
     public activeModal: NgbActiveModal,
-    private toastr: ToastsManager
+    private toastr: ToastsManager,
+  //  @Inject(forwardRef(() => CompanieComponent)) private _parent: CompanieComponent
+  //  private companieComponent: CompanieComponent,
   ) {}
 
   save() {
     if(this.companie._id) {
       this.companieService.updateCompanie(this.companie)
         .subscribe(
-          data => {
+          res => {
             this.activeModal.close('Close click');
-            this.toastr.success('Great!', 'Save successfully');
+            this.toastr.success('Great!', res.message);
+            console.log(res);
+        //    this._parent.getRegions();
+            location.reload();
+          },
+          error => {
+            console.log(error);
           }
         );
     } else {
       this.companieService.saveCompanie(this.companie)
-        .subscribe(
-          data => {
-            this.activeModal.close('Close click');
-            this.toastr.success('Great!', 'Save successfully');
-          }
-        );
+      .subscribe(
+        res => {
+          this.activeModal.close('Close click');
+          this.toastr.success('Great!', res.message);
+          location.reload();
+          console.log(res);
+        },
+        error => {
+          console.log(error);
+        }
+      );
+
      }
   }
 
