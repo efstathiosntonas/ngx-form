@@ -38,7 +38,7 @@ export class NgbdModalContent {
             this.toastr.success('Great!', res.message);
             console.log(res);
         //    this._parent.getRegions();
-            location.reload();
+        //    location.reload();
           },
           error => {
             console.log(error);
@@ -50,7 +50,7 @@ export class NgbdModalContent {
         res => {
           this.activeModal.close('Close click');
           this.toastr.success('Great!', res.message);
-          location.reload();
+        //  location.reload();
           console.log(res);
         },
         error => {
@@ -92,8 +92,9 @@ export class CompanieComponent implements OnInit {
   }
 
   onOpenModal(id: string) {
+
     const modalRef = this.modalService.open(NgbdModalContent);
-    //modalRef.componentInstance.name = id;
+
     modalRef.componentInstance.fetchedRegions = this.fetchedRegions;
     if(id) {
       this.companieService.getCompanie(id)
@@ -115,6 +116,9 @@ export class CompanieComponent implements OnInit {
           }
         );
       }
+      modalRef.result.then((theDataCreatedByTheModal) => {
+        this.getCompanies(this.paginationData.currentPage);
+      });
   }
 
   onDelete(id: string) {
@@ -156,9 +160,7 @@ export class CompanieComponent implements OnInit {
       .subscribe(
         res => {
         //  console.log("companies");
-        //  console.log(res);
           this.fetchedRegions = res.data;
-
         },
         error => {
           console.log(error);
