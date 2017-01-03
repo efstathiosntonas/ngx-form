@@ -10,6 +10,7 @@ import {ToastsManager} from 'ng2-toastr';
   styleUrls: ['./userProfile.component.css']
 })
 export class UserProfileComponent implements OnInit {
+  private editFieldRole:boolean = false;
   private userId: string = localStorage.getItem('userId');
   private token: string = localStorage.getItem('id_token');
   url: string = 'http://localhost:3000/profile/image';
@@ -141,5 +142,16 @@ export class UserProfileComponent implements OnInit {
     xhr.send(formData);
     console.log(xhr);
   }
-}
 
+  save(tot){
+    console.log(tot);
+  }
+
+  editField(nameField:string) {
+    if(this.editFieldRole == true) {
+      this.editFieldRole = false;
+    } else {
+      this.editFieldRole = true;
+    }
+  }
+}

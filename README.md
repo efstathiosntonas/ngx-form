@@ -75,6 +75,17 @@ Open your favourite web browser and point to `http://localhost:3000`
 
 Enjoy!
 
+
+## Summary
+1. `ng build --watch`
+2. `nodemon npm start`
+3. `http://localhost:3000`
+
+
+
+
+
+
 ## Help with angular-cli
 To get more help on the `angular-cli` use `ng --help` or go check out the [Angular-CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
