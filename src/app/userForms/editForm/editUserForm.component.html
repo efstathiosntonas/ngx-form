@@ -30,7 +30,7 @@
           <div *ngIf="hasFiles()">
             <div *ngFor="let file of files">
               <h5>New Image Preview:</h5>
-              <img [src]="file.objectURL " *ngIf="isImage(file)" class="img-thumbnail img-responsive topMargin"><br>
+              <img [src]="file.objectURL" *ngIf="isImage(file)" class="img-thumbnail img-responsive topMargin"><br>
               <div>
                 <button type="button" class="btn-danger topMargin" (click)="remove(i)">Remove Image</button>
               </div>
