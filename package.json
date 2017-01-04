@@ -35,16 +35,17 @@
   "author": "Efstathios Ntonas",
   "private": false,
   "dependencies": {
-    "@angular/material": "^2.0.0-alpha.11-3",
-    "@ng-bootstrap/ng-bootstrap": "^1.0.0-alpha.14",
     "@angular/common": "~2.4.1",
     "@angular/compiler": "~2.4.1",
     "@angular/core": "~2.4.1",
     "@angular/forms": "~2.4.1",
     "@angular/http": "~2.4.1",
+    "@angular/material": "^2.0.0-alpha.11-3",
     "@angular/platform-browser": "~2.4.1",
     "@angular/platform-browser-dynamic": "~2.4.1",
     "@angular/router": "~3.4.1",
+    "@ng-bootstrap/ng-bootstrap": "^1.0.0-alpha.14",
+    "angular2-google-maps": "^0.17.0",
     "angular2-jwt": "^0.1.27",
     "async": "^2.1.4",
     "body-parser": "^1.15.2",
@@ -56,17 +57,14 @@
     "hammerjs": "^2.0.8",
     "jsonwebtoken": "^7.1.9",
     "mime": "latest",
-    "mongodb": "latest",
+    "mongodb": "2.2.16",
     "mongoimport": "^1.0.6",
     "mongoose": "^4.7.4",
     "mongoose-unique-validator": "^1.0.3",
     "morgan": "latest",
-
-    "ng2-pagination": "^1.0.1",
-
     "multer": "1.2.1",
+    "ng2-pagination": "^1.0.1",
     "ng2-progress-bar": "0.0.8",
-
     "ng2-toastr": "^1.3.2",
     "nodemailer": "^2.6.4",
     "nodemailer-sendgrid-transport": "latest",
@@ -74,11 +72,8 @@
     "rxjs": "5.0.1",
     "serve-favicon": "^2.3.0",
     "ts-helpers": "^1.1.1",
-
     "tslint": "4.1.1",
-    "zone.js": "^0.7.4",
-    "mongodb": "2.2.16"
-
+    "zone.js": "^0.7.4"
   },
   "devDependencies": {
     "@angular/language-service": "^2.4.1",

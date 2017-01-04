@@ -19,6 +19,7 @@ import {LoginComponent} from './user/login/login.component';
 import {ErrorComponent} from './errorHandler/error.component';
 import {MainPageComponent} from './mainPage/mainPage.component';
 import {CompanieComponent} from './companie/companie.component';
+import {MapComponent} from './map/map.component';
 import {ResetPasswordComponent} from './user/accountRecover/resetPassword.component';
 import {ForgetPasswordComponent} from './user/accountRecover/forgetPassword.component';
 import {FormService} from './form/form.service';
@@ -50,6 +51,10 @@ import {UserFormsComponent} from './userForms/formsTable/userForms.component';
 import {AuthHttp, AuthConfig} from 'angular2-jwt';
 
 
+
+import {  ApplicationRef } from '@angular/core';
+import { AgmCoreModule } from 'angular2-google-maps/core';
+
 let options = <ToastOptions> {
   animate: 'flyRight',
   positionClass: 'toast-top-right',
@@ -71,6 +76,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     ErrorComponent,
     MainPageComponent,
     CompanieComponent,
+    MapComponent,
     ResetPasswordComponent,
     ForgetPasswordComponent,
     UserFormsComponent,
@@ -97,7 +103,10 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     FormsModule,
     Ng2PaginationModule,
     NgbModule.forRoot(),
-    MaterialModule.forRoot()
+    MaterialModule.forRoot(),
+    AgmCoreModule.forRoot({
+      apiKey: ''
+    })
   ],
   providers: [
     AuthGuardService,
