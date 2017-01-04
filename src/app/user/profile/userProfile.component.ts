@@ -143,8 +143,18 @@ export class UserProfileComponent implements OnInit {
     console.log(xhr);
   }
 
-  save(tot){
-    console.log(tot);
+  updateUser(user){
+    this.editFieldRole = false;
+    this.profileService.updateUser(user)
+      .subscribe(
+        res => {
+          this.toastr.success('Great!', res.message);
+        },
+        error => {
+          console.log(error);
+        }
+      );
+
   }
 
   editField(nameField:string) {

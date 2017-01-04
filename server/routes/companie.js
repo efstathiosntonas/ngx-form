@@ -62,7 +62,6 @@ router.put('/:id', function (req, res, next) {
         err: err
       })
     } else {
-      //  item = req.body;
         item.address = req.body.address;
         item.text = req.body.text;
         item.region_id = req.body.region_id;
