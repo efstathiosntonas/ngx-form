@@ -13,9 +13,10 @@
       <ul class="nav navbar-nav">
         <li><a [routerLink]="['/user/profile']" *ngIf="isLoggedIn()" routerLinkActive="active">Profile</a></li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Items <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a [routerLink]="['/form']" *ngIf="isLoggedIn()" routerLinkActive="active">Add Form</a></li>
+            <li><a [routerLink]="['/map']" *ngIf="isLoggedIn()" routerLinkActive="active">Map</a></li>
             <li><a [routerLink]="['/user/forms']" *ngIf="isLoggedIn()" routerLinkActive="active">My Forms</a></li>
             <li><a [routerLink]="['/user/profile']" *ngIf="isLoggedIn()" routerLinkActive="active">Profile</a></li>
             <li><a [routerLink]="['/companie']" *ngIf="isLoggedIn()" routerLinkActive="active">Companies</a></li>
