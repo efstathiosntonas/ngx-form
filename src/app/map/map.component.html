@@ -7,8 +7,8 @@
      (mapClick)="mapClicked($event)">
 
      <sebm-google-map-marker
-         *ngFor="let m of markers; let i = index"
-         (markerClick)="clickedMarker(m.label, i)"
+         *ngFor="let m of markers"
+         (markerClick)="clickedMarker(m.label, m.index)"
          [latitude]="m.lat"
          [longitude]="m.lng"
          [label]="m.label"
@@ -38,6 +38,7 @@
          <th>Coord</th>
          <th>Name</th>
          <th>draggable</th>
+         <th>index</th>
 
        </tr>
      </thead>
@@ -53,7 +54,8 @@
           #address="ngModel">
           </md-input>
         </td>
-        <td>{{m.draggable}} </td>
+        <td>{{m.draggable}}</td>
+        <td>{{m.index}}</td>
 
       </tr>
     </tbody>
