@@ -6,6 +6,10 @@
      [zoomControl]="false"
      (mapClick)="mapClicked($event)">
 
+
+
+
+
      <sebm-google-map-marker
          *ngFor="let m of markers"
          (markerClick)="clickedMarker(m.label, m.index)"
@@ -15,9 +19,9 @@
          [markerDraggable]="m.draggable"
          (dragEnd)="markerDragEnd(m, $event)">
 
-       <sebm-google-map-info-window>
-         <strong>{{m.label}}</strong>
-       </sebm-google-map-info-window>
+         <sebm-google-map-info-window>
+           <strong>{{m.label}}</strong>
+         </sebm-google-map-info-window>
 
      </sebm-google-map-marker>
 
@@ -27,6 +31,13 @@
          [circleDraggable]="true"
          [editable]="true">
      </sebm-google-map-circle>
+
+
+     <sebm-google-map-polyline>
+      <sebm-google-map-polyline-point *ngFor="let m of markers" [latitude]="m.lat" [longitude]="m.lng">
+      </sebm-google-map-polyline-point>
+    </sebm-google-map-polyline>
+
 
    </sebm-google-map>
 
