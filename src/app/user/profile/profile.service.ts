@@ -13,7 +13,7 @@ export class ProfileService {
   private token: string = localStorage.getItem('id_token');
   private userId: string = localStorage.getItem('userId');
 
-  private url: string = 'http://localhost:3000/profile/';
+  private url: string = '/profile/';
   // private token = localStorage.getItem('id_token');
   // private userId = localStorage.getItem('userId');
 
@@ -59,7 +59,7 @@ export class ProfileService {
       const body = JSON.stringify(newPass);
       const headers = new Headers({'Content-Type': 'application/json'});
       headers.append('Authorization', '' + token);
-      return this.http.post('http://localhost:3000/profile/password', body, {headers: headers})
+      return this.http.post('/profile/password', body, {headers: headers})
         .map((response: Response) => response.json())
         .catch((error: Response) => {
           this.errorService.handleError((error.json()));

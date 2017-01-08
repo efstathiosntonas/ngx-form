@@ -13,7 +13,7 @@ export class UserProfileComponent implements OnInit {
   private editFieldRole:boolean = false;
   private userId: string = localStorage.getItem('userId');
   private token: string = localStorage.getItem('id_token');
-  url: string = 'http://localhost:3000/profile/image';
+  url: string = '/profile/image';
   user: UserProfile;
   fetchedUser: any[] = [];
   maxSize: number = 5000000;

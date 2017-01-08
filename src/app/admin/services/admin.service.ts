@@ -9,7 +9,7 @@ import {AuthService} from '../../auth/auth.service';
 
 @Injectable()
 export class AdminService {
-  private url: string = 'http://localhost:3000/admin';
+  private url: string = '/admin';
   private token: string = localStorage.getItem('id_token');
   private forms = [];
   private singleForm = Object;

@@ -20,7 +20,7 @@ export class FormComponent implements OnInit, AfterViewInit {
 
   // get the Auth Token from localStorage in order to Authenticate to back end while submitting the form
   token: string = localStorage.getItem('id_token');
-  url: string = 'http://localhost:3000/uploads';
+  url: string = '/uploads';
   maxSize: number = 5000000;
   invalidFileSizeMessage: string = '{0}: Invalid file size, ';
   invalidFileSizeMessageDetail: string = 'Maximum upload size is {0}.';

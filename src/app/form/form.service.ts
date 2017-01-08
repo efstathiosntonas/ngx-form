@@ -10,7 +10,7 @@ import 'rxjs/add/operator/catch';
 @Injectable()
 export class FormService {
 
-  private url: string = 'http://localhost:3000/';
+  private url: string = '/';
   private token: string = localStorage.getItem('id_token');
   private userId: string = localStorage.getItem('userId');
   private forms = [];
