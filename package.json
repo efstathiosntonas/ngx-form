@@ -8,7 +8,9 @@
     "lint": "tslint \"src/**/*.ts\"",
     "test": "ng test",
     "pree2e": "webdriver-manager update",
-    "e2e": "protractor"
+    "e2e": "protractor",
+    "preinstall": "ng build",
+    "postinstall": "ng build"
   },
   "repository": {
     "type": "git",
