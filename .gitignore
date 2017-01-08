@@ -12,8 +12,6 @@
 # Upload
 /server/uploads
 
-# Config
-/server/config/config.js
 
 
 # IDEs and editors
