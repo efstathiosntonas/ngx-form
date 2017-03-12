@@ -1,9 +1,6 @@
 var http = require('http');
-var server = http.createServer(function(request, response) {
-  response.writeHead(200,{"Content-Type":"text/plain"});
-  responses.end('hello');
-
-});
-server.listen(3000);
-console.log('server running');
-//https://www.youtube.com/watch?v=N3vgozk66dI
+http.createServer(function (req, res) {
+  res.writeHead(200, {'Content-Type': 'text/plain'});
+  res.end('Hello Node.js\n');
+}).listen(8124, "52.7.166.211/");
+console.log('Server running at http://http://52.7.166.211/');
