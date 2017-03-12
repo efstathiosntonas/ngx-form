@@ -82,8 +82,11 @@ export class MapComponent implements OnInit {
 
   markerDragEnd(m: marker, $event: MouseEvent) {
 
-    console.log(m.index);
+  //  console.log(m.index);
     console.log(this.markers);
+
+    console.log($event.coords.lat);
+    console.log($event.coords.lng);
     this.markers[m.index].lat = $event.coords.lat;
     this.markers[m.index].lng = $event.coords.lng;
 
