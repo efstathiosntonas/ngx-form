@@ -4,7 +4,7 @@ var server = http.createServer(function(request, response) {
   response.end('hello');
 
 });
-server.listen(8080);
+server.listen(3000);
 console.log('server running');
 //https://www.youtube.com/watch?v=N3vgozk66dI
 
