@@ -1,9 +1,12 @@
 var http = require('http');
-http.createServer(function (req, res) {
-  res.writeHead(200, {'Content-Type': 'text/plain'});
-  res.end('Hello Node.js\n');
-}).listen(8124, "127.0.0.1");
-console.log('Server running');
+var server = http.createServer(function(request, response) {
+  response.writeHead(200,{"Content-Type":"text/plain"});
+  response.end('hello');
+
+});
+server.listen(3000);
+console.log('server running');
+//https://www.youtube.com/watch?v=N3vgozk66dI
 
 //https://howtonode.org/how-to-install-nodejs
-//https://www.youtube.com/watch?v=N3vgozk66dI
+//https://www.youtube.com/watch?v=N3vgozk66d
