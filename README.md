@@ -81,7 +81,9 @@ Enjoy!
 2. `nodemon npm start`
 3. `http://localhost:3000`
 
+install mongodb https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
 
+stop apache service apache2 stop
 
 
 

@@ -1,5 +1,7 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
+# port Seerver
+/bin/www.js
 # compiled output
 /dist
 /tmp
@@ -13,7 +15,6 @@
 /server/uploads
 
 # Config
-/server/config/config.js
 
 
 # IDEs and editors
