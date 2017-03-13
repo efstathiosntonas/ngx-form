@@ -26,7 +26,7 @@ export class EditUsersFormsComponent implements OnInit, AfterViewInit {
   invalidFileSizeMessageDetail: string = 'Maximum upload size is {0}.';
   public files: File[];
   public progress: number = 0;
-  private submitStarted: boolean;
+  public submitStarted: boolean;
   @ViewChild('textOne') textOne: ElementRef;
   @ViewChild('fileInput') fileInput: ElementRef;
 
