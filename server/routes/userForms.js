@@ -50,6 +50,33 @@ router.use('/', function (req, res, next) {
   })
 });
 
+
+router.get('/singleFormPerPostition/:position', function (req, res, next) {
+  Form.find({textInputOne: req.params.position})
+    .sort('-updatedAt')
+    .limit(1)
+    .exec(function (err, form) {
+    if (err) {
+      return res.status(500).json({
+        message: 'An error occured',
+        err: err
+      })
+    }
+    if (!form) {
+      return res.status(404).json({
+        title: 'No form founds',
+        error: {message: 'Form not found!'}
+      });
+    }
+    res.status(200).json({
+      message: 'Success',
+      forms: form
+    });
+  });
+});
+
+
+
 // getting user forms to display them on front end
 router.get('/:id', function (req, res, next) {
   User.findById(({_id: req.user._id}), function (err) {

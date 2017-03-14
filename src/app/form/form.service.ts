@@ -69,4 +69,19 @@ export class FormService {
         return Observable.throw(error.json());
       });
   }
+
+
+  getSingleFormPerPostition(position) {
+    let headers = new Headers({'Content-Type': 'application/json'});
+    headers.append('Authorization', '' + this.token);
+    return this.http.get(this.url + 'forms/singleFormPerPostition/' + position , {headers: headers})
+      .map((response: Response) => {
+        this.singleForm = response.json();
+        return this.singleForm;
+      })
+      .catch((error: Response) => {
+        this.errorService.handleError(error.json());
+        return Observable.throw(error.json());
+      });
+  }
 }

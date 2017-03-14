@@ -85,7 +85,7 @@ install mongodb https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubun
 
 stop apache service apache2 stop
 
-
+pm2 start npm -- start
 
 
 ## Help with angular-cli
