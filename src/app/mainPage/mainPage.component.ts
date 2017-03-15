@@ -11,7 +11,7 @@ import {FormService} from '../form/form.service';
 
 
 export class MainPageComponent implements OnInit {
-  fetchedForms = [];
+  fetchedForms = {};
   constructor(
     private authService: AuthService,
     private formService: FormService
@@ -21,7 +21,7 @@ export class MainPageComponent implements OnInit {
   ngOnInit() {
     this.formService.getSingleFormPerPostition('centerLeft')
       .subscribe(
-        forms => this.fetchedForms = forms.forms,
+        forms => this.fetchedForms = forms.form,
         error => console.log(error));
   }
 

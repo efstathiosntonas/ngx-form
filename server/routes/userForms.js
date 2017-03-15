@@ -69,8 +69,8 @@ router.get('/singleFormPerPostition/:position', function (req, res, next) {
       });
     }
     res.status(200).json({
-      message: 'Success',
-      forms: form
+
+      form: form[0]
     });
   });
 });

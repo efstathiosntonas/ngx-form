@@ -1,13 +1,10 @@
 <div class="container">
   <div class="jumbotron topPad">
     <h1>Instructions</h1>
-LANA
-    {{fetchedForms}}
-
-    LALAN<table>
-      <tr *ngFor="let form of fetchedForms">
-        <img src="./uploads/forms/{{form.owner}}/{{form.imagePath}}" onerror="this.src ='assets/images/no-image-found.jpg'">
-      </tr>
+    <table>
+        <div>
+          <img src="./uploads/forms/{{fetchedForms.owner}}/{{fetchedForms.imagePath}}" onerror="this.src ='assets/images/no-image-found.jpg'">
+        </div>
     </table>
     <p>Please first signup and then login so you can submit a form!</p>
     <button type="button" [routerLink]="['/form']" class="btn" *ngIf="isLoggedIn()">Go to submit a new Form</button>
