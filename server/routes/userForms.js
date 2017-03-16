@@ -68,8 +68,7 @@ router.get('/singleFormFromOptions/:typeOption/:namePage/:positionImage', functi
         error: {message: 'Please check if your password or email are correct'}
       })
     }
-
-    let idForm = obj['design']['mainPage']['imgLeft']
+    let idForm = obj[req.params.typeOption][req.params.namePage][req.params.positionImage]
     Form.findById((idForm), function (err, form) {
       if (err) {
         return res.status(500).json({
