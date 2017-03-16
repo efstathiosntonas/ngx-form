@@ -71,10 +71,10 @@ export class FormService {
   }
 
 
-  getSingleFormPerPostition(position) {
+  getSingleFormFromOptions(typeOption, namePage, positionImage) {
     let headers = new Headers({'Content-Type': 'application/json'});
     headers.append('Authorization', '' + this.token);
-    return this.http.get(this.url + 'forms/singleFormPerPostition/' + position , {headers: headers})
+    return this.http.get(this.url + 'forms/singleFormFromOptions/' + typeOption  + '/' + namePage + '/' + positionImage, {headers: headers})
       .map((response: Response) => {
         this.singleForm = response.json();
         return this.singleForm;

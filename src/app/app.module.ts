@@ -29,11 +29,19 @@ import {RegionService} from './region/region.service';
 import {EditUserFormComponent} from './userForms/editForm/editUserForm.component';
 import {ProgressBarModule} from 'ng2-progress-bar';
 import {ErrorPageComponent} from './errorPage/errorPage.component';
+
 import {AdminPageComponent} from './admin/adminPage/adminPage.component';
 import {AdminService} from './admin/services/admin.service';
 import {EditUsersFormsComponent} from './admin/editUsersForms/editUsersForms.component';
+
+import {EditOptionsComponent} from './admin/editOptions/editOptions.component';
+import {EditOptionsService} from './admin/editOptions/editOptions.service';
+
+
+
 import {AdminGuardService} from './admin/services/adminGuard';
 import {AdminComponent} from './admin/admin.component';
+
 import { UserProfileComponent } from './user/profile/userProfile.component';
 import {ProfileService} from "./user/profile/profile.service";
 import { ChangePasswordComponent } from './user/profile/changePassword/changePassword.component';
@@ -84,6 +92,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     ErrorPageComponent,
     AdminPageComponent,
     EditUsersFormsComponent,
+    EditOptionsComponent,
     AdminComponent,
     UserProfileComponent,
     ChangePasswordComponent,
@@ -117,6 +126,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     RegionService,
     FormService,
     AdminService,
+    EditOptionsService,
     AdminGuardService,
     ProfileService,
     {

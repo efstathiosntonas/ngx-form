@@ -19,9 +19,9 @@ export class MainPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.formService.getSingleFormPerPostition('centerLeft')
+    this.formService.getSingleFormFromOptions('design','mainPage','imgLeft')
       .subscribe(
-        forms => this.fetchedForms = forms.form,
+        forms => this.fetchedForms = forms.obj,
         error => console.log(error));
   }
 

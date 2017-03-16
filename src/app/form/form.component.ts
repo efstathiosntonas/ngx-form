@@ -13,6 +13,7 @@ import {AuthService} from '../auth/auth.service';
 })
 export class FormComponent implements OnInit, AfterViewInit {
 
+
   // setting up the form
   myForm: FormGroup;
   textInput1: FormControl;

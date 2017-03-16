@@ -15,6 +15,7 @@ var resetRoutes  = require('./routes/resetPassword');
 var userForms    = require('./routes/userForms');
 var userProfile  = require('./routes/userProfile');
 var adminPage    = require('./routes/admin');
+var options    = require('./routes/options');
 
 var app = express();
 
@@ -50,6 +51,7 @@ app.use('/uploads', uploadRoute);
 app.use('/forms', userForms);
 app.use('/profile', userProfile);
 app.use('/admin', adminPage);
+app.use('/options', options);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
