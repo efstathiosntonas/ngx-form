@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 import {FormService} from '../../form/form.service';
 
 
@@ -9,6 +9,8 @@ import {FormService} from '../../form/form.service';
   styleUrls: ['./userForms.component.css']
 })
 export class UserFormsComponent implements OnInit {
+
+  @Output() onPassForm = new EventEmitter<any>();
   fetchedForms = [];
 
 
@@ -20,6 +22,11 @@ export class UserFormsComponent implements OnInit {
       .subscribe(
         forms => this.fetchedForms = forms,
         error => console.log(error));
+  }
+
+  onSelectRow(formId){
+    this.onPassForm.emit(formId);
+
   }
 
   onDelete(formId) {

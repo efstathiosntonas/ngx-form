@@ -9,7 +9,10 @@
 </div>
 
 
-<app-user-form></app-user-form>
+<app-user-form
+  (onPassForm)="onPassForm($event)"
+>
+</app-user-form>
 
 
 <div class="container">

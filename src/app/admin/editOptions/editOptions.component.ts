@@ -14,6 +14,7 @@ import {FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
 })
 export class EditOptionsComponent implements OnInit {
 
+
   myForm: FormGroup;
   fetchedObj = {
     'design' : {
@@ -25,6 +26,14 @@ export class EditOptionsComponent implements OnInit {
 
   constructor(private editOptionsService: EditOptionsService) {
   }
+
+
+
+  onPassForm(obj) {
+    console.log(obj)
+    this.fetchedObj.design.mainPage.imgLeft = obj._id
+  }
+
 
   ngOnInit() {
     this.editOptionsService.getOptions()
