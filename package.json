@@ -92,8 +92,5 @@
     "ts-node": "1.7.2",
     "tslint": "4.1.1",
     "typescript": "~2.0.10"
-  },
-  "engines": {
-    "node": "6.1.0"
   }
 }
