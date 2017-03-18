@@ -3,12 +3,9 @@
   <hr>
   <!-- Form Name -->
 
-
-  imgLeft:
-  {{fetchedObj.design.mainPage.imgLeft}}
 </div>
 
-
+<app-form></app-form>
 <app-user-form
   (onPassForm)="onPassForm($event)"
 >
@@ -24,7 +21,7 @@
           <div ngModelGroup="mainPage">
               <label>Name</label>
               <input type="text" class="form-control"
-                name="name" [(ngModel)]="fetchedObj.design.mainPage.imgLeft"
+                name="imgLeft" [(ngModel)]="fetchedObj.design.mainPage.imgLeft"
                 #name="ngModel" required minlength="5">
               <small [hidden]="name.valid || (name.pristine && !f.submitted)" class="text-danger">
                     Name is required (minimum 5 characters).

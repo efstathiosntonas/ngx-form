@@ -82,6 +82,7 @@ export class CompanieComponent implements OnInit {
     totalItems:0
   };
 
+
   constructor(
     private companieService: CompanieService,
     private regionService: RegionService,

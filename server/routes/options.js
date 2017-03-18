@@ -66,15 +66,42 @@ router.get('/', function (req, res, next) {
         error: {message: 'Please check if your password or email are correct'}
       })
     }
-
     return res.status(200).json({
       message: 'Successfull',
       obj: obj
     })
   })
-
 });
 
+
+
+//update
+router.put('/:id', function (req, res, next) {
+  Options.findById(({_id: req.params.id}), function (err, item) {
+    if (err) {
+      return res.status(404).json({
+        message: 'No forms found for this user',
+        err: err
+      })
+    } else {
+        console.log(req.body)
+        item.design = req.body.design;
+        item.save(function (err, result) {
+          if (err) {
+            return res.status(404).json({
+              message: 'There was an error, please try again',
+              err: err
+            });
+          }
+          res.status(201).json({
+            message: 'Successfully',
+            obj: result
+          });
+        });
+
+    }
+  })
+});
 
 
 module.exports = router;

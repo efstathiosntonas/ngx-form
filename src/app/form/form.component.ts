@@ -34,8 +34,15 @@ export class FormComponent implements OnInit, AfterViewInit {
   name: string;
   onClear: EventEmitter<any> = new EventEmitter();
 
-  constructor(private _fb: FormBuilder, private toastr: ToastsManager, private router: Router,
-              private sanitizer: DomSanitizer, private renderer: Renderer, private authService: AuthService) {}
+  constructor(
+      private _fb: FormBuilder,
+      private toastr: ToastsManager,
+      private router: Router,
+      private sanitizer: DomSanitizer,
+      private renderer: Renderer,
+      private authService: AuthService,
+
+    ) {}
 
   // event fired when the user selects an image
   onFileSelect(event) {
@@ -134,7 +141,8 @@ export class FormComponent implements OnInit, AfterViewInit {
       if (xhr.readyState === 4) {
         this.progress = 0;
         if (xhr.status === 201) {
-          this.router.navigateByUrl('/user/forms');
+          //this.router.navigateByUrl('/user/forms');
+          location.reload();
           this.toastr.success('Form submitted successfully');
         } else if (xhr.status !== 201) {
           this.toastr.error('There was an error!');

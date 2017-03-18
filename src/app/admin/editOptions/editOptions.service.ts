@@ -32,6 +32,18 @@ export class EditOptionsService {
       });
   }
 
+  updateOptions(options){
+    const body = JSON.stringify(options.fetchedObj);
+    console.log(body)
+    const headers = new Headers({'Content-Type': 'application/json'});
+    headers.append('Authorization', '' + this.token);
+    return this.http.put(this.url + 'options/' + '58c9866ff36d286bfca335b4', body, {headers: headers})
+      .map(response => response.json())
+      .catch((error: Response) => {
+        this.errorService.handleError(error.json());
+        return Observable.throw(error.json());
+      });
+  }
 
 
 
