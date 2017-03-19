@@ -65,7 +65,7 @@
     "multer": "1.2.1",
     "ng2-pagination": "^1.0.1",
     "ng2-progress-bar": "0.0.8",
-    "ng2-toastr": "^1.3.2",
+    "ng2-toastr": "1.3.2",
     "nodemailer": "^2.6.4",
     "nodemailer-sendgrid-transport": "latest",
     "password-hash": "^1.2.2",
