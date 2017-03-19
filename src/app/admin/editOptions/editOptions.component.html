@@ -20,7 +20,7 @@
         <div ngModelGroup="design">
           <div ngModelGroup="mainPage">
               <label>Name</label>
-              <button md-button (click)="openDialog()">Launch dialog</button>
+
               <input type="text" class="form-control"
                 name="imgLeft" [(ngModel)]="fetchedObj.design.mainPage.imgLeft"
                 #name="ngModel" required minlength="5">
@@ -36,6 +36,7 @@
 
     <button type="submit" class="btn btn-default">Submit</button>
   </form>
+  <button md-button (click)="openDialog()">Launch dialog</button>
   <div class="margin-20">
     <div>Form details:</div>
     <pre>Is form valid?: <br>{{f.valid | json}}</pre>
