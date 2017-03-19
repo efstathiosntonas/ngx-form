@@ -138,8 +138,8 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
       deps: [ Http, RequestOptions ]
     }
   ],
-  entryComponents: [NgbdModalContent],
-  bootstrap: [AppComponent]
+  entryComponents: [NgbdModalContent, EditOptionsComponentDialog],
+  bootstrap: [AppComponent, EditOptionsComponentDialog]
 })
 export class AppModule {
 }
