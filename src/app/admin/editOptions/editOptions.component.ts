@@ -34,7 +34,7 @@ export class EditOptionsComponent implements OnInit {
 
 
   openDialog() {
-    this.dialog.open(EditOptionsComponentDialog);
+  //  this.dialog.open(EditOptionsComponentDialog);
   }
 
   onPassForm(obj) {
