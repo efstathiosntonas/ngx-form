@@ -20,6 +20,7 @@
         <div ngModelGroup="design">
           <div ngModelGroup="mainPage">
               <label>Name</label>
+              <button md-button (click)="openDialog()">Launch dialog</button>
               <input type="text" class="form-control"
                 name="imgLeft" [(ngModel)]="fetchedObj.design.mainPage.imgLeft"
                 #name="ngModel" required minlength="5">
