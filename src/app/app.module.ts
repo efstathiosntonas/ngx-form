@@ -35,7 +35,7 @@ import {AdminService} from './admin/services/admin.service';
 import {EditUsersFormsComponent} from './admin/editUsersForms/editUsersForms.component';
 
 import {EditOptionsComponent} from './admin/editOptions/editOptions.component';
-import {EditOptionsDialogComponent} from './admin/editOptions/editOptionsDialog.component';
+import {EditOptionsComponentDialog} from './admin/editOptions/editOptions.component';
 
 import {EditOptionsService} from './admin/editOptions/editOptions.service';
 
@@ -95,7 +95,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     AdminPageComponent,
     EditUsersFormsComponent,
     EditOptionsComponent,
-    EditOptionsDialogComponent,
+    EditOptionsComponentDialog,
     AdminComponent,
     UserProfileComponent,
     ChangePasswordComponent,
