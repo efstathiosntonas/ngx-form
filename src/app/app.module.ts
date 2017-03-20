@@ -35,7 +35,7 @@ import {AdminService} from './admin/services/admin.service';
 import {EditUsersFormsComponent} from './admin/editUsersForms/editUsersForms.component';
 
 import {EditOptionsComponent} from './admin/editOptions/editOptions.component';
-import {EditOptionsComponentDialog} from './admin/editOptions/editOptions.component';
+//import {EditOptionsComponentDialog} from './admin/editOptions/editOptions.component';
 
 import {EditOptionsService} from './admin/editOptions/editOptions.service';
 
@@ -95,7 +95,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     AdminPageComponent,
     EditUsersFormsComponent,
     EditOptionsComponent,
-    EditOptionsComponentDialog,
+  //  EditOptionsComponentDialog,
     AdminComponent,
     UserProfileComponent,
     ChangePasswordComponent,
@@ -138,8 +138,10 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
       deps: [ Http, RequestOptions ]
     }
   ],
-  entryComponents: [NgbdModalContent, EditOptionsComponentDialog],
-  bootstrap: [AppComponent, EditOptionsComponentDialog]
+  //entryComponents: [NgbdModalContent, EditOptionsComponentDialog],
+  entryComponents: [NgbdModalContent],
+  bootstrap: [AppComponent]
+  //bootstrap: [AppComponent, EditOptionsComponentDialog]
 })
 export class AppModule {
 }

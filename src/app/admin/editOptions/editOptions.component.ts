@@ -34,7 +34,7 @@ export class EditOptionsComponent implements OnInit {
 
 
   openDialog() {
-    this.dialog.open(EditOptionsComponentDialog);
+    //this.dialog.open(EditOptionsComponentDialog);
   }
 
   onPassForm(obj) {
@@ -72,10 +72,10 @@ export class EditOptionsComponent implements OnInit {
 
 }
 
-
-
-@Component({
-  selector: 'edit-options-dialog',
-  templateUrl: './editOptionsDialog.component.html',
-})
-export class EditOptionsComponentDialog {}
+//
+//
+// @Component({
+//   selector: 'edit-options-dialog',
+//   templateUrl: './editOptionsDialog.component.html',
+// })
+// export class EditOptionsComponentDialog {}

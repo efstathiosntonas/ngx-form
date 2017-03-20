@@ -1,29 +1,26 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
-# port Seerver
-/bin/www.js
 # compiled output
 /dist
 /tmp
 
 # dependencies
 /node_modules
-/bower_components
-
-
-# Upload
-/server/uploads
-
-# Config
-
 
 # IDEs and editors
 /.idea
-/.vscode
 .project
 .classpath
+.c9/
 *.launch
 .settings/
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
 
 # misc
 /.sass-cache
