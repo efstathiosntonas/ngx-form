@@ -12,6 +12,7 @@
       <th>Edit</th>
       <th>Delete</th>
     </tr>
+
     </thead>
     <tbody>
     <tr *ngFor="let form of fetchedForms">
@@ -25,6 +26,7 @@
         <span *ngIf="form.dateSubmitted != form.updatedAt">{{form.updatedAt | date: 'medium'}}</span>
       </td>
       <td>
+        <button class="btn-danger" (click)="onSelectRow(form)"><i class="fa fa-trash"></i></button>
         <button class="btn-default" [routerLink]="['edit', form._id]"><i class="fa fa-pencil"></i></button>
       </td>
       <td>

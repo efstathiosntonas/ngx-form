@@ -10,7 +10,10 @@ import {AuthService} from '../../auth/auth.service';
 @Injectable()
 export class ProfileService {
 
-  private url: string = 'http://localhost:3000/profile/';
+  private token: string = localStorage.getItem('id_token');
+  private userId: string = localStorage.getItem('userId');
+
+  private url: string = '/profile/';
   // private token = localStorage.getItem('id_token');
   // private userId = localStorage.getItem('userId');
 
@@ -33,6 +36,22 @@ export class ProfileService {
     }
   }
 
+
+  updateUser(user) {
+  //  console.log(user)
+    const body = JSON.stringify(user);
+    const headers = new Headers({'Content-Type': 'application/json'});
+    headers.append('Authorization', '' + this.token);
+    return this.http.put( '/profile/' + user._id, body, {headers: headers})
+      .map(response => response.json())
+      .catch((error: Response) => {
+        this.errorService.handleError(error.json());
+        return Observable.throw(error.json());
+      });
+  }
+
+
+
   // submit the new password via the form in front end
   newPassword(newPass: newPassword) {
     if (this.authService.isLoggedIn()) {
@@ -40,7 +59,7 @@ export class ProfileService {
       const body = JSON.stringify(newPass);
       const headers = new Headers({'Content-Type': 'application/json'});
       headers.append('Authorization', '' + token);
-      return this.http.post('http://localhost:3000/profile/password', body, {headers: headers})
+      return this.http.post('/profile/password', body, {headers: headers})
         .map((response: Response) => response.json())
         .catch((error: Response) => {
           this.errorService.handleError((error.json()));

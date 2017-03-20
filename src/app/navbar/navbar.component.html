@@ -11,10 +11,20 @@
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        <li><a [routerLink]="['/form']" *ngIf="isLoggedIn()" routerLinkActive="active">Add Form</a></li>
-        <li><a [routerLink]="['/user/forms']" *ngIf="isLoggedIn()" routerLinkActive="active">My Forms</a></li>
         <li><a [routerLink]="['/user/profile']" *ngIf="isLoggedIn()" routerLinkActive="active">Profile</a></li>
-        <li><a [routerLink]="['admin']" *ngIf="isAdmin()" routerLinkActive="active">Admin Panel</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Items <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a [routerLink]="['/form']" *ngIf="isLoggedIn()" routerLinkActive="active">Add Form</a></li>
+            <li><a [routerLink]="['/map']" *ngIf="isLoggedIn()" routerLinkActive="active">Map</a></li>
+            <li><a [routerLink]="['/user/forms']" *ngIf="isLoggedIn()" routerLinkActive="active">My Forms</a></li>
+            <li><a [routerLink]="['/user/profile']" *ngIf="isLoggedIn()" routerLinkActive="active">Profile</a></li>
+            <li><a [routerLink]="['/companie']" *ngIf="isLoggedIn()" routerLinkActive="active">Companies</a></li>
+            <li><a [routerLink]="['admin']" *ngIf="isAdmin()" routerLinkActive="active">Admin Panel</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">One more separated link</a></li>
+          </ul>
+        </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a [routerLink]="['/user/register']" *ngIf="!isLoggedIn()">Register</a></li>
@@ -27,3 +37,4 @@
     </div><!--/.nav-collapse -->
   </div>
 </nav>
+<template ngbModalContainer></template>

@@ -1,6 +1,6 @@
 import { browser, element, by } from 'protractor';
 
-export class FormsPage {
+export class Ng2FormsDemoPage {
   navigateTo() {
     return browser.get('/');
   }

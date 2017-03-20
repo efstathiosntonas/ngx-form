@@ -20,7 +20,7 @@ export class EditUsersFormsComponent implements OnInit, AfterViewInit {
   textInput2: FormControl;
 
   jwt: string = localStorage.getItem('id_token');
-  url: string = 'http://localhost:3000/admin/edit/';
+  url: string = '/admin/edit/';
   maxSize: number = 5000000;
   invalidFileSizeMessage: string = '{0}: Invalid file size, ';
   invalidFileSizeMessageDetail: string = 'Maximum upload size is {0}.';

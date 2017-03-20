@@ -3,6 +3,7 @@ var express = require('express'),
     config  = require('../config/config'),
     User    = require('../models/user.model'),
     Form    = require('../models/form.model'),
+    Options    = require('../models/options.model'),
     fs      = require('fs'),
     jwt     = require('jsonwebtoken');
 
@@ -50,6 +51,69 @@ router.use('/', function (req, res, next) {
   })
 });
 
+
+
+
+router.get('/singleFormFromOptions/:typeOption/:namePage/:positionImage', function (req, res, next) {
+  Options.findOne({}, function (err, obj) {
+    if (err) {
+      return res.status(403).json({
+        title: 'There was a problem',
+        error: err
+      });
+    }
+    if (!obj) {
+      return res.status(403).json({
+        title: 'Wrong Email or Password',
+        error: {message: 'Please check if your password or email are correct'}
+      })
+    }
+    let idForm = obj[req.params.typeOption][req.params.namePage][req.params.positionImage]
+    Form.findById((idForm), function (err, form) {
+      if (err) {
+        return res.status(500).json({
+          message: 'An error occured',
+          err: err
+        })
+      }
+      if (!form) {
+        return res.status(404).json({
+          title: 'No form found',
+          error: {message: 'Form not found!'}
+        });
+      }
+      res.status(200).json({
+        obj: form
+      });
+    });
+
+  })
+
+  // Form.find({textInputOne: req.params.position})
+  //   .sort('-updatedAt')
+  //   .limit(1)
+  //   .exec(function (err, form) {
+  //   if (err) {
+  //     return res.status(500).json({
+  //       message: 'An error occured',
+  //       err: err
+  //     })
+  //   }
+  //   if (!form) {
+  //     return res.status(404).json({
+  //       title: 'No form founds',
+  //       error: {message: 'Form not found!'}
+  //     });
+  //   }
+  //   res.status(200).json({
+  //
+  //     form: form[0]
+  //   });
+  // });
+});
+
+
+
 // getting user forms to display them on front end
 router.get('/:id', function (req, res, next) {
   User.findById(({_id: req.user._id}), function (err) {
@@ -76,8 +140,8 @@ router.get('/:id', function (req, res, next) {
   })
 });
 
-// deleting forms among associated files
 
+// deleting forms among associated files
 router.delete('/:id', function (req, res, next) {
   Form.findById((req.params.id), function (err, form) {
 
