@@ -18,8 +18,11 @@ router.post('/register', function (req, res, next) {
     email: req.body.email,
     password: passwordHash.generate(req.body.password)
   });
+  console.log(user)
   user.save(function (err, result) {
     if (err) {
+      console.log(err)
+      console.log(result)
       return res.status(403).json({
         title: 'There was an issue',
         error: {message: 'The email you entered already exists'}

@@ -1,0 +1,76 @@
+<sebm-google-map
+     [latitude]="lat"
+     [longitude]="lng"
+     [zoom]="zoom"
+     [disableDefaultUI]="false"
+     [zoomControl]="false"
+     (mapClick)="mapClicked($event)">
+
+
+
+
+
+     <sebm-google-map-marker
+         *ngFor="let m of markers"
+         (markerClick)="clickedMarker(m.label, m.index)"
+         [latitude]="m.lat"
+         [longitude]="m.lng"
+         [label]="m.label"
+         [markerDraggable]="m.draggable"
+         (dragEnd)="markerDragEnd(m, $event)">
+
+         <sebm-google-map-info-window>
+           <strong>{{m.label}}</strong>
+         </sebm-google-map-info-window>
+
+     </sebm-google-map-marker>
+
+     <sebm-google-map-circle [latitude]="lat + 0.3" [longitude]="lng"
+         [radius]="5000"
+         [fillColor]="'red'"
+         [circleDraggable]="true"
+         [editable]="true">
+     </sebm-google-map-circle>
+
+
+
+
+<!--
+     <sebm-google-map-polyline>
+        <sebm-google-map-polyline-point *ngFor="let m of markers" [latitude]="m.lat" [longitude]="m.lng">
+        </sebm-google-map-polyline-point>
+    </sebm-google-map-polyline>
+-->
+
+   </sebm-google-map>
+
+
+
+   <table class="table table-hover table-responsive table-condensed">
+     <thead>
+       <tr>
+         <th>Coord</th>
+         <th>Name</th>
+         <th>draggable</th>
+         <th>index</th>
+
+       </tr>
+     </thead>
+     <tbody>
+       <tr *ngFor="let m of markers">
+        <td>{{m.lat}} / {{m.lng}}</td>
+        <td>
+
+          <md-input  name="label"
+
+          placeholder="label"
+          [(ngModel)]="m.label"
+          #address="ngModel">
+          </md-input>
+        </td>
+        <td>{{m.draggable}}</td>
+        <td>{{m.index}}</td>
+
+      </tr>
+    </tbody>
+  </table>

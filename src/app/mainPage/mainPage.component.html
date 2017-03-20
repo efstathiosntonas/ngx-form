@@ -1,8 +1,12 @@
 <div class="container">
   <div class="jumbotron topPad">
     <h1>Instructions</h1>
+    <table>
+        <div>
+          <img src="./uploads/forms/{{fetchedForms.owner}}/{{fetchedForms.imagePath}}" onerror="this.src ='assets/images/no-image-found.jpg'">
+        </div>
+    </table>
     <p>Please first signup and then login so you can submit a form!</p>
     <button type="button" [routerLink]="['/form']" class="btn" *ngIf="isLoggedIn()">Go to submit a new Form</button>
   </div>
 </div>
-

@@ -9,7 +9,7 @@ import {AuthService} from '../../auth/auth.service';
 
 @Injectable()
 export class AdminService {
-  private url: string = 'http://localhost:3000/admin';
+  private url: string = '/admin';
   private token: string = localStorage.getItem('id_token');
   private forms = [];
   private singleForm = Object;
@@ -28,13 +28,11 @@ export class AdminService {
       headers.append('Authorization', '' + token);
       return this.http.get(this.url, {headers: headers})
         .map((response: Response) => {
-          console.log(response);
           const forms = response.json().forms;
           let fetchedForms = [];
           for (let form of forms) {
             fetchedForms.push(form);
           }
-          console.log(fetchedForms);
           this.forms = fetchedForms;
           return fetchedForms;
         })
@@ -85,4 +83,3 @@ export class AdminService {
     return false;
   }
 }
-

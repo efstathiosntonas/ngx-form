@@ -1,5 +1,7 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../auth/auth.service';
+import {FormService} from '../form/form.service';
+
 
 @Component({
   selector: 'app-mainpage',
@@ -7,8 +9,20 @@ import {AuthService} from '../auth/auth.service';
   styleUrls: ['./mainPage.component.css']
 })
 
-export class MainPageComponent {
-  constructor(private authService: AuthService) {
+
+export class MainPageComponent implements OnInit {
+  fetchedForms = {};
+  constructor(
+    private authService: AuthService,
+    private formService: FormService
+  ) {
+  }
+
+  ngOnInit() {
+    this.formService.getSingleFormFromOptions('design','mainPage','imgLeft')
+      .subscribe(
+        forms => this.fetchedForms = forms.obj,
+        error => console.log(error));
   }
 
   // check if user is logged in by asking the authentication service, we use this function in html file *ngIf directive

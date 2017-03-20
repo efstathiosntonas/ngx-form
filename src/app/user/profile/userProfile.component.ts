@@ -10,9 +10,10 @@ import {ToastsManager} from 'ng2-toastr';
   styleUrls: ['./userProfile.component.css']
 })
 export class UserProfileComponent implements OnInit {
+  private editFieldRole:boolean = false;
   private userId: string = localStorage.getItem('userId');
   private token: string = localStorage.getItem('id_token');
-  url: string = 'http://localhost:3000/profile/image';
+  url: string = '/profile/image';
   user: UserProfile;
   fetchedUser: any[] = [];
   maxSize: number = 5000000;
@@ -141,5 +142,26 @@ export class UserProfileComponent implements OnInit {
     xhr.send(formData);
     console.log(xhr);
   }
-}
 
+  updateUser(user){
+    this.editFieldRole = false;
+    this.profileService.updateUser(user)
+      .subscribe(
+        res => {
+          this.toastr.success('Great!', res.message);
+        },
+        error => {
+          console.log(error);
+        }
+      );
+
+  }
+
+  editField(nameField:string) {
+    if(this.editFieldRole == true) {
+      this.editFieldRole = false;
+    } else {
+      this.editFieldRole = true;
+    }
+  }
+}

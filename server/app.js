@@ -7,12 +7,15 @@ var express      = require('express'),
     config       = require('./config/config');
 
 var userRoute    = require('./routes/user');
+var companieRoute    = require('./routes/companie');
+var regionRoute    = require('./routes/region');
 var uploadRoute  = require('./routes/upload');
 var forgotRoutes = require('./routes/forgetPassword');
 var resetRoutes  = require('./routes/resetPassword');
 var userForms    = require('./routes/userForms');
 var userProfile  = require('./routes/userProfile');
 var adminPage    = require('./routes/admin');
+var options    = require('./routes/options');
 
 var app = express();
 
@@ -40,12 +43,15 @@ app.use(function (req, res, next) {
 
 // setting up routes models
 app.use('/user', userRoute);
+app.use('/companie', companieRoute);
+app.use('/region', regionRoute);
 app.use('/user/forgot', forgotRoutes);
 app.use('/user/reset', resetRoutes);
 app.use('/uploads', uploadRoute);
 app.use('/forms', userForms);
 app.use('/profile', userProfile);
 app.use('/admin', adminPage);
+app.use('/options', options);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

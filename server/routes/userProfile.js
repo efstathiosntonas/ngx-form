@@ -191,6 +191,38 @@ router.post('/password', function (req, res, next) {
   });
 });
 
+
+
+
+//update profile @alan
+router.put('/:id', function (req, res, next) {
+  User.findById(({_id: req.params.id}), function (err, item) {
+    if (err) {
+      return res.status(404).json({
+        message: 'No forms found for this user',
+        err: err
+      })
+    } else {
+        item.role = req.body.role;
+        item.save(function (err, result) {
+          if (err) {
+            return res.status(404).json({
+              message: 'There was an error, please try again',
+              err: err
+            });
+          }
+          res.status(201).json({
+            message: 'Profile picture uploaded successfully',
+            obj: result
+          });
+        });
+
+    }
+  })
+});
+
+
+
 var rmDir = function (dirPath, removeSelf) {
   if (removeSelf === undefined)
     removeSelf = true;

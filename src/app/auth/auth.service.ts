@@ -19,7 +19,7 @@ export class AuthService {
   signup(user: User) {
     const body = JSON.stringify(user);
     const headers = new Headers({'Content-Type': 'application/json'});
-    return this.http.post('http://localhost:3000/user/register', body, {headers: headers})
+    return this.http.post('/user/register', body, {headers: headers})
       .map(response => response.json())
       .catch((error: Response) => {
         this.errorService.handleError(error.json());
@@ -31,7 +31,7 @@ export class AuthService {
   signin(user: User) {
     const body = JSON.stringify(user);
     const headers = new Headers({'Content-Type': 'application/json'});
-    return this.http.post('http://localhost:3000/user/login', body, {headers: headers})
+    return this.http.post('/user/login', body, {headers: headers})
       .map((response: Response) => response.json())
       .catch((error: Response) => {
         this.errorService.handleError(error.json());
@@ -43,7 +43,7 @@ export class AuthService {
   forget(reset: Reset) {
     const body = JSON.stringify(reset);
     const headers = new Headers({'Content-Type': 'application/json'});
-    return this.http.post('http://localhost:3000/user/forgot', body, {headers: headers})
+    return this.http.post('/user/forgot', body, {headers: headers})
       .map((response: Response) => response.json())
       .catch((error: Response) => {
         this.errorService.handleError(error.json());
@@ -55,7 +55,7 @@ export class AuthService {
   reset(reset: Reset) {
     const body = JSON.stringify(reset);
     const headers = new Headers({'Content-Type': 'application/json'});
-    return this.http.post('http://localhost:3000/user/reset/' + reset.token, body, {headers: headers})
+    return this.http.post('/user/reset/' + reset.token, body, {headers: headers})
       .map((response: Response) => response.json())
       .catch((error: Response) => {
         this.errorService.handleError(error.json());

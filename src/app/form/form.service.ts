@@ -10,7 +10,7 @@ import 'rxjs/add/operator/catch';
 @Injectable()
 export class FormService {
 
-  private url: string = 'http://localhost:3000/';
+  private url: string = '/';
   private token: string = localStorage.getItem('id_token');
   private userId: string = localStorage.getItem('userId');
   private forms = [];
@@ -60,6 +60,21 @@ export class FormService {
     let headers = new Headers({'Content-Type': 'application/json'});
     headers.append('Authorization', '' + this.token);
     return this.http.get(this.url + 'forms/edit/' + formId, {headers: headers})
+      .map((response: Response) => {
+        this.singleForm = response.json();
+        return this.singleForm;
+      })
+      .catch((error: Response) => {
+        this.errorService.handleError(error.json());
+        return Observable.throw(error.json());
+      });
+  }
+
+
+  getSingleFormFromOptions(typeOption, namePage, positionImage) {
+    let headers = new Headers({'Content-Type': 'application/json'});
+    headers.append('Authorization', '' + this.token);
+    return this.http.get(this.url + 'forms/singleFormFromOptions/' + typeOption  + '/' + namePage + '/' + positionImage, {headers: headers})
       .map((response: Response) => {
         this.singleForm = response.json();
         return this.singleForm;

@@ -13,6 +13,7 @@ import {AuthService} from '../auth/auth.service';
 })
 export class FormComponent implements OnInit, AfterViewInit {
 
+
   // setting up the form
   myForm: FormGroup;
   textInput1: FormControl;
@@ -20,7 +21,7 @@ export class FormComponent implements OnInit, AfterViewInit {
 
   // get the Auth Token from localStorage in order to Authenticate to back end while submitting the form
   token: string = localStorage.getItem('id_token');
-  url: string = 'http://localhost:3000/uploads';
+  url: string = '/uploads';
   maxSize: number = 5000000;
   invalidFileSizeMessage: string = '{0}: Invalid file size, ';
   invalidFileSizeMessageDetail: string = 'Maximum upload size is {0}.';
@@ -33,8 +34,15 @@ export class FormComponent implements OnInit, AfterViewInit {
   name: string;
   onClear: EventEmitter<any> = new EventEmitter();
 
-  constructor(private _fb: FormBuilder, private toastr: ToastsManager, private router: Router,
-              private sanitizer: DomSanitizer, private renderer: Renderer, private authService: AuthService) {}
+  constructor(
+      private _fb: FormBuilder,
+      private toastr: ToastsManager,
+      private router: Router,
+      private sanitizer: DomSanitizer,
+      private renderer: Renderer,
+      private authService: AuthService,
+
+    ) {}
 
   // event fired when the user selects an image
   onFileSelect(event) {
@@ -133,7 +141,8 @@ export class FormComponent implements OnInit, AfterViewInit {
       if (xhr.readyState === 4) {
         this.progress = 0;
         if (xhr.status === 201) {
-          this.router.navigateByUrl('/user/forms');
+          //this.router.navigateByUrl('/user/forms');
+          location.reload();
           this.toastr.success('Form submitted successfully');
         } else if (xhr.status !== 201) {
           this.toastr.error('There was an error!');
