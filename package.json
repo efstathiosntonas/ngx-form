@@ -1,6 +1,6 @@
 {
   "name": "ngx-form",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "license": "MIT",
   "angular-cli": {},
   "scripts": {
@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/efstathiosntonas/ng2-form-demo"
+    "url": "https://github.com/efstathiosntonas/ngx-form"
   },
   "keywords": [
     "MEAN2",

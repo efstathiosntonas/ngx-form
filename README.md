@@ -1,6 +1,6 @@
 ngx-Form with file upload to file system, image path stored to Mongo. Project is built using the MEA2N/MEAN2 stack. This project could be used as an angular2-seed.
 
-[![NPM](https://nodei.co/npm/ng2-forms-demo.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/ng2-forms-demo/)
+[![NPM](https://nodei.co/npm/ngx-form.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/ngx-form/)
 
 ## TODO
 1. Fix profile page user image upload
@@ -8,7 +8,7 @@ ngx-Form with file upload to file system, image path stored to Mongo. Project is
 
 # ngx-Form
 
-This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.21.
+This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.1.0.
 
 The goal of this project is to submit a form with one file upload and two text fields. The form is submitted to back end, the file is stored in the `uploads/forms/:userID` and then the file name (string) is stored in MongoDB among the two text fields. At the end, the form ID is assinged to the signed in user ID (via Ref) for later viewing all the form fields and file in the front end. User profile image is stored at `uploads/profiles/:userID`.
 
