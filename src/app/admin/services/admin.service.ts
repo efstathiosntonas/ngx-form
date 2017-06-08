@@ -1,21 +1,21 @@
 import {Injectable} from '@angular/core';
-import {Headers, Response, Http} from '@angular/http';
+import {Headers, Response} from '@angular/http';
 import {Observable} from 'rxjs';
 import {ErrorService} from '../../errorHandler/error.service';
 import {ToastsManager} from 'ng2-toastr';
 import {Form} from '../adminForms.model';
-import {JwtHelper} from 'angular2-jwt';
+import {AuthHttp, JwtHelper} from 'angular2-jwt';
 import {AuthService} from '../../auth/auth.service';
+import {ADMIN_API_URL} from '../../config/config';
 
 @Injectable()
 export class AdminService {
-  private url: string = 'http://localhost:3000/admin';
-  private token: string = localStorage.getItem('id_token');
-  private forms = [];
-  private singleForm = Object;
-  jwtHelper: JwtHelper = new JwtHelper();
+  private token: string        = localStorage.getItem('id_token');
+  private forms                = [];
+  private singleForm           = Object;
+          jwtHelper: JwtHelper = new JwtHelper();
 
-  constructor(private http: Http,
+  constructor(private authHttp: AuthHttp,
               private errorService: ErrorService,
               private toastr: ToastsManager,
               private authService: AuthService) {
@@ -23,13 +23,13 @@ export class AdminService {
 
   getUserForms() {
     if (this.authService.isLoggedIn()) {
-      let token = localStorage.getItem('id_token');
+      let token   = localStorage.getItem('id_token');
       let headers = new Headers({'Content-Type': 'application/json'});
-      headers.append('Authorization', '' + token);
-      return this.http.get(this.url, {headers: headers})
+      headers.append('Authorization', token);
+      return this.authHttp.get(`${ADMIN_API_URL}/forms`, {headers: headers})
         .map((response: Response) => {
           console.log(response);
-          const forms = response.json().forms;
+          const forms      = response.json().forms;
           let fetchedForms = [];
           for (let form of forms) {
             fetchedForms.push(form);
@@ -45,11 +45,24 @@ export class AdminService {
     }
   }
 
+  editForm(editForm, formId) {
+    const body    = JSON.stringify(editForm);
+    const headers = new Headers({'Content-Type': 'application/json'});
+    console.log(editForm, formId);
+    headers.append('Authorization', this.token);
+    return this.authHttp.patch(`${ADMIN_API_URL}/form/` + formId, body, {headers: headers})
+      .map((response: Response) => response.json())
+      .catch((error: Response) => {
+        this.errorService.handleError(error.json());
+        return Observable.throw(error.json());
+      });
+  }
+
   deleteForm(form: Form) {
     this.forms.splice(this.forms.indexOf(form), 1);
     let headers = new Headers({'Content-Type': 'application/json'});
-    headers.append('Authorization', '' + this.token);
-    return this.http.delete(this.url + '/' + form, {headers: headers})
+    headers.append('Authorization', this.token);
+    return this.authHttp.delete(`${ADMIN_API_URL}/form/` + form, {headers: headers})
       .map((response: Response) => {
         this.toastr.success('Form deleted successfully!');
         response.json();
@@ -62,8 +75,8 @@ export class AdminService {
 
   getSingleForm(formId) {
     let headers = new Headers({'Content-Type': 'application/json'});
-    headers.append('Authorization', '' + this.token);
-    return this.http.get(this.url + '/edit/' + formId, {headers: headers})
+    headers.append('Authorization', this.token);
+    return this.authHttp.get(`${ADMIN_API_URL}/form/` + formId, {headers: headers})
       .map((response: Response) => {
         this.singleForm = response.json();
         return this.singleForm;
@@ -78,7 +91,7 @@ export class AdminService {
   isAdmin() {
     let userInfo = localStorage.getItem('id_token') ? this.jwtHelper.decodeToken(localStorage.getItem('id_token')) : null;
     if (userInfo) {
-      if (userInfo.user.role[0] === 'admin') {
+      if (userInfo.role[0] === 'admin') {
         return true;
       }
     }

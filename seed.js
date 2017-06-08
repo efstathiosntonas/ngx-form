@@ -6,6 +6,7 @@ var mongoose     = require('mongoose'),
     fs           = require('fs'),
     Schema       = mongoose.Schema,
     uploadsDir   = './server/uploads',
+    tempDir   = './server/uploads/tmp',
     formsDir     = './server/uploads/forms',
     profilesDir  = './server/uploads/profiles';
 
@@ -46,6 +47,12 @@ async.series([
       }else
       {
         console.log("Forms directory already exist");
+      }
+      if (!fs.existsSync(tempDir)){
+        fs.mkdirSync(tempDir);
+      }else
+      {
+        console.log("Temp directory already exist");
       }
       if (!fs.existsSync(profilesDir)){
         fs.mkdirSync(profilesDir);

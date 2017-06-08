@@ -1,14 +1,15 @@
-import {Component, OnInit, EventEmitter, ElementRef, ViewChild, Renderer, AfterViewInit} from '@angular/core';
-import {FormGroup, FormControl, FormBuilder, Validators} from '@angular/forms';
+import {AfterViewInit, Component, ElementRef, EventEmitter, OnInit, Renderer, ViewChild} from '@angular/core';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ToastsManager} from 'ng2-toastr';
-import {Router, ActivatedRoute} from '@angular/router';
-import {DomSanitizer} from '@angular/platform-browser';
+import {ActivatedRoute, Router} from '@angular/router';
 import {AdminService} from '../services/admin.service';
+import {BASE_URL, FORMS_API_URL} from '../../config/config';
+import {Form} from '../adminForms.model';
 
 @Component({
-  selector: 'app-edit-users-forms',
+  selector   : 'app-edit-users-forms',
   templateUrl: './editUsersForms.component.html',
-  styleUrls: ['./editUsersForms.component.css']
+  styleUrls  : ['./editUsersForms.component.css']
 })
 export class EditUsersFormsComponent implements OnInit, AfterViewInit {
 
@@ -16,29 +17,36 @@ export class EditUsersFormsComponent implements OnInit, AfterViewInit {
 
   fetchedForm: any[] = [];
   myForm: FormGroup;
-  textInput1: FormControl;
-  textInput2: FormControl;
+  textInputOne: FormControl;
+  textInputTwo: FormControl;
 
-  jwt: string = localStorage.getItem('id_token');
-  url: string = 'http://localhost:3000/admin/edit/';
-  maxSize: number = 5000000;
-  invalidFileSizeMessage: string = '{0}: Invalid file size, ';
+  token: string                        = localStorage.getItem('id_token');
+  url: string                          = `${FORMS_API_URL}/image`;
+  imageUrl: string                     = `${BASE_URL}/uploads/tmp/`;
+  maxSize: number                      = 5000000;
+  invalidFileSizeMessage: string       = '{0}: Invalid file size, ';
   invalidFileSizeMessageDetail: string = 'Maximum upload size is {0}.';
   public files: File[];
-  public progress: number = 0;
+  public progress: number              = 0;
   public submitStarted: boolean;
+  formId: string;
+  imagePath: string;
+  imageReady                           = false;
+  oldImage                             = true;
   @ViewChild('textOne') textOne: ElementRef;
   @ViewChild('fileInput') fileInput: ElementRef;
 
-  constructor(private adminService: AdminService, private toastr: ToastsManager, private _fb: FormBuilder,
-              private router: Router, private route: ActivatedRoute, private sanitizer: DomSanitizer,
+  constructor(private adminService: AdminService,
+              private toastr: ToastsManager,
+              private fb: FormBuilder,
+              private router: Router,
+              private route: ActivatedRoute,
               private renderer: Renderer) {
   }
 
   ngOnInit() {
-    // grabbing the form id from the url
-    let formId = this.route.snapshot.params['id'];
-    this.adminService.getSingleForm(formId)
+    this.formId = this.route.snapshot.params['id'];
+    this.adminService.getSingleForm(this.formId)
       .subscribe(
         (data => {
           const formArray = [];
@@ -49,12 +57,12 @@ export class EditUsersFormsComponent implements OnInit, AfterViewInit {
         })
       );
 
-    this.textInput1 = new FormControl('', Validators.required);
-    this.textInput2 = new FormControl('', Validators.required);
+    this.textInputOne = new FormControl('', Validators.required);
+    this.textInputTwo = new FormControl('', Validators.required);
 
-    this.myForm = this._fb.group({
-      textInput1: this.textInput1,
-      textInput2: this.textInput2
+    this.myForm = this.fb.group({
+      textInputOne: this.textInputOne,
+      textInputTwo: this.textInputTwo
     });
   }
 
@@ -72,14 +80,47 @@ export class EditUsersFormsComponent implements OnInit, AfterViewInit {
 
   // event fired when the user selects an image
   onFileSelect(event) {
+    this.submitStarted = true;
     this.clear();
     let files = event.dataTransfer ? event.dataTransfer.files : event.target.files;
     for (let i = 0; i < files.length; i++) {
       let file = files[i];
       if (this.validate(file)) {
         if (this.isImage(file)) {
-          file.objectURL = this.sanitizer.bypassSecurityTrustUrl((window.URL.createObjectURL(files[i])));
           this.files.push(files[i]);
+          let xhr      = new XMLHttpRequest();
+          let formData = new FormData();
+
+          for (let i = 0; i < this.files.length; i++) {
+            formData.append('fileUp', this.files[i], this.files[i].name);
+          }
+
+          xhr.onreadystatechange = () => {
+            if (xhr.readyState === 4) {
+              this.progress = 0;
+              if (xhr.status === 201) {
+                this.imagePath     = xhr.response.replace(/^"|"$/g, '');
+                this.imageReady    = true;
+                this.oldImage      = false;
+                this.submitStarted = false;
+              } else if (xhr.status !== 201) {
+                this.toastr.error('There was an error, please try again later');
+                this.submitStarted = false;
+                this.oldImage      = true;
+                this.clear();
+              }
+              this.clear();
+            }
+          };
+          xhr.upload.addEventListener('progress', (e: ProgressEvent) => {
+            if (e.lengthComputable) {
+              this.progress = Math.round((e.loaded * 100) / e.total);
+            }
+          }, false);
+
+          xhr.open('POST', this.url, true);
+          xhr.setRequestHeader('Authorization', 'JWT ' + this.token);
+          xhr.send(formData);
         }
       } else if (!this.isImage(file)) {
         this.toastr.error('Only images are allowed');
@@ -120,6 +161,7 @@ export class EditUsersFormsComponent implements OnInit, AfterViewInit {
     if (this.maxSize && file.size > this.maxSize) {
       this.toastr.error(this.invalidFileSizeMessageDetail.replace('{0}', this.formatSize(this.maxSize)),
         this.invalidFileSizeMessage.replace('{0}', file.name));
+      this.submitStarted = false;
       return false;
     }
     return true;
@@ -130,49 +172,32 @@ export class EditUsersFormsComponent implements OnInit, AfterViewInit {
     if (bytes === 0) {
       return '0 B';
     }
-    let k = 1000,
-      dm = 3,
-      sizes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
-      i = Math.floor(Math.log(bytes) / Math.log(k));
+    let k     = 1000,
+        dm    = 3,
+        sizes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
+        i     = Math.floor(Math.log(bytes) / Math.log(k));
 
     return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
   }
 
   // submit the form to back end
-  onSubmitEditedForm() {
+
+  submitEditedForm() {
     this.submitStarted = true;
-    let formId = this.route.snapshot.params['id'];
-    let xhr = new XMLHttpRequest();
-    let formData = new FormData();
-    // checking if the user tries to upload a new image, if he does then the new image will be uploaded
-    if (typeof this.files === 'object') {
-      for (let i = 0; i < this.files.length; i++) {
-        formData.append('fileUp', this.files[i], this.files[i].name);
-      }
-    }
-    xhr.upload.addEventListener('progress', (event: ProgressEvent) => {
-      if (event.lengthComputable) {
-        this.progress = Math.round((event.loaded * 100) / event.total);
-      }
-    }, false);
-    xhr.onreadystatechange = () => {
-      if (xhr.readyState === 4) {
-        this.progress = 0;
-        if (xhr.status === 201) {
+    const editForm     = new Form(
+      this.myForm.value.textInputOne,
+      this.myForm.value.textInputTwo,
+      this.imagePath
+    );
+    this.adminService.editForm(editForm, this.formId)
+      .subscribe(
+        data => {
           this.router.navigateByUrl('/admin');
           this.toastr.success('Form edited successfully');
-        } else if (xhr.status !== 201) {
-          this.toastr.error('There was an error!');
+        }, error => {
+          this.submitStarted = false;
+          this.toastr.error('There was an error, please try again later');
         }
-        this.clear();
-      }
-    };
-    xhr.open('PATCH', this.url + formId, true);
-    formData.append('textInput1', this.myForm.value.textInput1);
-    formData.append('textInput2', this.myForm.value.textInput2);
-    xhr.withCredentials = true;
-    xhr.setRequestHeader('Authorization', this.jwt);
-    xhr.send(formData);
-    console.log(xhr);
+      );
   }
 }

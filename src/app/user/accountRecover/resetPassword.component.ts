@@ -19,21 +19,21 @@ export class ResetPasswordComponent implements OnInit, AfterViewInit {
   token: string;
   @ViewChild('newPassword') newPassword: ElementRef;
 
-  constructor(private _fb: FormBuilder, private _authService: AuthService, private _router: Router,
-              private _activatedRoute: ActivatedRoute, private toastr: ToastsManager, private renderer: Renderer) {
-    this.token = _activatedRoute.snapshot.params['token'];
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router,
+              private activatedRoute: ActivatedRoute, private toastr: ToastsManager, private renderer: Renderer) {
+    this.token = activatedRoute.snapshot.params['token'];
   }
 
   ngOnInit() {
 
     this.password = new FormControl('', [Validators.required, Validators.minLength(6)]);
 
-    this.myForm = this._fb.group({
+    this.myForm = this.fb.group({
       password: this.password
     });
 
-    if (this._authService.isLoggedIn()) {
-      this._router.navigate(['/']);
+    if (this.authService.isLoggedIn()) {
+      this.router.navigate(['/']);
     }
   }
 
@@ -46,10 +46,10 @@ export class ResetPasswordComponent implements OnInit, AfterViewInit {
   onSubmit() {
     const password = new Reset(null, this.token, this.myForm.value.password);
     console.log(password);
-    this._authService.reset(password)
+    this.authService.reset(password)
       .subscribe(
         data => {
-          this._router.navigate(['/user/login']);
+          this.router.navigate(['/user/login']);
           this.toastr.success('Your password has been changed succesfully');
         },
         error => console.log(error)

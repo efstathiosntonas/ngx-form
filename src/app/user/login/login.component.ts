@@ -17,23 +17,23 @@ export class LoginComponent implements OnInit, AfterViewInit {
   password: FormControl;
   @ViewChild('userEmail') userEmail: ElementRef;
 
-  constructor(private _fb: FormBuilder, private _authService: AuthService,
-              private _router: Router, private toastr: ToastsManager, private renderer: Renderer) {
+  constructor(private fb: FormBuilder, private authService: AuthService,
+              private router: Router, private toastr: ToastsManager, private renderer: Renderer) {
   }
 
   ngOnInit() {
     this.email = new FormControl('', [Validators.required, this.emailValidator]);
     this.password = new FormControl('', [Validators.required, Validators.minLength(6)]);
 
-    this.myForm = this._fb.group({
+    this.myForm = this.fb.group({
       email: this.email,
       password: this.password
     });
 
     // check if the user is logged in while trying to access the login page, if the user is logged in, we redirect him to the form page
-    if (this._authService.isLoggedIn()) {
+    if (this.authService.isLoggedIn()) {
       this.toastr.info('You are already logged in');
-      this._router.navigate(['/']);
+      this.router.navigate(['/']);
     }
   }
 
@@ -46,15 +46,18 @@ export class LoginComponent implements OnInit, AfterViewInit {
   // submit the login form with the user credentials and navigate the user to the index page of our app
   onSubmit() {
     const user = new User(this.myForm.value.email, this.myForm.value.password);
-    this._authService.signin(user)
+    this.authService.signin(user)
       .subscribe(
         data => {
+          console.log(data.user)
           // if the user credentials are correct, set the localStorage token and userId,
           // we need these info in order to do stuff later when the user is signed in and verified
           localStorage.setItem('id_token', data.token);
-          localStorage.setItem('userId', data.userId);
+          localStorage.setItem('userId', data.user._id);
+          localStorage.setItem('email', data.user.email);
+          localStorage.setItem('role', data.user.role[0]);
           // navigate user to index page of our app
-          this._router.navigate(['/']);
+          this.router.navigate(['/']);
           // display toastr success message pop up to inform the user that he logged in successfully
           this.toastr.success('You have been logged in!');
         },

@@ -1,7 +1,7 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {HttpModule, RequestOptions, Http} from '@angular/http';
+import {Http, HttpModule} from '@angular/http';
 import {AppComponent} from './app.component';
 import {NavbarComponent} from './navbar/navbar.component';
 import {FormComponent} from './form/form.component';
@@ -22,7 +22,6 @@ import {ForgetPasswordComponent} from './user/accountRecover/forgetPassword.comp
 import {FormService} from './form/form.service';
 import {UserFormsComponent} from './userForms/formsTable/userForms.component';
 import {EditUserFormComponent} from './userForms/editForm/editUserForm.component';
-import {ProgressBarModule} from 'ng2-progress-bar';
 import {ErrorPageComponent} from './errorPage/errorPage.component';
 import {AdminPageComponent} from './admin/adminPage/adminPage.component';
 import {AdminService} from './admin/services/admin.service';
@@ -32,16 +31,19 @@ import {AdminComponent} from './admin/admin.component';
 import {UserProfileComponent} from './user/profile/userProfile.component';
 import {ProfileService} from './user/profile/profile.service';
 import {ChangePasswordComponent} from './user/profile/changePassword/changePassword.component';
-import {AuthHttp, AuthConfig} from 'angular2-jwt';
+import {AuthConfig, AuthHttp} from 'angular2-jwt';
+import {ProgressBarModule} from 'ngx-progress-bar';
+import {CustomOption} from './config/toastr.config';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {Ng2Bs3ModalModule} from 'ng2-bs3-modal/ng2-bs3-modal';
 
 
-let options = <ToastOptions> {
-  animate: 'flyRight',
-  positionClass: 'toast-top-right',
-};
-
-export function authHttpServiceFactory(http: Http, options: RequestOptions) {
-  return new AuthHttp( new AuthConfig({}), http, options);
+export function getAuthHttp(http) {
+  return new AuthHttp(new AuthConfig({
+    noJwtError   : true,
+    headerPrefix : 'JWT',
+    globalHeaders: [{'Content': 'application/json'}],
+  }), http);
 }
 
 @NgModule({
@@ -66,7 +68,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     UserProfileComponent,
     ChangePasswordComponent
   ],
-  imports: [
+  imports     : [
     BrowserModule,
     CommonModule,
     FormsModule,
@@ -74,10 +76,12 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     RouterModule,
     ReactiveFormsModule,
     routing,
-    ToastModule.forRoot(options),
-    ProgressBarModule
+    ProgressBarModule,
+    BrowserAnimationsModule,
+    ToastModule.forRoot(),
+    Ng2Bs3ModalModule
   ],
-  providers: [
+  providers   : [
     AuthGuardService,
     {provide: LocationStrategy, useClass: HashLocationStrategy},
     AuthService,
@@ -86,13 +90,14 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     AdminService,
     AdminGuardService,
     ProfileService,
+    {provide: ToastOptions, useClass: CustomOption},
     {
-      provide: AuthHttp,
-      useFactory: authHttpServiceFactory,
-      deps: [ Http, RequestOptions ]
-    }
+      provide   : AuthHttp,
+      useFactory: getAuthHttp,
+      deps      : [Http]
+    },
   ],
-  bootstrap: [AppComponent]
+  bootstrap   : [AppComponent]
 })
 export class AppModule {
 }

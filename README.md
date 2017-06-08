@@ -1,12 +1,12 @@
-Angular 2 Form with file upload to file system, image path stored to Mongo. Project is built using the MEA2N/MEAN2 stack. This project could be used as an angular2-seed.
+ngx-Form with file upload to file system, image path stored to Mongo. Project is built using the MEA2N/MEAN2 stack. This project could be used as an angular2-seed.
 
 [![NPM](https://nodei.co/npm/ng2-forms-demo.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/ng2-forms-demo/)
 
 ## TODO
-1. Resize the image client-side in order to reduce bandwidth of the server.
-2. Edit users in admin area
+1. Fix profile page user image upload
+2. Fix some small bugs in backend file deletion
 
-# Angular 2 Form
+# ngx-Form
 
 This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.21.
 
@@ -19,34 +19,39 @@ The goal of this project is to submit a form with one file upload and two text f
 more info in [gm](https://github.com/aheckmann/gm) page on how to install depending your Operating System. If installing ImageMagick on Windows, please check "Install Legacy Utitities (e.g. convert") during installation otherwise node will report errors.
 
 ## Specs
-1. User login/signup using JSON Web Token (jwt)
-2. User password reset via email (nodemailer & SendGrid)
-3. Toastr Notifications (& Error Handling)
+1. User login/signup using JSON Web Token (jwt) using Passport.
+2. User password reset via email (nodemailer & SendGrid) using HTML templates (welcome email included upon user registration).
+3. Toastr Notifications (& Error Handling).
 4. Multipart form submission with image preview before upload (some of the upload logic is taken from primeng ui).
-5. Storing images to file system
-6. Storing image path to MongoDB among text fields
-7. Triple check if image is actually a file by checking it's mime type in both back end and in front end (`gm` in back end checks if file is an image too by reading first bytes of the file, need to fix this to not allow form to be submitted at all)
-8. Double check for the image size in both back end and front end, file limit now is 5.000.000 bytes (5MB)
-9. Image resize server side using [GraphicsMagick](https://github.com/aheckmann/gm)
+5. Storing images to file system.
+6. Storing image path to MongoDB among text fields.
+7. Triple check if image is actually a file by checking it's mime type in both back end and in front end (`gm` in back end checks if file is an image too by reading first bytes of the file, need to fix this to not allow form to be submitted at all).
+8. Double check for the image size in both back end and front end, file limit now is 5.000.000 bytes (5MB).
+9. Image resize server side using [GraphicsMagick](https://github.com/aheckmann/gm).
 10. Form deletion among the file from filesystem, user forms array is updated too.
 11. Edit form, user can edit the text inputs and the image or update only the image or update only the text fields.
-12. Admin area, admin can edit or delete all forms in database
-13. User Profile area, user can upload a profile picture, change his password, view profile info like email, user id, role and joined date
+12. Admin area, admin can edit or delete all forms in database.
+13. User Profile area, user can upload a profile picture, change his password, view profile info like email, user id, role and joined date.
+14. Cron job to delete images from `uploads/tmp` folder when image age is greater than 1 hour. Cron runs every 1 hour, you need to run it `node cron.js`.
 
 ## Packages Used
-`Angular-cli v1.0.0-beta.24` <br />
-`Angular v2.4.1` <br />
+`Angular-cli v1.1.0` <br />
+`Angular v4.1.3` <br />
 `Webpack` <br />
 `Node v6.9.1` <br/>
 `MongoDB v3.2.10` <br/>
-`Mongoose v4.7.1` <br />
-`Express v4.14.0` <br />
+`Mongoose v4.10.5` <br />
+`Express v4.15.3` <br />
 `angular2-jwt v0.1.27` (only for checking the expiration date of the jwt token and the user role (admin or user)) <br />
-`jsonwebtoken v7.1.9` <br />
-`Multer v1.2.1` <br />
-`ng2-toastr v1.3.2` <br />
-`ng2-progress-bar 0.0.8` <br />
+`jsonwebtoken v7.4.1` <br />
+`Multer v1.3.0` <br />
+`ng2-toastr v4.1.0` <br />
 `gm v1.23.0` <br />
+`Passport v0.3.2` <br />
+`Passport-jwt v2.2.1` <br />
+`Bcrypt v1.0.2` <br />
+`Node-schedule v1.2.3` <br />
+`Find-remove v1.0.1` <br />
 `BootStrap 3`  (css is included in `assets` folder) <br/>
 `Font Awesome` (css is included in `assets` folder) <br/>
 `Glyphicons`   (found in `fonts` folder under `assets`) <br/>

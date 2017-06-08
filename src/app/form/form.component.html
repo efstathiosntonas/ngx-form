@@ -1,5 +1,5 @@
 <div class="container">
-  <form [formGroup]="myForm" (ngSubmit)="onSubmit()" class="form-horizontal register-form" novalidate>
+  <form [formGroup]="myForm" (ngSubmit)="submitForm()" class="form-horizontal register-form" novalidate>
     <fieldset>
 
       <!-- Form Name -->
@@ -7,33 +7,38 @@
 
       <!-- Text input-->
       <div class="form-group">
-        <label class="col-md-4 control-label" for="textinput1">Text Input One:</label>
+        <label class="col-md-4 control-label" for="textInputOne">Text Input One:</label>
         <div class="col-md-4">
-          <input id="textinput1" #textOne formControlName="textInput1" name="textinput1" type="text" placeholder="enter text" class="form-control input-md">
-          <div [hidden]="textInput1.valid || textInput1.pristine" class="alert alert-danger">Please enter some text</div>
+          <input id="textInputOne" #textOne formControlName="textInputOne" name="textInputOne" type="text" placeholder="enter text" class="form-control input-md">
+          <div [hidden]="textInputOne.valid || textInputOne.pristine" class="alert alert-danger">Please enter some text</div>
         </div>
       </div>
 
       <div class="form-group">
-        <label class="col-md-4 control-label" for="textinput2">Text Input Two:</label>
+        <label class="col-md-4 control-label" for="textInputTwo">Text Input Two:</label>
         <div class="col-md-4">
-          <input id="textinput2" formControlName="textInput2" name="textinput2" type="text" placeholder="enter text" class="form-control input-md">
-          <div [hidden]="textInput2.valid || textInput2.pristine" class="alert alert-danger">Please enter some text</div>
+          <input id="textInputTwo" formControlName="textInputTwo" name="textInputTwo" type="text" placeholder="enter text" class="form-control input-md">
+          <div [hidden]="textInputTwo.valid || textInputTwo.pristine" class="alert alert-danger">Please enter some text</div>
         </div>
       </div>
 
-      <!-- File Button -->
       <div class="form-group">
-        <div class="col-md-4 col-centered">
-          <button type="button" class="btn">
-            <input #fileInput name="fileUp" type="file" (change)="onFileSelect($event)">
-          </button>
-          <div *ngIf="hasFiles()">
-            <div *ngFor="let file of files">
-              <img [src]="file.objectURL" *ngIf="isImage(file)" class="img-thumbnail img-responsive topMargin" onerror="this.src ='assets/images/no-image-found.jpg'"><br>
-              <div>
-                <button type="button" class="btn-danger topMargin" (click)="remove(i)">Remove Image</button>
-              </div>
+        <div class=" col-md-4 col-centered box text-center top-margin slim">
+          <div *ngIf="!imageReady" class="addProfilePicture">
+            <div *ngIf="!submitStarted">
+              <input type="file" name="file-1[]" id="file-1" class="inputfile inputfile-1" #fileInput name="fileUp" (change)="onFileSelect($event)"/>
+              <label for="file-1">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17">
+                  <path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/>
+                </svg>
+                <span>Choose Image</span></label>
+            </div>
+          </div>
+          <button *ngIf="submitStarted" class="disabled btn btn-default centered progress-button"><i class="fa fa-circle-o-notch fa-spin fa-fw"></i> Please wait... <span class="progress-percent">{{progress}}%</span></button>
+          <div class="profilePictureTemp">
+            <img *ngIf="imageReady" #image class="img-responsive top-margin" src="{{imageUrl}}{{imagePath}}" alt="image" onerror="this.src ='assets/images/no-image-found.jpg';"/>
+            <div *ngIf="imageReady" class="slim-btn-group">
+              <button (click)="imageDeleteModal.open()" data-toggle="modal" id="delete_image" style="opacity: 1;" data-action="remove" type="button" title="Delete Image" class="slim-btn slim-btn-remove">Διαγραφή Φωτογραφίας</button>
             </div>
           </div>
         </div>
@@ -42,11 +47,33 @@
       <!-- Button -->
       <div class="form-group">
         <div class="col-md-4 col-centered">
-          <button type="submit" [disabled]="!myForm.valid || !hasFiles()" id="submitForm" name="sumbitForm" class="btn btn-primary text-center bottomMargin">Submit</button>
-          <br/>
-          <progress-bar [value]="progress" [max]="100" *ngIf="hasFiles() && submitStarted"></progress-bar>
+          <button type="submit" [disabled]="!myForm.valid" id="submitForm" name="sumbitForm" class="btn btn-primary text-center bottomMargin">Submit</button>
         </div>
       </div>
     </fieldset>
   </form>
+  <section>
+    <modal #imageDeleteModal>
+      <modal-header [show-close]="true">
+        <h4 class="modal-title">Delete Photo</h4>
+      </modal-header>
+      <modal-body>
+        <div class="text-center">
+          Are you sure you want to delete this photo?
+        </div>
+      </modal-body>
+      <modal-footer>
+        <div class="control-group confirm-buttons">
+          <div class="row text-center">
+            <div class="col-md-6">
+              <button type="button" class="btn btn-cancel" (click)="dismissImageDelete()">No</button>
+            </div>
+            <div class="col-md-6">
+              <button type="button" class="btn btn-confirm" (click)="deleteImage()">Yes</button>
+            </div>
+          </div>
+        </div>
+      </modal-footer>
+    </modal>
+  </section>
 </div>

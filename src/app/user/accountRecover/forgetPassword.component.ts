@@ -17,19 +17,19 @@ export class ForgetPasswordComponent implements OnInit, AfterViewInit {
   email: FormControl;
   @ViewChild('userEmail') userEmail: ElementRef;
 
-  constructor(private _fb: FormBuilder, private _authService: AuthService,
-              private _router: Router, private toastr: ToastsManager, private renderer: Renderer) {
+  constructor(private fb: FormBuilder, private authService: AuthService,
+              private router: Router, private toastr: ToastsManager, private renderer: Renderer) {
   }
 
   ngOnInit() {
     this.email = new FormControl('', [Validators.required, this.emailValidator]);
 
-    this.myForm = this._fb.group({
+    this.myForm = this.fb.group({
       email: this.email
     });
 
-    if (this._authService.isLoggedIn()) {
-      this._router.navigate(['/']);
+    if (this.authService.isLoggedIn()) {
+      this.router.navigate(['/']);
     }
   }
 
@@ -41,10 +41,10 @@ export class ForgetPasswordComponent implements OnInit, AfterViewInit {
 
   onSubmit() {
     const email = new Reset(this.myForm.value.email, null, null);
-    this._authService.forget(email)
+    this.authService.forget(email)
       .subscribe(
         data => {
-          this._router.navigate(['/']);
+          this.router.navigate(['/']);
           this.toastr.success('An email has been sent with password reset instructions');
         },
         error => console.log(error)

@@ -1,32 +1,38 @@
-import {Component, OnInit, EventEmitter, ViewChild, ElementRef, Renderer} from '@angular/core';
+import {Component, ElementRef, EventEmitter, OnInit, ViewChild} from '@angular/core';
 import {ProfileService} from './profile.service';
 import {UserProfile} from './userProfile.model';
 import {Router} from '@angular/router';
 import {ToastsManager} from 'ng2-toastr';
+import {BASE_URL, USER_API_URL} from '../../config/config';
 
 @Component({
-  selector: 'app-userprofile',
+  selector   : 'app-userprofile',
   templateUrl: './userProfile.component.html',
-  styleUrls: ['./userProfile.component.css']
+  styleUrls  : ['./userProfile.component.css']
 })
 export class UserProfileComponent implements OnInit {
-  private userId: string = localStorage.getItem('userId');
-  private token: string = localStorage.getItem('id_token');
-  url: string = 'http://localhost:3000/profile/image';
-  user: UserProfile;
-  fetchedUser: any[] = [];
-  maxSize: number = 5000000;
-  invalidFileSizeMessage: string = '{0}: Invalid file size, ';
-  invalidFileSizeMessageDetail: string = 'Maximum upload size is {0}.';
-  onClear: EventEmitter<any> = new EventEmitter();
+  private userId: string                       = localStorage.getItem('userId');
+  private token: string                        = localStorage.getItem('id_token');
+          url: string                          = `${USER_API_URL}/image`;
+          imageUrl: string                     = `${BASE_URL}/uploads/tmp/`;
+          user: UserProfile;
+          fetchedUser: any[]                   = [];
+          maxSize: number                      = 5000000;
+          invalidFileSizeMessage: string       = '{0}: Invalid file size, ';
+          invalidFileSizeMessageDetail: string = 'Maximum upload size is {0}.';
+          onClear: EventEmitter<any>           = new EventEmitter();
   public files: File[];
-  public progress: number = 0;
+  public progress: number                      = 0;
   public submitStarted: boolean;
+          imagePath: string;
+          imageReady                           = false;
+          oldImage                             = true;
   @ViewChild('fileInput') fileInput: ElementRef;
   @ViewChild('profileImage') profileImage: ElementRef;
 
-  constructor(private profileService: ProfileService, private router: Router,
-              private toastr: ToastsManager, private renderer: Renderer) {
+  constructor(private profileService: ProfileService,
+              private router: Router,
+              private toastr: ToastsManager) {
   }
 
   ngOnInit() {
@@ -45,18 +51,50 @@ export class UserProfileComponent implements OnInit {
 
   onFileSelect(event) {
     this.clear();
-    let files = event.dataTransfer ? event.dataTransfer.files : event.target.files;
+    this.submitStarted = true;
+    let files          = event.dataTransfer ? event.dataTransfer.files : event.target.files;
     for (let i = 0; i < files.length; i++) {
       let file = files[i];
       if (this.validate(file)) {
         if (this.isImage(file)) {
-          let urlCreator = window.URL;
-          let url = urlCreator.createObjectURL(files[i]);
-          this.renderer.setElementProperty(this.profileImage.nativeElement, 'src', url);
           this.files.push(files[i]);
+          let xhr      = new XMLHttpRequest();
+          let formData = new FormData();
+          for (let i = 0; i < this.files.length; i++) {
+            formData.append('fileUp', this.files[i], this.files[i].name);
+          }
+
+          xhr.onreadystatechange = () => {
+            if (xhr.readyState === 4) {
+              this.progress = 0;
+              if (xhr.status === 201) {
+                this.imagePath = xhr.response.replace(/^"|"$/g, '');
+                this.imageReady    = true;
+                this.oldImage      = false;
+                this.submitStarted = false;
+              } else if (xhr.status !== 201) {
+                this.toastr.error('There was an error, please try again later');
+                this.submitStarted = false;
+                this.oldImage      = true;
+                this.clear();
+              }
+              this.clear();
+            }
+          };
+
+          xhr.upload.addEventListener('progress', (e: ProgressEvent) => {
+            if (e.lengthComputable) {
+              this.progress = Math.round((e.loaded * 100) / e.total);
+            }
+          }, false);
+
+          xhr.open('POST', this.url, true);
+          xhr.setRequestHeader('Authorization', 'JWT ' + this.token);
+          xhr.send(formData);
         }
       } else if (!this.isImage(file)) {
-        this.toastr.error('Only images are allowed');
+        this.toastr.error('Only images allowed');
+        this.clear();
       }
     }
   }
@@ -92,6 +130,7 @@ export class UserProfileComponent implements OnInit {
     if (this.maxSize && file.size > this.maxSize) {
       this.toastr.error(this.invalidFileSizeMessageDetail.replace('{0}', this.formatSize(this.maxSize)),
         this.invalidFileSizeMessage.replace('{0}', file.name));
+      this.submitStarted = false;
       return false;
     }
     return true;
@@ -102,44 +141,12 @@ export class UserProfileComponent implements OnInit {
     if (bytes === 0) {
       return '0 B';
     }
-    let k = 1000,
-      dm = 3,
-      sizes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
-      i = Math.floor(Math.log(bytes) / Math.log(k));
+    let k     = 1000,
+        dm    = 3,
+        sizes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
+        i     = Math.floor(Math.log(bytes) / Math.log(k));
 
     return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
-  }
-
-  onSubmit() {
-    this.submitStarted = true;
-    let xhr = new XMLHttpRequest();
-    let formData = new FormData();
-    for (let i = 0; i < this.files.length; i++) {
-      formData.append('profilePic', this.files[i], this.files[i].name);
-    }
-    xhr.upload.addEventListener('progress', (event: ProgressEvent) => {
-      if (event.lengthComputable) {
-        this.progress = Math.round((event.loaded * 100) / event.total);
-      }
-    }, false);
-    xhr.onreadystatechange = () => {
-      if (xhr.readyState === 4) {
-        this.progress = 0;
-        if (xhr.status === 201) {
-          this.router.navigateByUrl('/user/profile');
-          this.toastr.success('Profile picture uploaded successfully');
-        } else if (xhr.status !== 201) {
-          this.toastr.error('There was an error!');
-        }
-        this.clear();
-        this.submitStarted = false;
-      }
-    };
-    xhr.open('POST', this.url, true);
-    xhr.withCredentials = true;
-    xhr.setRequestHeader('Authorization', this.token);
-    xhr.send(formData);
-    console.log(xhr);
   }
 }
 

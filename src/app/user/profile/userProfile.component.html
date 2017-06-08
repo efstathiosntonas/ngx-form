@@ -3,16 +3,44 @@
   <div class="row">
     <!-- left column -->
     <div class="col-md-4 col-sm-6 col-xs-12">
-      <form (ngSubmit)="onSubmit()">
+
         <div *ngFor="let user of fetchedUser" class="text-center">
-          <img src="./uploads/profiles/{{user._id}}/{{user.profilePic}}" #profileImage onerror="this.src ='assets/images/profile-placeholder.jpg'" class="img-resized avatar img-thumbnail" alt="avatar">
+          <!--<img *ngIf="user.profilePic; else noImage" src="./uploads/profiles/{{user._id}}/{{user.profilePic}}" #profileImage onerror="this.src ='assets/images/profile-placeholder.jpg'" class="img-resized avatar img-thumbnail" alt="avatar">-->
+          <!--<ng-template #noImage><img src="./assets/images/profile-placeholder.jpg" class="img-resized avatar img-thumbnail"></ng-template>-->
           <!-- USE this if you want circled profile image <img src="./uploads/profiles/{{user._id}}/{{user.profilePic}}" onerror="this.src ='assets/images/profile-placeholder.jpg'" class="img-resized avatar img-circle img-thumbnail" alt="avatar" placeholder="/img.jpg">-->
-          <h6>Upload a different photo...</h6>
-          <input #fileInput name="profilePic" type="file" (change)="onFileSelect($event)" class="text-center center-block well well-sm">
-          <button type="submit" [disabled]="!hasFiles()" id="submitForm" name="sumbitForm" class="btn btn-primary text-center bottomMargin">Upload Image</button>
-          <progress-bar [value]="progress" [max]="100" *ngIf="hasFiles() && submitStarted"></progress-bar>
+          <h3>Your Profile Image</h3>
+          <div class="form-group">
+            <div class="profilePictureTempEdit">
+              <button *ngIf="submitStarted" class="disabled btn-no-hover btn btn-default centered progress-button">
+                <i class="fa fa-circle-o-notch fa-spin fa-fw"></i> Please wait... <span class="progress-percent">{{progress}}%</span>
+              </button>
+              <div class="text-center top-margin">
+                <div class="profilePictureTempEdit" *ngIf="oldImage && !imageReady">
+                  <img *ngIf="user.profilePic; else noImage" class="img-resized  img-thumbnail" src="./uploads/profiles/{{user._id}}/{{user.profilePic}}" alt="image" onerror="this.src ='assets/images/no-image-found.jpg';">
+                  <ng-template #noImage><img src="./assets/images/profile-placeholder.jpg" class="img-resized  img-thumbnail"></ng-template>
+                  <div class="upload-button" *ngIf="!imageReady">
+                    <input type="file" name="file-1" id="file-1" class="inputfile4 inputfile-4" (change)="onFileSelect($event)">
+                    <label for="file-1">
+                <span>
+                </span>
+                    </label>
+                  </div>
+                </div>
+                <div class="profilePictureTempEdit">
+                  <img *ngIf="imageReady" #image class="img-responsive" src="{{imageUrl}}{{imagePath}}" alt="image" onerror="this.src ='assets/images/no-image-found.jpg';"/>
+                  <div class="upload-button">
+                    <input type="file" name="file-2" id="file-2" class="inputfile4 inputfile-4" (change)="onFileSelect($event)">
+                    <label for="file-2">
+                  <span>
+                  </span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </form>
+
     </div>
     <!-- edit form column -->
     <div class="col-md-8 col-sm-6 col-xs-12 personal-info">

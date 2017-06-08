@@ -1,38 +1,49 @@
 <div class="container">
-  <form [formGroup]="myForm" (ngSubmit)="onSubmitEditedForm()" *ngFor="let form of fetchedForm" class="form-horizontal register-form" novalidate>
+  <form [formGroup]="myForm" (ngSubmit)="submitEditedForm()" *ngFor="let form of fetchedForm" class="form-horizontal register-form" novalidate>
     <fieldset>
       <legend class="text-center topPad">Edit Form with id: {{form._id}}</legend>
       <div class="form-group">
-        <label class="col-md-4 control-label" for="textinput1">Text Input One:</label>
+        <label class="col-md-4 control-label" for="textInputOne">Text Input One:</label>
         <div class="col-md-4">
-          <input id="textinput1" #textOne formControlName="textInput1" name="textinput1" type="text" [(ngModel)]="form.textInputOne" class="form-control input-md">
-          <div [hidden]="textInput1.valid || textInput1.pristine" class="alert alert-danger">Please enter some text</div>
+          <input id="textInputOne" #textOne formControlName="textInputOne" name="textInputOne" type="text" [(ngModel)]="form.textInputOne" class="form-control input-md">
+          <div [hidden]="textInputOne.valid || textInputOne.pristine" class="alert alert-danger">Please enter some text</div>
         </div>
       </div>
       <div class="form-group">
-        <label class="col-md-4 control-label" for="textinput2">Text Input Two:</label>
+        <label class="col-md-4 control-label" for="textInputTwo">Text Input Two:</label>
         <div class="col-md-4">
-          <input id="textinput2" formControlName="textInput2" name="textinput2" type="text" [(ngModel)]="form.textInputTwo" class="form-control input-md">
-          <div [hidden]="textInput2.valid || textInput2.pristine" class="alert alert-danger">Please enter some text</div>
+          <input id="textInputTwo" formControlName="textInputTwo" name="textInputTwo" type="text" [(ngModel)]="form.textInputTwo" class="form-control input-md">
+          <div [hidden]="textInputTwo.valid || textInputTwo.pristine" class="alert alert-danger">Please enter some text</div>
         </div>
       </div>
 
-      <!-- File Button -->
+      <!--image-->
       <div class="form-group">
         <div class="col-md-4 col-centered">
-          <button type="button" class="btn">
-            <input #fileInput name="fileUp" type="file" (change)="onFileSelect($event)">
-          </button>
-          <div>
-            <h5>Current Image:</h5>
-            <img class="img-thumbnail img-responsive" src="./uploadsFolder/{{form.owner}}/{{form.imagePath}}" onerror="this.src ='assets/images/no-image-found.jpg'"><br><br>
-          </div>
-          <div *ngIf="hasFiles()">
-            <div *ngFor="let file of files">
-              <h5>New Image Preview:</h5>
-              <img [src]="file.objectURL" *ngIf="isImage(file)" class="img-thumbnail img-responsive topMargin"><br>
-              <div>
-                <button type="button" class="btn-danger topMargin" (click)="remove(i)">Remove Image</button>
+          <div class="profilePictureTempEdit">
+            <button *ngIf="submitStarted" class="disabled btn-no-hover btn btn-default centered progress-button">
+              <i class="fa fa-circle-o-notch fa-spin fa-fw"></i> Please wait... <span class="progress-percent">{{progress}}%</span>
+            </button>
+            <div class="text-center top-margin">
+              <div class="profilePictureTempEdit" *ngIf="oldImage">
+                <img class="img-responsive" src="./uploads/forms/{{form.owner}}/{{form.imagePath}}" alt="image" onerror="this.src ='assets/images/no-image-found.jpg';">
+                <div class="upload-button" *ngIf="!imageReady">
+                  <input type="file" name="file-1" id="file-1" class="inputfile4 inputfile-4" (change)="onFileSelect($event)">
+                  <label for="file-1">
+                <span>
+                </span>
+                  </label>
+                </div>
+              </div>
+              <div class="profilePictureTempEdit">
+                <img *ngIf="imageReady" #image class="img-responsive" src="{{imageUrl}}{{imagePath}}" alt="image" onerror="this.src ='assets/images/no-image-found.jpg';"/>
+                <div class="upload-button">
+                  <input type="file" name="file-2" id="file-2" class="inputfile4 inputfile-4" (change)="onFileSelect($event)">
+                  <label for="file-2">
+                  <span>
+                  </span>
+                  </label>
+                </div>
               </div>
             </div>
           </div>
@@ -44,9 +55,6 @@
         <div class="col-md-4 col-centered">
           <button type="submit" [disabled]="!myForm.valid && myForm.untouched" id="submitForm" name="sumbitForm" class="btn btn-primary text-center bottomMargin">Submit</button>
           <button type="button" class="btn btn-warning" (click)="cancel()">Cancel</button>
-          <br/>
-          <br/>
-          <progress-bar [value]="progress" [max]="100" *ngIf="hasFiles() && submitStarted"></progress-bar>
         </div>
       </div>
     </fieldset>
