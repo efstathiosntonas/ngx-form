@@ -74,6 +74,7 @@ If you want to make changes on the Angular2 app and auto-refresh the `dist` fold
 ## Running the server
 Run `npm start` <br />
 If you want to make changes on the Server and auto refresh the back end code then run: `nodemon npm start`. If you don't have nodemon installed, run `npm install nodemon -g`.
+If you want to execute the cron job in order to clean up `/uploads/tmp` folder every 1 hour for files that their age is greater than 1 hour, run `node cron.js`.
 
 ## Viewing the App
 Open your favourite web browser and point to `http://localhost:3000`
