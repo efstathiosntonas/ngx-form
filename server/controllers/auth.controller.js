@@ -1,18 +1,18 @@
-let express      = require('express'),
-    User         = require('../models/user.model'),
-    jwt          = require('jsonwebtoken'),
-    config       = require('../config/config'),
-    fs           = require('fs'),
-    multer       = require('multer'),
-    mime         = require('mime'),
-    path         = require('path'),
-    crypto       = require('crypto'),
-    gm           = require('gm').subClass({imageMagick: true}),
-    nodemailer   = require('nodemailer'),
-    hbs          = require('nodemailer-express-handlebars'),
-    sgTransport  = require('nodemailer-sendgrid-transport'),
-    uuidV1       = require('uuid/v1'),
-    async        = require('async');
+let express     = require('express'),
+    User        = require('../models/user.model'),
+    jwt         = require('jsonwebtoken'),
+    config      = require('../config/config'),
+    fs          = require('fs'),
+    multer      = require('multer'),
+    mime        = require('mime'),
+    path        = require('path'),
+    crypto      = require('crypto'),
+    gm          = require('gm').subClass({imageMagick: true}),
+    nodemailer  = require('nodemailer'),
+    hbs         = require('nodemailer-express-handlebars'),
+    sgTransport = require('nodemailer-sendgrid-transport'),
+    uuidV1      = require('uuid/v1'),
+    async       = require('async');
 
 function generateToken(user) {
   return jwt.sign(user, config.secret, {expiresIn: config.jwtExpire});
@@ -80,16 +80,16 @@ let functions = {
 
       let userInfo = setUserInfo(user);
       res.status(200).json({
-        status: '200',
+        status : '200',
         message: 'Registration Successfull',
         token  : generateToken(userInfo),
-        user    : setUserInfoRegister(result)
+        user   : setUserInfoRegister(result)
       });
     });
   },
 
   loginUser     : (req, res) => {
-    User.findOne({email: req.body.email.toLowerCase()},  (err, user) => {
+    User.findOne({email: req.body.email.toLowerCase()}, (err, user) => {
       if (err) {
         return res.status(500).json({
           title: 'There was a problem',

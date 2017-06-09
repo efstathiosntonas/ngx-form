@@ -2,9 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {AdminService} from '../services/admin.service';
 
 @Component({
-  selector: 'app-admin',
+  selector   : 'app-admin',
   templateUrl: './adminPage.component.html',
-  styleUrls: ['./adminPage.component.css']
+  styleUrls  : ['./adminPage.component.css']
 })
 export class AdminPageComponent implements OnInit {
 

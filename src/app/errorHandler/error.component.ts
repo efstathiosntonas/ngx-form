@@ -4,7 +4,7 @@ import {ToastsManager} from 'ng2-toastr';
 
 
 @Component({
-  selector: 'app-error',
+  selector   : 'app-error',
   templateUrl: './error.component.html'
 })
 export class ErrorComponent implements OnInit {

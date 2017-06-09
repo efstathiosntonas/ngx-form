@@ -8,7 +8,6 @@ import {ModalComponent} from 'ng2-bs3-modal/components/modal';
 import {FormService} from './form.service';
 import {Form} from './form.model';
 
-
 @Component({
   selector   : 'app-form',
   templateUrl: './form.component.html',
@@ -35,7 +34,6 @@ export class FormComponent implements OnInit, AfterViewInit {
   public imagePath: string;
   name: string;
   onClear: EventEmitter<any>           = new EventEmitter();
-
 
   @ViewChild('textOne') textOne: ElementRef;
   @ViewChild('fileInput') fileInput: ElementRef;

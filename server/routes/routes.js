@@ -19,7 +19,6 @@ module.exports = (app) => {
       userRoutes  = express.Router(),
       formRoutes  = express.Router();
 
-
   //= ========================
   // Auth Routes
   //= ========================
@@ -54,40 +53,37 @@ module.exports = (app) => {
   // Change user password from front end (not via email, via form)
   userRoutes.post('/password', requireAuth, user.changePassword);
 
-  // Upload image
+  // Upload image endpoint: http://localhost:3000/api/user/image
   userRoutes.post('/image', requireAuth, user.uploadImage);
 
-  // Delete Image
+  // Delete Image endpoint: http://localhost:3000/api/user/image/:id
   userRoutes.delete('/image/:id', requireAuth, user.deleteImage);
 
   //= ========================
   // User Forms Routes
   //= ========================
+
   apiRoutes.use('/forms', formRoutes);
 
-  // Get All Forms
+  // Get All Forms endpoint: http://localhost:3000/api/forms/user/:id
   formRoutes.get('/user/:id', requireAuth, forms.getAllForms);
 
-  // Add new Form
+  // Add new Form endpoint: http://localhost:3000/api/forms/
   formRoutes.post('/', requireAuth, forms.newForm);
 
-  // Get Single Form
+  // Get Single Form endpoint: http://localhost:3000/api/forms/:id
   formRoutes.get('/:id', requireAuth, forms.getSingleForm);
 
-  // Edit Single Form
+  // Edit Single Form endpoint: http://localhost:3000/api/forms/:id
   formRoutes.patch('/:id', requireAuth, forms.editSingleForm);
 
-  // Delete Single Form
+  // Delete Single Form endpoint: http://localhost:3000/api/forms/:id
   formRoutes.delete('/:id', requireAuth, forms.deleteSingleForm);
 
-  //= ========================
-  // Images Routes
-  //= ========================
-
-  // Upload image
+  // Upload image endpoint: http://localhost:3000/api/forms/image
   formRoutes.post('/image', requireAuth, forms.uploadImage);
 
-  // Delete Image
+  // Delete Image endpoint: http://localhost:3000/api/forms/image/:id
   formRoutes.delete('/image/:id', requireAuth, forms.deleteImage);
 
   //= ========================
@@ -106,15 +102,14 @@ module.exports = (app) => {
   // Delete Single Form, endpoint: http://localhost:3000/api/admin/form/:id
   adminRoutes.delete('/form/:id', requireAuth, admin.deleteSingleForm);
 
-  // Edit Form, endpoing: http://localhost:3000/api/admin/form/:id
+  // Edit Form, endpoint: http://localhost:3000/api/admin/form/:id
   adminRoutes.patch('/form/:id', requireAuth, admin.editForm);
 
-  // Upload image
+  // Upload image endpoint: http://localhost:3000/api/admin/form/image
   formRoutes.post('/form/image', requireAuth, admin.uploadImage);
 
-  // Delete Image
+  // Delete Image endpoint: http://localhost:3000/api/admin/form/image/:id
   formRoutes.delete('/form/image/:id', requireAuth, admin.deleteImage);
-
 
   // Set url for API group routes, all endpoints start with /api/ eg http://localhost:3000/api/admin  || http://localhost:3000/api/auth
   app.use('/api', apiRoutes);

@@ -5,11 +5,10 @@ import {Router} from '@angular/router';
 import {Reset} from '../../auth/resetPassword';
 import {ToastsManager} from 'ng2-toastr';
 
-
 @Component({
-  selector: 'app-forget-password',
+  selector   : 'app-forget-password',
   templateUrl: './forgetPassword.component.html',
-  styleUrls: ['./resetPagesStyle.css']
+  styleUrls  : ['./resetPagesStyle.css']
 })
 
 export class ForgetPasswordComponent implements OnInit, AfterViewInit {
@@ -57,7 +56,7 @@ export class ForgetPasswordComponent implements OnInit, AfterViewInit {
 
     if (!EMAIL_REGEXP.test(control.value)) {
       return {invalidEmail: true};
-     }
+    }
   }
 }
 

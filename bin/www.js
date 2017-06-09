@@ -5,7 +5,7 @@
  */
 
 var app = require('../server/app');
-var debug = require('debug')('petlocator_ng2:server');
+var debug = require('debug')('ngx-form:server');
 var http = require('http');
 
 /**
@@ -86,5 +86,5 @@ function onListening() {
   var bind = typeof addr === 'string'
     ? 'pipe ' + addr
     : 'port ' + addr.port;
- /// debug('Listening on ' + bind);
+  /// debug('Listening on ' + bind);
 }

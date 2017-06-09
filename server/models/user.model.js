@@ -4,7 +4,7 @@ let mongoose                = require('mongoose'),
     mongooseUniqueValidator = require('mongoose-unique-validator'),
     bcrypt                  = require('bcrypt');
 
-var UserSchema = new Schema({
+let UserSchema = new Schema({
     email               : {type: String, unique: true, required: true, lowercase: true},
     password            : {type: String, required: true},
     forms               : [{type: Schema.Types.ObjectId, ref: 'Form'}],

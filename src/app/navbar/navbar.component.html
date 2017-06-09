@@ -21,12 +21,12 @@
         <li><a [routerLink]="['/user/login']" *ngIf="!isLoggedIn()">Login</a></li>
         <li *ngFor="let user of fetchedUser" class="text-right">
           <a [routerLink]="['/user/profile']" *ngIf="isLoggedIn()">{{user.email}}
-            <img *ngIf="user.profilePic; else noImage" src="./uploads/profiles/{{user._id}}/{{user.profilePic}}" onerror="this.src ='assets/images/profile-placeholder.jpg'" class="img-resized" alt="avatar">
-            <ng-template #noImage><img src="./assets/images/profile-placeholder.jpg" class="img-resized"></ng-template>
+            <img *ngIf="user.profilePic; else noImage" src="./uploads/profiles/{{user._id}}/{{user.profilePic}}" onerror="this.src ='assets/images/profile-placeholder.jpg';" class="img-resized" alt="avatar">
+            <ng-template #noImage><img src="./assets/images/profile-placeholder.png" class="img-resized"></ng-template>
           </a>
         </li>
         <li><a href="#" (click)="logout()" *ngIf="isLoggedIn()">Logout</a></li>
       </ul>
-    </div><!--/.nav-collapse -->
+    </div>
   </div>
 </nav>

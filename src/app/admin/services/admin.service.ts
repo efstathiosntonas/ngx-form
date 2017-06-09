@@ -56,7 +56,7 @@ export class AdminService {
   }
 
   deleteForm(form: Form) {
-    this.forms.splice(this.forms.indexOf(form), 1);
+    this.forms.splice(this.forms.indexOf(form),  1);
     let headers = new Headers({'Content-Type': 'application/json'});
     headers.append('Authorization', this.token);
     return this.authHttp.delete(`${ADMIN_API_URL}/form/` + form, {headers: headers})

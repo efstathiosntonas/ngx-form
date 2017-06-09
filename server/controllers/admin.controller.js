@@ -20,7 +20,7 @@ let rmDir = (dirPath, removeSelf) => {
   if (removeSelf === undefined)
     removeSelf = true;
   try {
-    let files = fs.readdirSync(dirPath);
+    var files = fs.readdirSync(dirPath);
   }
   catch (e) {
     return;
@@ -265,7 +265,6 @@ let functions = {
 
   // Edit Form
   editForm: (req, res) => {
-    console.log(req.body)
     if (req.user.role[0] === 'admin') {
       let formId = req.params.id;
       Form.findOne({'_id': formId}, (err, form) => {
@@ -299,10 +298,12 @@ let functions = {
               error: {message: 'Form not found!'}
             });
           }
+
           // check if user has uploaded a new file, if he has, delete the old file
           // if (req.body.filePath !== undefined) {
           //   fs.unlink('server/uploads/forms/' + form.owner + '/' + form.imagePath);
           // }
+
           // check if the user has uploaded a new file, if he has, then store the image path to Mongo and replace the old one
           if (req.body.fileUp !== undefined) {
             copyImage(req, req.body.fileUp);

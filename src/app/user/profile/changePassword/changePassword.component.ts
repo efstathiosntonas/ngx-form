@@ -6,9 +6,8 @@ import {newPassword} from '../userProfile.model';
 import {ProfileService} from '../profile.service';
 
 @Component({
-  selector: 'app-change-password',
-  templateUrl: './changePassword.component.html',
-  styleUrls: ['./changePassword.component.css']
+  selector   : 'app-change-password',
+  templateUrl: './changePassword.component.html'
 })
 export class ChangePasswordComponent implements OnInit, AfterViewInit {
 
@@ -23,13 +22,14 @@ export class ChangePasswordComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.currentPassword = new FormControl('', [Validators.required, Validators.minLength(6)]);
-    this.newPassword = new FormControl('', [Validators.required, Validators.minLength(6)]);
+    this.newPassword     = new FormControl('', [Validators.required, Validators.minLength(6)]);
 
     this.resetPasswordForm = this.fb.group({
       currentPassword: this.currentPassword,
-      newPassword: this.newPassword
+      newPassword    : this.newPassword
     });
   }
+
   // focus on 'current password' input box after content is initialized
   ngAfterViewInit() {
     setTimeout(() => {

@@ -6,9 +6,8 @@ import {AuthService} from '../../auth/auth.service';
 import {User} from '../../auth/user.model';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector   : 'app-login',
+  templateUrl: './login.component.html'
 })
 export class LoginComponent implements OnInit, AfterViewInit {
   myForm: FormGroup;
@@ -22,11 +21,11 @@ export class LoginComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    this.email = new FormControl('', [Validators.required, this.emailValidator]);
+    this.email    = new FormControl('', [Validators.required, this.emailValidator]);
     this.password = new FormControl('', [Validators.required, Validators.minLength(6)]);
 
     this.myForm = this.fb.group({
-      email: this.email,
+      email   : this.email,
       password: this.password
     });
 
@@ -64,6 +63,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
       );
 
   }
+
   // input validator to check if the email entered by the user is actually text in an email form
   emailValidator(control) {
     let EMAIL_REGEXP = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;

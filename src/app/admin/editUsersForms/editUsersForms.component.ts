@@ -22,7 +22,7 @@ export class EditUsersFormsComponent implements OnInit, AfterViewInit {
 
   token: string                        = localStorage.getItem('id_token');
   url: string                          = `${FORMS_API_URL}/image`;
-  imageUrl: string                     = `${BASE_URL}/uploads/tmp/`;
+  imageUrl: string = `${BASE_URL}/uploads/tmp/`;
   maxSize: number                      = 5000000;
   invalidFileSizeMessage: string       = '{0}: Invalid file size, ';
   invalidFileSizeMessageDetail: string = 'Maximum upload size is {0}.';

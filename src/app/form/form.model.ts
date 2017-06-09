@@ -5,8 +5,8 @@ export class Form {
 
     this.textInputOne = textInputOne;
     this.textInputTwo = textInputTwo;
-    this.fileUp = fileUp;
-    this.userId = userId;
-    this.formId = formId;
+    this.fileUp       = fileUp;
+    this.userId       = userId;
+    this.formId       = formId;
   }
 }

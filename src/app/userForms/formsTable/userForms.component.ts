@@ -3,9 +3,9 @@ import {FormService} from '../../form/form.service';
 
 
 @Component({
-  selector: 'app-user-form',
+  selector   : 'app-user-form',
   templateUrl: './userForms.component.html',
-  styleUrls: ['./userForms.component.css']
+  styleUrls  : ['./userForms.component.css']
 })
 export class UserFormsComponent implements OnInit {
   fetchedForms = [];

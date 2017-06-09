@@ -12,12 +12,13 @@ import {AuthHttp} from 'angular2-jwt';
 @Injectable()
 export class FormService {
 
-  private token: string = localStorage.getItem('id_token');
+  private token: string  = localStorage.getItem('id_token');
   private userId: string = localStorage.getItem('userId');
-  private forms = [];
-  private singleForm = Object;
+  private forms          = [];
+  private singleForm     = Object;
 
-  constructor(private authHttp: AuthHttp, private errorService: ErrorService, private toastr: ToastsManager) {}
+  constructor(private authHttp: AuthHttp, private errorService: ErrorService, private toastr: ToastsManager) {
+  }
 
   // get user forms from backend in order to display them in the front end
   getUserForms() {
@@ -26,7 +27,7 @@ export class FormService {
     return this.authHttp.get(`${FORMS_API_URL}/user/` + this.userId, {headers: headers})
       .timeout(1000)
       .map((response: Response) => {
-        const forms = response.json().forms;
+        const forms      = response.json().forms;
         let fetchedForms = [];
         for (let form of forms) {
           fetchedForms.push(form);

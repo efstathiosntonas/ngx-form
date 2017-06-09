@@ -2,9 +2,9 @@ import {Component} from '@angular/core';
 import {AuthService} from '../auth/auth.service';
 
 @Component({
-  selector: 'app-mainpage',
+  selector   : 'app-mainpage',
   templateUrl: './mainPage.component.html',
-  styleUrls: ['./mainPage.component.css']
+  styleUrls  : ['./mainPage.component.css']
 })
 
 export class MainPageComponent {

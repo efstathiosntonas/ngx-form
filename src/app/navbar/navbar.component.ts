@@ -4,13 +4,13 @@ import {AdminService} from '../admin/services/admin.service';
 import {ProfileService} from '../user/profile/profile.service';
 
 @Component({
-  selector: 'app-navbar',
+  selector   : 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+  styleUrls  : ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
 
- // private userId: string = localStorage.getItem('userId');
+  // private userId: string = localStorage.getItem('userId');
   // private userId: string;
   fetchedUser: any[] = [];
 

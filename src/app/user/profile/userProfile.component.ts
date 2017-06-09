@@ -68,7 +68,7 @@ export class UserProfileComponent implements OnInit {
             if (xhr.readyState === 4) {
               this.progress = 0;
               if (xhr.status === 201) {
-                this.imagePath = xhr.response.replace(/^"|"$/g, '');
+                this.imagePath     = xhr.response.replace(/^"|"$/g, '');
                 this.imageReady    = true;
                 this.oldImage      = false;
                 this.submitStarted = false;
@@ -91,6 +91,7 @@ export class UserProfileComponent implements OnInit {
           xhr.open('POST', this.url, true);
           xhr.setRequestHeader('Authorization', 'JWT ' + this.token);
           xhr.send(formData);
+          console.log(formData);
         }
       } else if (!this.isImage(file)) {
         this.toastr.error('Only images allowed');

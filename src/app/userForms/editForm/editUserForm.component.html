@@ -17,28 +17,6 @@
         </div>
       </div>
 
-      <!--&lt;!&ndash; File Button &ndash;&gt;-->
-      <!--<div class="form-group">-->
-        <!--<div class="col-md-4 col-centered">-->
-          <!--<button type="button" class="btn">-->
-            <!--<input #fileInput name="fileUp" type="file" (change)="onFileSelect($event)">-->
-          <!--</button>-->
-          <!--<div>-->
-            <!--<h5>Current Image:</h5>-->
-            <!--<img class="img-thumbnail img-responsive" src="./uploads/forms/{{form.owner}}/{{form.imagePath}}" onerror="this.src ='assets/images/no-image-found.jpg';"><br><br>-->
-          <!--</div>-->
-          <!--<div *ngIf="hasFiles()">-->
-            <!--<div *ngFor="let file of files">-->
-              <!--<h5>New Image Preview:</h5>-->
-              <!--<img [src]="file.objectURL" *ngIf="isImage(file)" class="img-thumbnail img-responsive topMargin"><br>-->
-              <!--<div>-->
-                <!--<button type="button" class="btn-danger topMargin" (click)="remove(i)">Remove Image</button>-->
-              <!--</div>-->
-            <!--</div>-->
-          <!--</div>-->
-        <!--</div>-->
-      <!--</div>-->
-
       <div class="form-group">
         <div class="col-md-4 col-centered">
           <div class="profilePictureTempEdit">
@@ -47,7 +25,7 @@
             </button>
             <div class="text-center top-margin">
               <div class="profilePictureTempEdit" *ngIf="oldImage">
-                <img class="img-responsive" src="./uploads/forms/{{form.owner}}/{{form.imagePath}}" alt="image" onerror="this.src ='assets/images/no-image-found.jpg';">
+                <img class="img-responsive" src="./uploads/forms/{{form.owner}}/{{form.imagePath}}" alt="image" onerror="this.src ='assets/images/no-image.jpg';">
                 <div class="upload-button" *ngIf="!imageReady">
                   <input type="file" name="file-1" id="file-1" class="inputfile4 inputfile-4" (change)="onFileSelect($event)">
                   <label for="file-1">
@@ -57,7 +35,7 @@
                 </div>
               </div>
               <div class="profilePictureTempEdit">
-                <img *ngIf="imageReady" #image class="img-responsive" src="{{imageUrl}}{{imagePath}}" alt="image" onerror="this.src ='assets/images/no-image-found.jpg';"/>
+                <img *ngIf="imageReady" #image class="img-responsive" src="{{imageUrl}}{{imagePath}}" alt="image" onerror="this.src ='assets/images/no-image.jpg';"/>
                 <div class="upload-button">
                   <input type="file" name="file-2" id="file-2" class="inputfile4 inputfile-4" (change)="onFileSelect($event)">
                   <label for="file-2">

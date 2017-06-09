@@ -16,7 +16,7 @@ let rmDir = (dirPath, removeSelf) => {
   if (removeSelf === undefined)
     removeSelf = true;
   try {
-    let files = fs.readdirSync(dirPath);
+    var files = fs.readdirSync(dirPath);
   }
   catch (e) {
     return;
@@ -82,8 +82,9 @@ let copyImage = (req, source) => {
     if (err) {
       console.log(err);
     }
-    fse.copy(config.paths.tmpImagePath + source, config.paths.imagePath + req.user._id + '/' + source)
+    fse.copy(config.paths.tmpImagePath + source, config.paths.profileImagePath + req.user._id + '/' + source)
       .then(() => {
+        console.log(source);
       })
       .catch((error) => console.log(error));
   });
@@ -121,7 +122,6 @@ let functions = {
   uploadImage: (req, res) => {
     let userId = req.user._id;
     uploadTemp(req, res, (err) => {
-      console.log('is there any image coming?', req.body)
       if (err) {
         console.log(err);
       }
@@ -149,20 +149,20 @@ let functions = {
                   error: {message: 'You do not have access rights'}
                 });
               }
-              if(user) {
-                user.profilePic = req.body.fileUp;
-                user.save((err, result)=>{
+              if (user) {
+                user.profilePic = req.file.filename;
+                user.save((err, result) => {
                   if (err) {
                     return res.status(403).json({
                       title: 'There was an error, please try again later',
                       error: err
                     });
                   } else {
-                    if (req.body.fileUp !== undefined) {
-                      copyImage(req, req.body.fileUp);
+                    if (req.file.filename !== undefined) {
+                      copyImage(req, req.file.filename);
                     }
                   }
-                })
+                });
               }
             });
             res.status(201).json(req.file.filename);

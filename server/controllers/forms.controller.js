@@ -20,7 +20,7 @@ let rmDir = (dirPath, removeSelf) => {
   if (removeSelf === undefined)
     removeSelf = true;
   try {
-    let files = fs.readdirSync(dirPath);
+    var files = fs.readdirSync(dirPath);
   }
   catch (e) {
     return;
@@ -178,7 +178,7 @@ let functions = {
     let formId = req.params.id;
 
     Form.findOne({'_id': formId}, (err, form) => {
-      console.log(form)
+      console.log(form);
       if (err) {
         return res.status(500).json({
           message: 'There was an error, please try again',

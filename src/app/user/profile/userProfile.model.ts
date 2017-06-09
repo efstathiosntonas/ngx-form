@@ -7,6 +7,7 @@ export class UserProfile {
               public profilePic: string) {
   }
 }
+
 export class newPassword {
   constructor(public currentPassword: string, public newPassword: string) {
   }

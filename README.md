@@ -3,12 +3,12 @@ ngx-Form with file upload to file system, image path stored to Mongo. Project is
 [![NPM](https://nodei.co/npm/ngx-form.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/ngx-form/)
 
 ## TODO
-1. Fix profile page user image upload
-2. Fix some small bugs in backend file deletion
+1. Fix some small bugs in backend file deletion
+2. Fix form deletion from table (fix forms.splice)
 
 # ngx-Form
 
-This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.1.0.
+This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.1.1.
 
 The goal of this project is to submit a form with one file upload and two text fields. The form is submitted to back end, the file is stored in the `uploads/forms/:userID` and then the file name (string) is stored in MongoDB among the two text fields. At the end, the form ID is assinged to the signed in user ID (via Ref) for later viewing all the form fields and file in the front end. User profile image is stored at `uploads/profiles/:userID`.
 

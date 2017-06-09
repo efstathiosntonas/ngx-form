@@ -1,14 +1,11 @@
 <div class="container" style="padding-top: 60px;">
-  <h1 class="page-header">Your Profile</h1>
+  <h1 class="page-header">Profile</h1>
   <div class="row">
     <!-- left column -->
     <div class="col-md-4 col-sm-6 col-xs-12">
-
-        <div *ngFor="let user of fetchedUser" class="text-center">
-          <!--<img *ngIf="user.profilePic; else noImage" src="./uploads/profiles/{{user._id}}/{{user.profilePic}}" #profileImage onerror="this.src ='assets/images/profile-placeholder.jpg'" class="img-resized avatar img-thumbnail" alt="avatar">-->
-          <!--<ng-template #noImage><img src="./assets/images/profile-placeholder.jpg" class="img-resized avatar img-thumbnail"></ng-template>-->
-          <!-- USE this if you want circled profile image <img src="./uploads/profiles/{{user._id}}/{{user.profilePic}}" onerror="this.src ='assets/images/profile-placeholder.jpg'" class="img-resized avatar img-circle img-thumbnail" alt="avatar" placeholder="/img.jpg">-->
-          <h3>Your Profile Image</h3>
+      <div *ngFor="let user of fetchedUser" class="text-center">
+        <h3>Your Profile Image</h3>
+        <form>
           <div class="form-group">
             <div class="profilePictureTempEdit">
               <button *ngIf="submitStarted" class="disabled btn-no-hover btn btn-default centered progress-button">
@@ -16,8 +13,8 @@
               </button>
               <div class="text-center top-margin">
                 <div class="profilePictureTempEdit" *ngIf="oldImage && !imageReady">
-                  <img *ngIf="user.profilePic; else noImage" class="img-resized  img-thumbnail" src="./uploads/profiles/{{user._id}}/{{user.profilePic}}" alt="image" onerror="this.src ='assets/images/no-image-found.jpg';">
-                  <ng-template #noImage><img src="./assets/images/profile-placeholder.jpg" class="img-resized  img-thumbnail"></ng-template>
+                  <img *ngIf="user.profilePic; else noImage" class="img-resized  img-thumbnail" src="./uploads/profiles/{{user._id}}/{{user.profilePic}}" alt="image" onerror="this.src ='assets/images/no-image.jpg';">
+                  <ng-template #noImage><img src="./assets/images/profile-placeholder.png" class="img-resized  img-thumbnail"></ng-template>
                   <div class="upload-button" *ngIf="!imageReady">
                     <input type="file" name="file-1" id="file-1" class="inputfile4 inputfile-4" (change)="onFileSelect($event)">
                     <label for="file-1">
@@ -27,7 +24,7 @@
                   </div>
                 </div>
                 <div class="profilePictureTempEdit">
-                  <img *ngIf="imageReady" #image class="img-responsive" src="{{imageUrl}}{{imagePath}}" alt="image" onerror="this.src ='assets/images/no-image-found.jpg';"/>
+                  <img *ngIf="imageReady" #image class="img-responsive" src="{{imageUrl}}{{imagePath}}" alt="image" onerror="this.src ='assets/images/no-image.jpg';"/>
                   <div class="upload-button">
                     <input type="file" name="file-2" id="file-2" class="inputfile4 inputfile-4" (change)="onFileSelect($event)">
                     <label for="file-2">
@@ -39,12 +36,11 @@
               </div>
             </div>
           </div>
-        </div>
-
+        </form>
+      </div>
     </div>
-    <!-- edit form column -->
     <div class="col-md-8 col-sm-6 col-xs-12 personal-info">
-      <h3>Personal info</h3>
+      <h3 class="text-center">Personal info</h3>
       <form *ngFor="let user of fetchedUser" class="form-horizontal" role="form">
         <div class="form-group">
           <label class="col-lg-3 control-label">User ID:</label>

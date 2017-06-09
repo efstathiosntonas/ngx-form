@@ -36,7 +36,7 @@
           </div>
           <button *ngIf="submitStarted" class="disabled btn btn-default centered progress-button"><i class="fa fa-circle-o-notch fa-spin fa-fw"></i> Please wait... <span class="progress-percent">{{progress}}%</span></button>
           <div class="profilePictureTemp">
-            <img *ngIf="imageReady" #image class="img-responsive top-margin" src="{{imageUrl}}{{imagePath}}" alt="image" onerror="this.src ='assets/images/no-image-found.jpg';"/>
+            <img *ngIf="imageReady" #image class="img-responsive top-margin" src="{{imageUrl}}{{imagePath}}" alt="image" onerror="this.src ='assets/images/no-image.jpg';"/>
             <div *ngIf="imageReady" class="slim-btn-group">
               <button (click)="imageDeleteModal.open()" data-toggle="modal" id="delete_image" style="opacity: 1;" data-action="remove" type="button" title="Delete Image" class="slim-btn slim-btn-remove">Διαγραφή Φωτογραφίας</button>
             </div>

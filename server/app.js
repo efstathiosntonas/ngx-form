@@ -14,8 +14,12 @@ process.on('uncaughtException', function (err) {
 
 mongoose.Promise = global.Promise;  // gets rid of the mongoose promise deprecated warning
 mongoose.connect(config.database);
-mongoose.connection.on('open', function () {
-   console.log('Mongo is connected...');
+mongoose.connection.on('open', (err) => {
+  if (err) {
+    console.log(err);
+  } else {
+    console.log('Mongo is connected...');
+  }
 });
 
 // view engine setup
@@ -54,7 +58,7 @@ if (app.get('env') === 'development') {
     res.status(err.status || 500);
     res.json({
       message: err.message,
-      error: err
+      error  : err
     });
   });
 }
@@ -63,9 +67,8 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.json({
     message: err.message,
-    error: {}
+    error  : {}
   });
 });
 
 module.exports = app;
-

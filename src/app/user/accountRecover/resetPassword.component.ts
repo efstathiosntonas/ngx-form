@@ -1,15 +1,14 @@
-import {Component, OnInit, Renderer, ElementRef, ViewChild, AfterViewInit} from '@angular/core';
-import {FormGroup, FormControl, FormBuilder, Validators} from '@angular/forms';
+import {AfterViewInit, Component, ElementRef, OnInit, Renderer, ViewChild} from '@angular/core';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../../auth/auth.service';
-import {Router, ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Reset} from '../../auth/resetPassword';
 import {ToastsManager} from 'ng2-toastr';
 
-
 @Component({
-  selector: 'app-reset-password',
+  selector   : 'app-reset-password',
   templateUrl: './resetPassword.component.html',
-  styleUrls: ['./resetPagesStyle.css']
+  styleUrls  : ['./resetPagesStyle.css']
 })
 
 export class ResetPasswordComponent implements OnInit, AfterViewInit {

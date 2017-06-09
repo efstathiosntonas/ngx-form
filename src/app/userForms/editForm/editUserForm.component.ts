@@ -1,9 +1,8 @@
-import {Component, OnInit, EventEmitter, Renderer, ViewChild, ElementRef, AfterViewInit} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, EventEmitter, OnInit, Renderer, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {FormService} from '../../form/form.service';
-import {FormControl, FormGroup, Validators, FormBuilder} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ToastsManager} from 'ng2-toastr';
-import {DomSanitizer} from '@angular/platform-browser';
 import {BASE_URL, FORMS_API_URL} from '../../config/config';
 import {Form} from '../../form/form.model';
 
