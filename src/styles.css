@@ -268,7 +268,8 @@ span.slim {
 }
 
 .slim * {
-  box-sizing: inherit
+  box-sizing: inherit;
+  margin-bottom: -4px;
 }
 
 .slim {
