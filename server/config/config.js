@@ -14,4 +14,3 @@ module.exports = {
     emailPath       : 'server/views/email_templates/',
   }
 };
-

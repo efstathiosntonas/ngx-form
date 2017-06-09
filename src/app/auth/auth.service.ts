@@ -6,7 +6,7 @@ import 'rxjs/operator/map';
 import 'rxjs/operator/catch';
 import {ToastsManager} from 'ng2-toastr';
 import {ErrorService} from '../errorHandler/error.service';
-import {Reset} from './resetPassword';
+import {Reset} from './password.model';
 import {AuthHttp, tokenNotExpired} from 'angular2-jwt';
 import {AUTH_API_URL} from '../config/config';
 

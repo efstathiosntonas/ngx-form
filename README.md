@@ -32,7 +32,7 @@ more info in [gm](https://github.com/aheckmann/gm) page on how to install depend
 11. Edit form, user can edit the text inputs and the image or update only the image or update only the text fields.
 12. Admin area, admin can edit or delete all forms in database.
 13. User Profile area, user can upload a profile picture, change his password, view profile info like email, user id, role and joined date.
-14. Cron job to delete images from `uploads/tmp` folder when image age is greater than 1 hour. Cron runs every 1 hour, you need to run it `node cron.js`.
+14. Cron job to delete images from `uploads/tmp` folder when image age is greater than 1 hour. Cron runs every 1 hour, in order to enable cron you have to run `node cron.js`.
 
 ## Packages Used
 `Angular-cli v1.1.1` <br />
@@ -42,7 +42,7 @@ more info in [gm](https://github.com/aheckmann/gm) page on how to install depend
 `MongoDB v3.2.10` <br/>
 `Mongoose v4.10.5` <br />
 `Express v4.15.3` <br />
-`angular2-jwt v0.1.27` (only for checking the expiration date of the jwt token and the user role (admin or user)) <br />
+`angular2-jwt v0.1.27` (for checking the expiration date of the jwt token, user role (admin or user)) and for using AuthHttp wrapper.<br />
 `jsonwebtoken v7.4.1` <br />
 `Multer v1.3.0` <br />
 `ng2-toastr v4.1.0` <br />
@@ -63,12 +63,12 @@ more info in [gm](https://github.com/aheckmann/gm) page on how to install depend
 4. Run `node seed.js` to insert the admin user into database and create uploads folder. Admin email is `test@test.com` and password is `testpass`.  Make sure mongod is running.
 5. After login navigate to `localhost:3000/#/admin` to access admin panel.
 
-## Building the Angular2 app
+## Building the Angular app
 Run `ng build`
 
 A new `dist` folder will be created with all files needed to run the Angular 2 app in front end.
 
-If you want to make changes on the Angular2 app and auto-refresh the `dist` folder then run the following command in your terminal:
+If you want to make changes on the Angular app and auto-refresh the `dist` folder then run the following command in your terminal:
  `ng build --watch`
 
 ## Running the server

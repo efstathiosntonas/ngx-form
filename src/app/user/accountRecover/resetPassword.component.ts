@@ -2,7 +2,7 @@ import {AfterViewInit, Component, ElementRef, OnInit, Renderer, ViewChild} from 
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../../auth/auth.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {Reset} from '../../auth/resetPassword';
+import {Reset} from '../../auth/password.model';
 import {ToastsManager} from 'ng2-toastr';
 
 @Component({
