@@ -38,7 +38,6 @@ function setUserInfoRegister(req) {
 
 let functions = {
   registerUser: (req, res) => {
-    console.log(req.body);
     let user = new User({
       email   : req.body.email.toLowerCase(),
       password: req.body.password
@@ -237,7 +236,7 @@ let functions = {
               error: {message: 'Please check if your email is correct'}
             });
           }
-          user.password = passwordHash.generate(req.body.password);
+          user.password = req.body.password;
           user.resetPasswordToken = undefined;
           user.resetPasswordExpires = undefined;
 

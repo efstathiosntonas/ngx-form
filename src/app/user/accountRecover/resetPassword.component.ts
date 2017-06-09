@@ -45,7 +45,6 @@ export class ResetPasswordComponent implements OnInit, AfterViewInit {
 
   onSubmit() {
     const password = new Reset(null, this.token, this.myForm.value.password);
-    console.log(password);
     this.authService.reset(password)
       .subscribe(
         data => {

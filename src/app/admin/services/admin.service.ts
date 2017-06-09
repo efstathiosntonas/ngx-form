@@ -28,13 +28,11 @@ export class AdminService {
       headers.append('Authorization', token);
       return this.authHttp.get(`${ADMIN_API_URL}/forms`, {headers: headers})
         .map((response: Response) => {
-          console.log(response);
           const forms      = response.json().forms;
           let fetchedForms = [];
           for (let form of forms) {
             fetchedForms.push(form);
           }
-          console.log(fetchedForms);
           this.forms = fetchedForms;
           return fetchedForms;
         })
@@ -48,7 +46,6 @@ export class AdminService {
   editForm(editForm, formId) {
     const body    = JSON.stringify(editForm);
     const headers = new Headers({'Content-Type': 'application/json'});
-    console.log(editForm, formId);
     headers.append('Authorization', this.token);
     return this.authHttp.patch(`${ADMIN_API_URL}/form/` + formId, body, {headers: headers})
       .map((response: Response) => response.json())

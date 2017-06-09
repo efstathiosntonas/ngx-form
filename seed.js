@@ -1,6 +1,6 @@
 var mongoose     = require('mongoose'),
-    passwordHash = require('password-hash'),
     config       = require('./server/config/config'),
+    bcrypt = require('bcrypt'),
     MongoClient  = require('mongodb').MongoClient,
     async        = require('async'),
     fs           = require('fs'),
@@ -23,13 +23,22 @@ var user = new Schema({
 
 user.pre('save', function (next) {
   var user = this;
-  if (!user.isNew && !user.isModified('password')) {
+  if (this.isModified('password') || this.isNew) {
+    bcrypt.genSalt(10, function (err, salt) {
+      if (err) {
+        return next(err);
+      }
+      bcrypt.hash(user.password, salt,  (err, hash) => {
+        if (err) {
+          return next(err);
+        }
+        user.password = hash;
+        next();
+      });
+    });
+  } else {
     return next();
   }
-  var hashedPass = passwordHash.generate(user.password);
-  user.password  = hashedPass;
-  console.log(user.password);
-  next();
 });
 
 var User = mongoose.model('User', user);

@@ -140,7 +140,6 @@ let functions = {
 
   // Add New Form
   newForm: (req, res) => {
-    console.log(req.body);
     User.findById(req.user._id, function (err, user) {
       if (err) {
         return res.status(500).json({

@@ -182,7 +182,6 @@ let functions = {
 
   // Change User Password via Front End (not via email)
   changePassword: (req, res) => {
-    console.log(req.body);
     let userId = req.user._id;
     User.findById(userId, function (err, user) {
       console.log(user);

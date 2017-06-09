@@ -44,7 +44,7 @@ export class AuthService {
   forget(reset: Reset) {
     const body    = JSON.stringify(reset);
     const headers = new Headers({'Content-Type': 'application/json'});
-    return this.authHttp.post(`${AUTH_API_URL}/forgot`, body, {headers: headers})
+    return this.authHttp.post(`${AUTH_API_URL}/password`, body, {headers: headers})
       .map((response: Response) => response.json())
       .catch((error: Response) => {
         this.errorService.handleError(error.json());

@@ -1,13 +1,10 @@
 ngx-Form with file upload to file system, image path stored to Mongo. Project is built using the MEA2N/MEAN2 stack. This project could be used as an angular2-seed.
 
-#### note for npm users, project has moved to [ngx-form](https://www.npmjs.com/package/ngx-form)
-
 [![NPM](https://nodei.co/npm/ngx-form.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/ngx-form/)
 
 ## TODO
 1. Fix profile page user image upload
 2. Fix some small bugs in backend file deletion
-3. Fix password recovery form
 
 # ngx-Form
 
@@ -38,7 +35,7 @@ more info in [gm](https://github.com/aheckmann/gm) page on how to install depend
 14. Cron job to delete images from `uploads/tmp` folder when image age is greater than 1 hour. Cron runs every 1 hour, you need to run it `node cron.js`.
 
 ## Packages Used
-`Angular-cli v1.1.0` <br />
+`Angular-cli v1.1.1` <br />
 `Angular v4.1.3` <br />
 `Webpack` <br />
 `Node v6.9.1` <br/>
@@ -76,7 +73,7 @@ If you want to make changes on the Angular2 app and auto-refresh the `dist` fold
 
 ## Running the server
 Run `npm start` <br />
-If you want to make changes on the Server and auto refresh the back end code then run: `nodemon npm start`. If you don't have nodemon installed, run `npm install nodemon -g`.
+If you want to make changes on the Server and auto refresh the back end code then run: `nodemon npm start`. If you don't have nodemon installed, run `npm install nodemon -g`. <br />
 If you want to execute the cron job in order to clean up `/uploads/tmp` folder every 1 hour for files that their age is greater than 1 hour, run `node cron.js`.
 
 ## Viewing the App

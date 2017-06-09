@@ -49,7 +49,6 @@ export class LoginComponent implements OnInit, AfterViewInit {
     this.authService.signin(user)
       .subscribe(
         data => {
-          console.log(data.user)
           // if the user credentials are correct, set the localStorage token and userId,
           // we need these info in order to do stuff later when the user is signed in and verified
           localStorage.setItem('id_token', data.token);
