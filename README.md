@@ -19,7 +19,7 @@ The goal of this project is to submit a form with one file upload and two text f
 more info in [gm](https://github.com/aheckmann/gm) page on how to install depending your Operating System. If installing ImageMagick on Windows, please check "Install Legacy Utitities (e.g. convert") during installation otherwise node will report errors.
 
 ## Specs
-1. User login/signup using JSON Web Token (jwt) using Passport.
+1. User login/signup using JSON Web Token (jwt) with Passport.
 2. User password reset via email (nodemailer & SendGrid) using HTML templates (welcome email included upon user registration).
 3. Toastr Notifications (& Error Handling).
 4. Multipart form submission with image preview before upload (some of the upload logic is taken from primeng ui).
