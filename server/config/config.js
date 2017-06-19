@@ -6,6 +6,7 @@ module.exports = {
   'jwtExpire': '72h', //set the jwtExpire in smaller period in production
   'paths'    : {
     // path for pets images
+    serverPath      : '../server/app',
     imagePath       : 'server/uploads/forms/',
     profileImagePath: 'server/uploads/profiles/',
     tmpImagePath    : 'server/uploads/tmp/',

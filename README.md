@@ -1,5 +1,7 @@
 ngx-Form with file upload to file system, image path stored to Mongo. Project is built using the MEA2N/MEAN2 stack. This project could be used as an angular2-seed.
 
+Live Demo: [ngx-Form](http://ngxform.ntonas.pro) *Admin panel is disabled, please register using your own credentials*
+
 [![NPM](https://nodei.co/npm/ngx-form.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/ngx-form/)
 
 ## TODO
@@ -8,7 +10,7 @@ ngx-Form with file upload to file system, image path stored to Mongo. Project is
 
 # ngx-Form
 
-This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.1.1.
+This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.1.2.
 
 The goal of this project is to submit a form with one file upload and two text fields. The form is submitted to back end, the file is stored in the `uploads/forms/:userID` and then the file name (string) is stored in MongoDB among the two text fields. At the end, the form ID is assinged to the signed in user ID (via Ref) for later viewing all the form fields and file in the front end. User profile image is stored at `uploads/profiles/:userID`.
 
@@ -35,12 +37,12 @@ more info in [gm](https://github.com/aheckmann/gm) page on how to install depend
 14. Cron job to delete images from `uploads/tmp` folder when image age is greater than 1 hour. Cron runs every 1 hour, in order to enable cron you have to run `node cron.js`.
 
 ## Packages Used
-`Angular-cli v1.1.1` <br />
-`Angular v4.1.3` <br />
+`Angular-cli v1.1.2` <br />
+`Angular v4.2.3` <br />
 `Webpack` <br />
-`Node v6.9.1` <br/>
-`MongoDB v3.2.10` <br/>
-`Mongoose v4.10.5` <br />
+`Node used in development v8.1.2` <br/>
+`MongoDB used in development v3.4.1` <br/>
+`Mongoose v4.10.7` <br />
 `Express v4.15.3` <br />
 `angular2-jwt v0.1.27` (for checking the expiration date of the jwt token, user role (admin or user)) and for using AuthHttp wrapper.<br />
 `jsonwebtoken v7.4.1` <br />
@@ -83,25 +85,3 @@ Enjoy!
 
 ## Help with angular-cli
 To get more help on the `angular-cli` use `ng --help` or go check out the [Angular-CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
-
-# Preview of the app
-### Login Form
-![Login Form](https://cloud.githubusercontent.com/assets/717975/20486222/8dddb670-b007-11e6-861a-18f2123f70f4.png)
-### Password Reset Form
-![forgot_password](https://cloud.githubusercontent.com/assets/717975/20642267/6a60daf0-b413-11e6-960d-2b12ec98a839.png)
-### Form
-![Form](https://cloud.githubusercontent.com/assets/717975/20486257/abfd4166-b007-11e6-8e2e-24d2afd746a0.png)
-### Server Response in console logs
-![Server response after submitting form](https://cloud.githubusercontent.com/assets/717975/20238428/053e95ec-a8f4-11e6-93ab-04258e359e13.png)
-### User Forms
-![form_table](https://cloud.githubusercontent.com/assets/717975/20667369/936c703a-b571-11e6-9e60-164d858c5793.png)
-### Edit Form
-![edit_form](https://cloud.githubusercontent.com/assets/717975/20598422/ce519cde-b251-11e6-919d-898855445f20.png)
-### Admin Page
-![admin_page](https://cloud.githubusercontent.com/assets/717975/20824439/80fa30da-b865-11e6-9af2-a7c6c2f1d7d3.png)
-### Profile Page
-![profile_page](https://cloud.githubusercontent.com/assets/717975/20858250/54bfe52e-b94a-11e6-863d-9b0139c89263.png)
-### Users document in MongoDB with forms array ref
-![Users document in MongoDB](https://cloud.githubusercontent.com/assets/717975/20486315/eaa5b452-b007-11e6-9080-b1c8186bf404.png)
-### Forms Document in MongoDB with ref to the user._id (owner field)
-![User submitted forms page](https://cloud.githubusercontent.com/assets/717975/20486402/411bbf20-b008-11e6-9170-05f44d610cd8.png)

@@ -32,7 +32,6 @@ import {UserProfileComponent} from './user/profile/userProfile.component';
 import {ProfileService} from './user/profile/profile.service';
 import {ChangePasswordComponent} from './user/profile/changePassword/changePassword.component';
 import {AuthConfig, AuthHttp} from 'angular2-jwt';
-import {ProgressBarModule} from 'ngx-progress-bar';
 import {CustomOption} from './config/toastr.config';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {Ng2Bs3ModalModule} from 'ng2-bs3-modal/ng2-bs3-modal';
@@ -76,7 +75,6 @@ export function getAuthHttp(http) {
     RouterModule,
     ReactiveFormsModule,
     routing,
-    ProgressBarModule,
     BrowserAnimationsModule,
     ToastModule.forRoot(),
     Ng2Bs3ModalModule
